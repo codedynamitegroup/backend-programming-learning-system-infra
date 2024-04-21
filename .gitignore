@@ -37,4 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-helm/cp-helm-charts
+helm/cp-helm-charts/
