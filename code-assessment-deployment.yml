@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-assessment-deployment
+  labels:
+    app: code-assessment-deployment
+spec:
+  selector:
+    matchLabels:
+      app: code-assessment-deployment
+  template:
+    metadata:
+      labels:
+        app: code-assessment-deployment
+    spec:
+      containers:
+        - name: code-assessment-service
+          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/code.assessment.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/code-assessment-service?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              value: "never"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-assessment-service
+  namespace: default
+  labels:
+    app: code-assessment-service
+spec:
+  selector:
+    app: code-assessment-deployment
+  ports:
+    - name: code-assessment-service-port
+      protocol: TCP
+      port: 8183
+  type: LoadBalancer
+  loadBalancerIP: ""
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: code-assessment-deployment-hpa
+  namespace: default
+  labels:
+    app: code-assessment-deployment
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: code-assessment-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 85

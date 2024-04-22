@@ -1,0 +1,77 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-deployment
+  namespace: default
+  labels:
+    app: course-deployment
+spec:
+  selector:
+    matchLabels:
+      app: course-deployment
+  template:
+    metadata:
+      labels:
+        app: course-deployment
+    spec:
+      containers:
+        - name: course-service
+          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/course.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              value: "never"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: course-service
+  namespace: default
+  labels:
+    app: course-service
+spec:
+  selector:
+    app: course-deployment
+  ports:
+    - name: course-service-port
+      protocol: TCP
+      port: 8184
+  type: LoadBalancer
+  loadBalancerIP: ""
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: course-deployment-hpa
+  namespace: default
+  labels:
+    app: course-deployment
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: course-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 85
