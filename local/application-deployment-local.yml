@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
+          image: com.backend.programming.learning.systemcom.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://34.124.244.219:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -80,7 +80,7 @@ spec:
           image: com.backend.programming.learning.system/core.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://34.124.244.219:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -136,7 +136,7 @@ spec:
           image: com.backend.programming.learning.system/course.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://34.124.244.219:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -191,7 +191,7 @@ spec:
           image: com.backend.programming.learning.system/code-assessment.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://34.124.244.219:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD

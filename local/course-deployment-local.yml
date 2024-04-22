@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: course-service
-          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/course.service:1.0-SNAPSHOT
+          image: com.backend.programming.learning.systemcom.backend.programming.learning.system/course.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://34.124.244.219:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
@@ -28,9 +28,9 @@ spec:
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              value: "http://local-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
               cpu: "500m"

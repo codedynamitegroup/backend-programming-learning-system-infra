@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: course-deployment
+  name: core-deployment
   namespace: default
   labels:
-    app: course-deployment
+    app: core-deployment
 spec:
   selector:
     matchLabels:
-      app: course-deployment
+      app: core-deployment
   template:
     metadata:
       labels:
-        app: course-deployment
+        app: core-deployment
     spec:
       containers:
-        - name: course-service
-          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/course.service:1.0-SNAPSHOT
+        - name: core-service
+          image: com.backend.programming.learning.systemcom.backend.programming.learning.system/core.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://34.124.244.219:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://34.124.244.219:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -28,9 +28,9 @@ spec:
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              value: "http://local-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
               cpu: "500m"
@@ -42,31 +42,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: course-service
+  name: core-service
   namespace: default
   labels:
-    app: course-service
+    app: core-service
 spec:
   selector:
-    app: course-deployment
+    app: core-deployment
   ports:
-    - name: course-service-port
+    - name: core-service-port
       protocol: TCP
-      port: 8184
+      port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: course-deployment-hpa
+  name: core-deployment-hpa
   namespace: default
   labels:
-    app: course-deployment
+    app: core-deployment
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: course-deployment
+    name: core-deployment
     apiVersion: apps/v1
   minReplicas: 2
   maxReplicas: 4
