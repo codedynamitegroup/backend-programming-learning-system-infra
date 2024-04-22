@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: code-assessment-service
-          image: com.backend.programming.learning.systemcom.backend.programming.learning.system/code.assessment.service:1.0-SNAPSHOT
+          image: com.backend.programming.learning.system/code.assessment.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://34.124.244.219:5432/code-assessment-service?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: com.backend.programming.learning.systemcom.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
+          image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://34.124.244.219:5432/auth-service?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
