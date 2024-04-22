@@ -2,31 +2,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-deployment
+  name: auth-deployment
   namespace: default
   labels:
-    app: order-deployment
+    app: auth-deployment
 spec:
   selector:
     matchLabels:
-      app: order-deployment
+      app: auth-deployment
   template:
     metadata:
       labels:
-        app: order-deployment
+        app: auth-deployment
     spec:
       containers:
-        - name: order-service
+        - name: auth-service
           image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/order.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/postgres?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/auth-service?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              value: "eks-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              value: "http://eks-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
               cpu: "500m"
@@ -38,88 +42,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-service
+  name: auth-service
   namespace: default
   labels:
-    app: order-service
+    app: auth-service
 spec:
   selector:
-    app: order-deployment
+    app: auth-deployment
   ports:
-    - name: order-service-port
-      protocol: TCP
-      port: 8181
-  type: LoadBalancer
-  loadBalancerIP: ""
----
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: order-deployment-hpa
-  namespace: default
-  labels:
-    app: order-deployment
-spec:
-  scaleTargetRef:
-    kind: Deployment
-    name: order-deployment
-    apiVersion: apps/v1
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        targetAverageUtilization: 85
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: payment-deployment
-  namespace: default
-  labels:
-    app: payment-deployment
-spec:
-  selector:
-    matchLabels:
-      app: payment-deployment
-  template:
-    metadata:
-      labels:
-        app: payment-deployment
-    spec:
-      containers:
-        - name: payment-service
-          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/payment.service:1.0-SNAPSHOT
-          env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/postgres?currentSchema=payment&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
-            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
-              value: "never"
-            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
-            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "1024Mi"
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: payment-service
-  namespace: default
-  labels:
-    app: payment-service
-spec:
-  selector:
-    app: payment-deployment
-  ports:
-    - name: payment-service-port
+    - name: auth-service-port
       protocol: TCP
       port: 8182
   type: LoadBalancer
@@ -128,14 +59,14 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: payment-deployment-hpa
+  name: auth-deployment-hpa
   namespace: default
   labels:
-    app: payment-deployment
+    app: auth-deployment
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: payment-deployment
+    name: auth-deployment
     apiVersion: apps/v1
   minReplicas: 2
   maxReplicas: 4
@@ -148,31 +79,35 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: restaurant-deployment
+  name: core-deployment
   namespace: default
   labels:
-    app: restaurant-deployment
+    app: core-deployment
 spec:
   selector:
     matchLabels:
-      app: restaurant-deployment
+      app: core-deployment
   template:
     metadata:
       labels:
-        app: restaurant-deployment
+        app: core-deployment
     spec:
       containers:
-        - name: restaurant-service
-          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/restaurant.service:1.0-SNAPSHOT
+        - name: core-service
+          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/payment.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/postgres?currentSchema=restaurant&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              value: "eks-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              value: "http://eks-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
               cpu: "500m"
@@ -184,31 +119,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: restaurant-service
+  name: core-service
   namespace: default
   labels:
-    app: restaurant-service
+    app: core-service
 spec:
   selector:
-    app: restaurant-deployment
+    app: core-deployment
   ports:
-    - name: restaurant-service-port
+    - name: core-service-port
       protocol: TCP
-      port: 8183
+      port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: restaurant-deployment-hpa
+  name: core-deployment-hpa
   namespace: default
   labels:
-    app: restaurant-deployment
+    app: core-deployment
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: restaurant-deployment
+    name: core-deployment
     apiVersion: apps/v1
   minReplicas: 2
   maxReplicas: 4
@@ -221,30 +156,35 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customer-deployment
+  name: course-deployment
+  namespace: default
   labels:
-    app: customer-deployment
+    app: course-deployment
 spec:
   selector:
     matchLabels:
-      app: customer-deployment
+      app: course-deployment
   template:
     metadata:
       labels:
-        app: customer-deployment
+        app: course-deployment
     spec:
       containers:
-        - name: customer-service
-          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/customer.service:1.0-SNAPSHOT
+        - name: course-service
+          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/restaurant.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-service:5432/postgres?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              value: "eks-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              value: "http://eks-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
               cpu: "500m"
@@ -256,15 +196,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-service
+  name: course-service
   namespace: default
   labels:
-    app: customer-service
+    app: course-service
 spec:
   selector:
-    app: customer-deployment
+    app: course-deployment
   ports:
-    - name: customer-service-port
+    - name: course-service-port
       protocol: TCP
       port: 8184
   type: LoadBalancer
@@ -273,14 +213,90 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: customer-deployment-hpa
+  name: course-deployment-hpa
   namespace: default
   labels:
-    app: customer-deployment
+    app: course-deployment
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: customer-deployment
+    name: course-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 85
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-assessment-deployment
+  labels:
+    app: code-assessment-deployment
+spec:
+  selector:
+    matchLabels:
+      app: code-assessment-deployment
+  template:
+    metadata:
+      labels:
+        app: code-assessment-deployment
+    spec:
+      containers:
+        - name: code-assessment-service
+          image: europe-west4-docker.pkg.dev/food-ordering-system-346904/food-ordering-system-repository/customer.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/code-assessment-service?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              value: "never"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "eks-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://eks-confluent-kafka-cp-schema-registry:8081"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-assessment-service
+  namespace: default
+  labels:
+    app: code-assessment-service
+spec:
+  selector:
+    app: code-assessment-deployment
+  ports:
+    - name: code-assessment-service-port
+      protocol: TCP
+      port: 8183
+  type: LoadBalancer
+  loadBalancerIP: ""
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: code-assessment-deployment-hpa
+  namespace: default
+  labels:
+    app: code-assessment-deployment
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: code-assessment-deployment
     apiVersion: apps/v1
   minReplicas: 2
   maxReplicas: 4
