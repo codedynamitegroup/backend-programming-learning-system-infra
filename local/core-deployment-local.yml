@@ -55,23 +55,3 @@ spec:
       port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: core-deployment-hpa
-  namespace: default
-  labels:
-    app: core-deployment
-spec:
-  scaleTargetRef:
-    kind: Deployment
-    name: core-deployment
-    apiVersion: apps/v1
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        targetAverageUtilization: 85
