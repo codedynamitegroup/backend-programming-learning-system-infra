@@ -20,11 +20,11 @@ spec:
           image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://postgres-service:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              value: "admin"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
@@ -80,11 +80,11 @@ spec:
           image: com.backend.programming.learning.system/core.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://postgres-service:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              value: "admin"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
@@ -136,11 +136,11 @@ spec:
           image: com.backend.programming.learning.system/course.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://postgres-service:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              value: "admin"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
@@ -191,11 +191,11 @@ spec:
           image: com.backend.programming.learning.system/code-assessment.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://postgres-service:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              value: "admin"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
