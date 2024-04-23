@@ -56,24 +56,24 @@ spec:
   type: LoadBalancer
   loadBalancerIP: ""
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: course-deployment-hpa
-  namespace: default
-  labels:
-    app: course-deployment
-spec:
-  scaleTargetRef:
-    kind: Deployment
-    name: course-deployment
-    apiVersion: apps/v1
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 85
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: course-deployment-hpa
+#  namespace: default
+#  labels:
+#    app: course-deployment
+#spec:
+#  scaleTargetRef:
+#    kind: Deployment
+#    name: course-deployment
+#    apiVersion: apps/v1
+#  minReplicas: 2
+#  maxReplicas: 4
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 85
