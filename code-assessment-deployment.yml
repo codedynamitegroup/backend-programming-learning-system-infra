@@ -55,7 +55,7 @@ spec:
   type: LoadBalancer
   loadBalancerIP: ""
 ---
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: code-assessment-deployment-hpa
@@ -73,4 +73,6 @@ spec:
     - type: Resource
       resource:
         name: cpu
-        targetAverageUtilization: 85
+        target:
+            type: Utilization
+            averageUtilization: 85
