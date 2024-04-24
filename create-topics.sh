@@ -24,10 +24,10 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-create-request --create --partitions 3 --replication-factor 3 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-create-response --create --partitions 3 --replication-factor 3 --if-not-exists
-kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-update-request --partitions 3 --replication-factor 3 --if-not-exists
-kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-update-response --partitions 3 --replication-factor 3 --if-not-exists
-kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-delete-request --partitions 3 --replication-factor 3 --if-not-exists
-kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-delete-response --partitions 3 --replication-factor 3 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-update-request --create --partitions 3 --replication-factor 3 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-update-response --create --partitions 3 --replication-factor 3 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-delete-request --create --partitions 3 --replication-factor 3 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-delete-response --create --partitions 3 --replication-factor 3 --if-not-exists
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic user-request --create --partitions 3 --replication-factor 3 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic user-response --create --partitions 3 --replication-factor 3 --if-not-exists

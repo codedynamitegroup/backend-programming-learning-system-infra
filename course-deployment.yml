@@ -17,7 +17,6 @@ spec:
     spec:
       containers:
         - name: course-service
-#          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/course.service:1.0-SNAPSHOT
           image: com.backend.programming.learning.system/course.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
@@ -34,7 +33,7 @@ spec:
               value: "http://gke-confluent-kafka-cp-schema-registry:8081"
           resources:
             limits:
-              cpu: "500m"
+              cpu: "300m"
               memory: "1024Mi"
             requests:
               cpu: "200m"
@@ -57,24 +56,24 @@ spec:
   type: LoadBalancer
   loadBalancerIP: ""
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: course-deployment-hpa
-  namespace: default
-  labels:
-    app: course-deployment
-spec:
-  scaleTargetRef:
-    kind: Deployment
-    name: course-deployment
-    apiVersion: apps/v1
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 85
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: course-deployment-hpa
+#  namespace: default
+#  labels:
+#    app: course-deployment
+#spec:
+#  scaleTargetRef:
+#    kind: Deployment
+#    name: course-deployment
+#    apiVersion: apps/v1
+#  minReplicas: 2
+#  maxReplicas: 4
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 85
