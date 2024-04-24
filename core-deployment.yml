@@ -27,8 +27,6 @@ spec:
               value: "postgresadmin"
             - name: SPRING_DATASOURCE_INITIALIZATION-MODE
               value: "never"
-            - name: SOCKET-CONFIG_HOST
-              value: "192.168.1.11"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "gke-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
@@ -36,7 +34,7 @@ spec:
           resources:
             limits:
               cpu: "300m"
-              memory: "1024Mi"
+              memory: "800Mi"
             requests:
               cpu: "200m"
               memory: "256Mi"
