@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
         - name: auth-service
-#          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/auth.service:1.0-SNAPSHOT
-          image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
+          image: asia-southeast1-docker.pkg.dev/programming-learning-system/backend-programming-learning-system-repository/auth.service:1.0-SNAPSHOT
+#          image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
