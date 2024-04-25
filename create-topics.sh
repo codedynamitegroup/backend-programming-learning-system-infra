@@ -1,4 +1,6 @@
 #gke-confluent-kafka-cp-zookeeper-headless
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --list
+
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-question-create-request-to-core-service --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-question-create-response-from-core-service --delete --if-exists
 
@@ -37,3 +39,5 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic user-create-response --create --partitions 3 --replication-factor 3 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic user-update-response --create --partitions 3 --replication-factor 3 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic user-delete-response --create --partitions 3 --replication-factor 3 --if-not-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --list
