@@ -54,6 +54,9 @@ spec:
     - name: core-service-port
       protocol: TCP
       port: 8181
+    - name: socket-service-port
+      protocol: TCP
+      port: 8085
   type: LoadBalancer
   loadBalancerIP: ""
 ---
