@@ -24,7 +24,7 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "admin"
+              value: "localdb"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
@@ -51,5 +51,8 @@ spec:
     - name: course-service-port
       protocol: TCP
       port: 8184
+    - name: socket-service-port
+      protocol: TCP
+      port: 8085
   type: LoadBalancer
   loadBalancerIP: ""

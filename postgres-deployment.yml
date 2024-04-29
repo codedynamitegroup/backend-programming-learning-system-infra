@@ -20,7 +20,7 @@ spec:
           image: postgres:latest
           env:
             - name: POSTGRES_PASSWORD
-              value: "admin"
+              value: "localdb"
 ---
 apiVersion: v1
 kind: Service
