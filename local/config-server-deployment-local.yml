@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+  namespace: default
+  labels:
+    app: config-server-deployment
+spec:
+  selector:
+    matchLabels:
+      app: config-server-deployment
+  template:
+    metadata:
+      labels:
+        app: config-server-deployment
+    spec:
+      containers:
+        - name: config-server-service
+          image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              value: "INFO"
+            - name: LOGGING_LEVEL_org.springframework.cloud.config
+              value: "DEBUG"
+            - name: SPRING_APPLICATION_NAME
+              value: "configserver"
+            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
+              value: "https://github.com/6BrosT/config-server-repository.git"
+            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_SKIP-SSL-VALIDATION
+              value: "true"
+            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT-LABEL
+              value: "main"
+            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_CLONE-ON-START
+              value: "true"
+            - name: SPRING_CLOUD_CONFIG_FAIL-FAST
+              value: "true"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-service
+  namespace: default
+  labels:
+    app: config-server-service
+spec:
+  selector:
+    app: config-server-deployment
+  ports:
+    - name: config-server-service-port
+      protocol: TCP
+      port: 9999
+  type: LoadBalancer
+  loadBalancerIP: ""
