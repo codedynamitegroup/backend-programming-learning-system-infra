@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service-1
+  namespace: default
+  labels:
+    app: discovery-service-1
+spec:
+  selector:
+    matchLabels:
+      app: discovery-service-1
+  template:
+    metadata:
+      labels:
+        app: discovery-service-1
+    spec:
+      containers:
+        - name: discovery-service-1
+          image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: LOG_APP-NAME
+              value: "discovery-service-1"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "peer1"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "discovery-service-1"
+          volumeMounts:
+            - mountPath: /workspace/discovery-service/logs
+              name: discovery-service-claim0
+      volumes:
+        - name: discovery-service-claim0
+          persistentVolumeClaim:
+            claimName: discovery-service-claim0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service-1
+  namespace: default
+  labels:
+    app: discovery-service-1
+spec:
+  selector:
+    app: discovery-service-1
+  ports:
+    - protocol: TCP
+      port: 8761
+      name: discovery-service-1-port
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: discovery-service-claim0
+  namespace: default
+  labels:
+    app: discovery-service-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service-2
+  labels:
+    app: discovery-service-2
+spec:
+  selector:
+    matchLabels:
+      app: discovery-service-2
+  template:
+    metadata:
+      labels:
+        app: discovery-service-2
+    spec:
+      containers:
+        - name: discovery-service-2
+          image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: LOG_APP-NAME
+              value: "discovery-service-2"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "peer2"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "discovery-service-2"
+      volumes:
+        - name: discovery-service-logs
+          hostPath:
+            path: ./discovery-service-logs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service-2
+spec:
+  selector:
+    app: discovery-service-2
+  ports:
+    - protocol: TCP
+      port: 8762
+      name: discovery-service-2-port
+  type: LoadBalancer

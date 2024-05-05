@@ -19,22 +19,8 @@ spec:
         - name: config-server-service
           image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
           env:
-            - name: LOGGING_LEVEL_ROOT
-              value: "INFO"
-            - name: LOGGING_LEVEL_org.springframework.cloud.config
-              value: "DEBUG"
-            - name: SPRING_APPLICATION_NAME
-              value: "configserver"
-            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
-              value: "https://github.com/6BrosT/config-server-repository.git"
-            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_SKIP-SSL-VALIDATION
-              value: "true"
-            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT-LABEL
-              value: "main"
-            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_CLONE-ON-START
-              value: "true"
-            - name: SPRING_CLOUD_CONFIG_FAIL-FAST
-              value: "true"
+            - name: LOG_APP-NAME
+              value: "config-server"
           resources:
             limits:
               cpu: "500m"
@@ -42,6 +28,13 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
+          volumeMounts:
+            - mountPath: /workspace/config-server/logs
+              name: config-server-claim0
+      volumes:
+        - name: config-server-claim0
+          persistentVolumeClaim:
+            claimName: config-server-claim0
 ---
 apiVersion: v1
 kind: Service
@@ -59,3 +52,17 @@ spec:
       port: 9999
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: config-server-claim0
+  namespace: default
+  labels:
+    app: config-server-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

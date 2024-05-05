@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service
+  namespace: default
+  labels:
+    app: gateway-service
+spec:
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+    spec:
+      containers:
+        - name: gateway-service
+          image: com.backend.programming.learning.system/gateway.service:1.0-SNAPSHOT
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              value: "debug"
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "debug"
+            - name: SERVER_PORT
+              value: "9098"
+            - name: LOG_APP-NAME
+              value: "gateway-service"
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: "http://config-server:9999"
+            - name: SPRING_REDIS_HOST
+              value: "redis-master-0"
+            - name: SPRING_REDIS_PORT
+              value: "6379"
+            - name: SPRING_REDIS_PASSWORD
+              value: "admin"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+              value: "http://discovery-service-1:8761/eureka/,http://discovery-service-2:8762/eureka/"
+          volumeMounts:
+            - name: gateway-service-log
+              mountPath: /workspace/gateway-service/logs
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "128Mi"
+      volumes:
+        - name: gateway-service-log
+          persistentVolumeClaim:
+            claimName: gateway-service-claim0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  namespace: default
+  labels:
+    app: gateway-service
+spec:
+  selector:
+    app: gateway-service
+  ports:
+    - name: gateway-service-port
+      protocol: TCP
+      port: 9098
+  type: LoadBalancer
+  loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gateway-service-claim0
+  namespace: default
+  labels:
+    app: gateway-service-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

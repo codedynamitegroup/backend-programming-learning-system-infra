@@ -28,6 +28,11 @@ spec:
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+              value: "http://discovery-service-1:8761/eureka/,http://discovery-service-2:8762/eureka/"
+          volumeMounts:
+            - name: code-assessment-service-log
+              mountPath: /workspace/code-assessment-service/logs
           resources:
             limits:
               cpu: "500m"
@@ -35,6 +40,10 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
+      volumes:
+        - name: code-assessment-service-log
+          persistentVolumeClaim:
+            claimName: code-assessment-service-claim0
 ---
 apiVersion: v1
 kind: Service
@@ -52,3 +61,17 @@ spec:
       port: 8183
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: code-assessment-service-claim0
+  namespace: default
+  labels:
+    app: code-assessment-service-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

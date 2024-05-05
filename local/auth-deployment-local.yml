@@ -19,6 +19,10 @@ spec:
         - name: auth-service
           image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "info"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://host.docker.internal:5432/auth-service?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
@@ -29,6 +33,13 @@ spec:
               value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: "http://config-server:9999"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+              value: "http://discovery-service-1:8761/eureka/,http://discovery-service-2:8762/eureka/"
+          volumeMounts:
+            - name: auth-service-log
+              mountPath: /workspace/auth-service/logs
           resources:
             limits:
               cpu: "500m"
@@ -36,6 +47,10 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
+      volumes:
+        - name: auth-service-log
+          persistentVolumeClaim:
+            claimName: auth-service-claim0
 ---
 apiVersion: v1
 kind: Service
@@ -53,3 +68,17 @@ spec:
       port: 8182
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: auth-service-claim0
+  namespace: default
+  labels:
+    app: auth-service-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
