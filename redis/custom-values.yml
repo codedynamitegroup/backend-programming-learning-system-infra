@@ -678,8 +678,8 @@ replica:
   ## @param replica.externalMaster.port Port for Redis service external master host
   ##
   externalMaster:
-    enabled: false
-    host: ""
+    enabled: true
+    host: "redis-master"
     port: 6379
   ## @param replica.containerPorts.redis Container port to open on Redis&reg; replicas nodes
   ##
