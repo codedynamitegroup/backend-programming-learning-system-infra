@@ -31,6 +31,8 @@ spec:
               value: "localdb"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
+            - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
+              value: "local-confluent-kafka-cp-kafka-headless:9092"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
             - name: SPRING_CLOUD_CONFIG_URI
