@@ -21,6 +21,8 @@ spec:
           env:
             - name: LOG_APP-NAME
               value: "config-server"
+            - name: SERVER_PORT
+              value: "9999"
           resources:
             limits:
               cpu: "500m"

@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    scrape_configs:
+      - job_name: 'prometheus'
+        scrape_interval: 1m
+        static_configs:
+          - targets: ['localhost:9090']
+      - job_name: 'grafana'
+        scrape_interval: 1m
+        metrics_path: '/metrics'
+        static_configs:
+          - targets: ['grafana:3000']
+      - job_name: 'config-service'
+        scrape_interval: 10s
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: [ 'config-service:9999' ]
+      - job_name: 'discovery-service-1'
+        scrape_interval: 10s
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: [ 'discovery-service-1:8761' ]    
+      - job_name: 'discovery-service-2'
+        scrape_interval: 10s
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: [ 'discovery-service-1:8762' ]
+      - job_name: 'gateway-service'
+        scrape_interval: 1m
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: ['gateway-service:9098']
+      - job_name: 'core-service'
+        scrape_interval: 1m
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: ['core-service:8181']
+      - job_name: 'auth-service'
+        scrape_interval: 1m
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: [ 'auth-service:8182' ]
+      - job_name: 'course-service'
+        scrape_interval: 1m
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: ['course-service:8184']
+      - job_name: 'code-assessment-service'
+        scrape_interval: 1m
+        metrics_path: '/actuator/metrics'
+        static_configs:
+        - targets: ['code-assessment-service:8183']
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-deployment
+  template:
+    metadata:
+      labels:
+        app: prometheus-deployment
+    spec:
+      containers:
+        - name: prometheus-deployment
+          image: prom/prometheus:v2.19.2
+      hostname: prometheus
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: default
+  labels:
+    app: prometheus-service
+spec:
+  selector:
+    app: prometheus-deployment
+  ports:
+    - name: prometheus-service-port
+      protocol: TCP
+      port: 9090
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana-deployment
+  template:
+    metadata:
+      labels:
+        app: grafana-deployment
+    spec:
+      containers:
+      - name: grafana-deployment
+        image: grafana/grafana:5.4.3
+        env:
+          - name: GF_SECURITY_ADMIN_USER
+            value: "admin"
+          - name: GF_SECURITY_ADMIN_PASSWORD
+            value: "admin"
+      hostname: grafana
+      volumes:
+        - name: grafana-data
+          persistentVolumeClaim:
+            claimName: grafana-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  namespace: default
+  labels:
+    app: grafana-service
+spec:
+  selector:
+    app: grafana-deployment
+  ports:
+    - name: grafana-service-port
+      protocol: TCP
+      port: 3000
+  type: LoadBalancer

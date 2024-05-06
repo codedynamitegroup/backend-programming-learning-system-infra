@@ -36,7 +36,7 @@ spec:
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-server:9999"
+              value: "http://config-server-service:9999"
             - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
               value: "http://discovery-service-1:8761/eureka/,http://discovery-service-2:8762/eureka/"
           volumeMounts:

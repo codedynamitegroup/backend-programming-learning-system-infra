@@ -28,7 +28,7 @@ spec:
             - name: LOG_APP-NAME
               value: "gateway-service"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-server:9999"
+              value: "http://config-server-service:9999"
             - name: SPRING_REDIS_HOST
               value: "redis-master"
             - name: SPRING_REDIS_PORT

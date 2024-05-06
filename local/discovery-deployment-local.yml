@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: discovery-service-1
+  name: discovery-deployment-1
   namespace: default
   labels:
-    app: discovery-service-1
+    app: discovery-deployment-1
 spec:
   selector:
     matchLabels:
-      app: discovery-service-1
+      app: discovery-deployment-1
   template:
     metadata:
       labels:
-        app: discovery-service-1
+        app: discovery-deployment-1
     spec:
       containers:
         - name: discovery-service-1
@@ -50,11 +50,11 @@ metadata:
     app: discovery-service-1
 spec:
   selector:
-    app: discovery-service-1
+    app: discovery-deployment-1
   ports:
-    - protocol: TCP
+    - name: discovery-service-1-port
+      protocol: TCP
       port: 8761
-      name: discovery-service-1-port
   type: LoadBalancer
 ---
 apiVersion: v1
@@ -74,17 +74,17 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: discovery-service-2
+  name: discovery-deployment-2
   labels:
-    app: discovery-service-2
+    app: discovery-deployment-2
 spec:
   selector:
     matchLabels:
-      app: discovery-service-2
+      app: discovery-deployment-2
   template:
     metadata:
       labels:
-        app: discovery-service-2
+        app: discovery-deployment-2
     spec:
       containers:
         - name: discovery-service-2
@@ -116,7 +116,7 @@ metadata:
   name: discovery-service-2
 spec:
   selector:
-    app: discovery-service-2
+    app: discovery-deployment-2
   ports:
     - protocol: TCP
       port: 8762
