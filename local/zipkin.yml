@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+  namespace: default
+  labels:
+    app: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+        - name: zipkin
+          image: openzipkin/zipkin:2.22.2
+          env:
+            - name: STORAGE_TYPE
+              value: "mysql"
+            - name: MYSQL_HOST
+              value: "zipkin-mysql-service"
+            - name: MYSQL_USER
+              value: "zipkin"
+            - name: MYSQL_PASS
+              value: "zipkin"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "local-confluent-kafka-cp-kafka-headless:9092"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+  namespace: default
+  labels:
+    app: zipkin
+spec:
+  selector:
+    app: zipkin
+  ports:
+    - name: zipkin-port
+      protocol: TCP
+      port: 9411
+  type: LoadBalancer
