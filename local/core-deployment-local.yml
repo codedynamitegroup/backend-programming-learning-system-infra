@@ -38,7 +38,7 @@ spec:
             - name: SPRING_CLOUD_CONFIG_URI
               value: "http://config-service:9999"
             - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
-              value: "http://discovery-service-1:8761/eureka/,http://discovery-service-2:8762/eureka/"
+              value: "http://discovery-service-1:8761/eureka/"
           volumeMounts:
             - name: core-service-log
               mountPath: /workspace/core-service/logs
