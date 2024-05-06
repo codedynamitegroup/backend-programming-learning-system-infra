@@ -1,60 +1,3 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prometheus-config
-data:
-  prometheus.yml: |
-    scrape_configs:
-      - job_name: 'prometheus'
-        scrape_interval: 1m
-        static_configs:
-          - targets: ['localhost:9090']
-      - job_name: 'grafana'
-        scrape_interval: 1m
-        metrics_path: '/metrics'
-        static_configs:
-          - targets: ['grafana:3000']
-      - job_name: 'config-service'
-        scrape_interval: 10s
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: [ 'config-service:9999' ]
-      - job_name: 'discovery-service-1'
-        scrape_interval: 10s
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: [ 'discovery-service-1:8761' ]    
-      - job_name: 'discovery-service-2'
-        scrape_interval: 10s
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: [ 'discovery-service-1:8762' ]
-      - job_name: 'gateway-service'
-        scrape_interval: 1m
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: ['gateway-service:9098']
-      - job_name: 'core-service'
-        scrape_interval: 1m
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: ['core-service:8181']
-      - job_name: 'auth-service'
-        scrape_interval: 1m
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: [ 'auth-service:8182' ]
-      - job_name: 'course-service'
-        scrape_interval: 1m
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: ['course-service:8184']
-      - job_name: 'code-assessment-service'
-        scrape_interval: 1m
-        metrics_path: '/actuator/metrics'
-        static_configs:
-        - targets: ['code-assessment-service:8183']
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -72,19 +15,50 @@ spec:
       containers:
         - name: prometheus-deployment
           image: prom/prometheus:v2.19.2
-      hostname: prometheus
+          args:
+            - "--storage.tsdb.retention.time=12h"
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "200m"
+              memory: "128Mi"
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus/
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
       volumes:
-        - name: prometheus-config
+        - name: prometheus-config-volume
           configMap:
-            name: prometheus-config
+            defaultMode: 420
+            name: prometheus-server-conf
+
+        - name: prometheus-storage-volume
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-service
+  name: prometheus
   namespace: default
   labels:
-    app: prometheus-service
+    app: prometheus
 spec:
   selector:
     app: prometheus-deployment
@@ -116,6 +90,13 @@ spec:
             value: "admin"
           - name: GF_SECURITY_ADMIN_PASSWORD
             value: "admin"
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
       hostname: grafana
       volumes:
         - name: grafana-data
@@ -136,10 +117,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: grafana-service
+  name: grafana
   namespace: default
   labels:
-    app: grafana-service
+    app: grafana
 spec:
   selector:
     app: grafana-deployment

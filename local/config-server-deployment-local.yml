@@ -41,10 +41,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-server-service
+  name: config-service
   namespace: default
   labels:
-    app: config-server-service
+    app: config-service
 spec:
   selector:
     app: config-server-deployment
