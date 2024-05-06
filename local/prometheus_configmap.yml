@@ -31,7 +31,7 @@ data:
         scrape_interval: 10s
         metrics_path: '/actuator/metrics'
         static_configs:
-          - targets: [ 'discovery-service-1:8762' ]
+          - targets: [ 'discovery-service-2:8762' ]
       - job_name: 'gateway-service'
         scrape_interval: 1m
         metrics_path: '/actuator/metrics'
