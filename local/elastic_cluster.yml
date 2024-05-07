@@ -48,99 +48,99 @@
 #          persistentVolumeClaim:
 #            claimName: elastic-data01-claim
 #---
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: elastic-2
-#  namespace: default
-#  labels:
-#    app: elastic-2
-#spec:
-#  replicas: 1
-#  selector:
-#    matchLabels:
-#      app: elastic-2
-#  template:
-#    metadata:
-#      labels:
-#        app: elastic-2
-#        node-name: elastic-2
-#    spec:
-#      containers:
-#        - name: elasticsearch
-#          image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
-#          env:
-#            - name: node.name
-#              value: "elastic-2"
-#            - name: cluster.name
-#              value: "es-programming-learning-system-cluster"
-#            - name: discovery.seed_hosts
-#              value: "elastic-1,elastic-3"
-#            - name: cluster.initial_master_nodes
-#              value: "elastic-1,elastic-2,elastic-3"
-#            - name: bootstrap.memory_lock
-#              value: "true"
-#          resources:
-#            limits:
-#              cpu: "500m"
-#              memory: "256Mi"
-#            requests:
-#              cpu: "200m"
-#              memory: "128Mi"
-#          volumeMounts:
-#            - name: elastic-data02-volume
-#              mountPath: /usr/share/elasticsearch/data
-#      volumes:
-#        - name: elastic-data02-volume
-#          persistentVolumeClaim:
-#            claimName: elastic-data02-claim
-#---
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: elastic-3
-#  namespace: default
-#  labels:
-#    app: elastic-3
-#spec:
-#  replicas: 1
-#  selector:
-#    matchLabels:
-#      app: elastic-3
-#  template:
-#    metadata:
-#      labels:
-#        app: elastic-3
-#        node-name: elastic-3
-#    spec:
-#      containers:
-#        - name: elasticsearch
-#          image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
-#          env:
-#            - name: node.name
-#              value: "elastic-3"
-#            - name: cluster.name
-#              value: "es-programming-learning-system-cluster"
-#            - name: discovery.seed_hosts
-#              value: "elastic-1,elastic-2"
-#            - name: cluster.initial_master_nodes
-#              value: "elastic-1,elastic-2,elastic-3"
-#            - name: bootstrap.memory_lock
-#              value: "true"
-#          resources:
-#            limits:
-#              cpu: "500m"
-#              memory: "256Mi"
-#            requests:
-#              cpu: "200m"
-#              memory: "128Mi"
-#          volumeMounts:
-#            - name: elastic-data03-volume
-#              mountPath: /usr/share/elasticsearch/data
-#      volumes:
-#        - name: elastic-data03-volume
-#          persistentVolumeClaim:
-#            claimName: elastic-data03-claim
+##apiVersion: apps/v1
+##kind: Deployment
+##metadata:
+##  name: elastic-2
+##  namespace: default
+##  labels:
+##    app: elastic-2
+##spec:
+##  replicas: 1
+##  selector:
+##    matchLabels:
+##      app: elastic-2
+##  template:
+##    metadata:
+##      labels:
+##        app: elastic-2
+##        node-name: elastic-2
+##    spec:
+##      containers:
+##        - name: elasticsearch
+##          image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
+##          env:
+##            - name: node.name
+##              value: "elastic-2"
+##            - name: cluster.name
+##              value: "es-programming-learning-system-cluster"
+##            - name: discovery.seed_hosts
+##              value: "elastic-1,elastic-3"
+##            - name: cluster.initial_master_nodes
+##              value: "elastic-1,elastic-2,elastic-3"
+##            - name: bootstrap.memory_lock
+##              value: "true"
+##          resources:
+##            limits:
+##              cpu: "500m"
+##              memory: "256Mi"
+##            requests:
+##              cpu: "200m"
+##              memory: "128Mi"
+##          volumeMounts:
+##            - name: elastic-data02-volume
+##              mountPath: /usr/share/elasticsearch/data
+##      volumes:
+##        - name: elastic-data02-volume
+##          persistentVolumeClaim:
+##            claimName: elastic-data02-claim
+##---
+##apiVersion: apps/v1
+##kind: Deployment
+##metadata:
+##  name: elastic-3
+##  namespace: default
+##  labels:
+##    app: elastic-3
+##spec:
+##  replicas: 1
+##  selector:
+##    matchLabels:
+##      app: elastic-3
+##  template:
+##    metadata:
+##      labels:
+##        app: elastic-3
+##        node-name: elastic-3
+##    spec:
+##      containers:
+##        - name: elasticsearch
+##          image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
+##          env:
+##            - name: node.name
+##              value: "elastic-3"
+##            - name: cluster.name
+##              value: "es-programming-learning-system-cluster"
+##            - name: discovery.seed_hosts
+##              value: "elastic-1,elastic-2"
+##            - name: cluster.initial_master_nodes
+##              value: "elastic-1,elastic-2,elastic-3"
+##            - name: bootstrap.memory_lock
+##              value: "true"
+##          resources:
+##            limits:
+##              cpu: "500m"
+##              memory: "256Mi"
+##            requests:
+##              cpu: "200m"
+##              memory: "128Mi"
+##          volumeMounts:
+##            - name: elastic-data03-volume
+##              mountPath: /usr/share/elasticsearch/data
+##      volumes:
+##        - name: elastic-data03-volume
+##          persistentVolumeClaim:
+##            claimName: elastic-data03-claim
 #---
 ## Persistent Volume Claims
 #apiVersion: v1
@@ -152,7 +152,7 @@
 #    - ReadWriteOnce
 #  resources:
 #    requests:
-#      storage: 1Gi
+#      storage: 3Gi
 #---
 ## Additional PVCs for more Elasticsearch data paths (optional)
 #apiVersion: v1
@@ -164,7 +164,7 @@
 #    - ReadWriteOnce
 #  resources:
 #    requests:
-#      storage: 1Gi
+#      storage: 3Gi
 #---
 #apiVersion: v1
 #kind: PersistentVolumeClaim
@@ -175,7 +175,7 @@
 #    - ReadWriteOnce
 #  resources:
 #    requests:
-#      storage: 1Gi
+#      storage: 3Gi
 #---
 #apiVersion: v1
 #kind: Service
@@ -192,3 +192,5 @@
 #      port: 9200
 #      targetPort: 9200  # Matches the container port of Elasticsearch
 #  type: LoadBalancer  # Optional: Exposes port 9200 on a NodePort for external access
+#
+#

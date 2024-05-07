@@ -24,7 +24,7 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://host.docker.internal:5432/auth-service?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://host.docker.internal:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
