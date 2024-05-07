@@ -518,10 +518,10 @@ master:
   ##
   resources:
     limits:
-      cpu: 300m
+      cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
   ## @param master.heapSize Elasticsearch master-eligible node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
@@ -861,7 +861,7 @@ master:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 3
+    maxReplicas: 11
     targetCPU: ""
     targetMemory: ""
 ## @section Data-only nodes parameters
@@ -917,18 +917,18 @@ data:
   ##
   resources:
     limits:
-      cpu: 300m
-      memory: 512Mi
+      cpu: 500m
+      memory: 1024Mi
     requests:
-      cpu: 100m
-      memory: 256Mi
+      cpu: 200m
+      memory: 512Mi
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 1024m
+  heapSize: 512m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param data.podSecurityContext.enabled Enabled data pods' Security Context
@@ -1236,7 +1236,7 @@ data:
       - ReadWriteOnce
     ## @param data.persistence.size Persistent Volume Size
     ##
-    size: 1Gi
+    size: 5Gi
   ## Pods Service Account
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   ## @param data.serviceAccount.create Specifies whether a ServiceAccount should be created
@@ -1260,7 +1260,7 @@ data:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 3
+    maxReplicas: 11
     targetCPU: ""
     targetMemory: ""
 ## @section Coordinating-only nodes parameters
@@ -1317,10 +1317,10 @@ coordinating:
   ##
   resources:
     limits:
-      cpu: 300m
+      cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
   ## @param coordinating.heapSize Elasticsearch coordinating node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
@@ -1621,14 +1621,14 @@ coordinating:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 3
+    maxReplicas: 11
     targetCPU: ""
     targetMemory: ""
 ## @section Ingest-only nodes parameters
 ingest:
   ## @param ingest.enabled Enable ingest nodes
   ##
-  enabled: true
+  enabled: false
   ## @param ingest.replicaCount Number of ingest-only replicas to deploy
   ##
   replicaCount: 2
@@ -1686,10 +1686,10 @@ ingest:
   ##
   resources:
     limits:
-      cpu: 300m
+      cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
@@ -1990,7 +1990,7 @@ ingest:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 3
+    maxReplicas: 11
     targetCPU: ""
     targetMemory: ""
   ## Elasticsearch Ingest-only Service
@@ -2698,10 +2698,10 @@ sysctlImage:
   ##
   resources:
     limits:
-      cpu: 300m
+      cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
 ## @section Kibana Parameters
 
