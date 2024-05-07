@@ -31,20 +31,20 @@ spec:
               cpu: "200m"
               memory: "256Mi"
           volumeMounts:
-            - mountPath: /workspace/config-server/logs
-              name: config-server-claim0
+            - mountPath: /logs
+              name: config-server-log
       volumes:
-        - name: config-server-claim0
+        - name: config-server-log
           persistentVolumeClaim:
-            claimName: config-server-claim0
+            claimName: config-server-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-service
+  name: config-server
   namespace: default
   labels:
-    app: config-service
+    app: config-server
 spec:
   selector:
     app: config-server-deployment
@@ -54,17 +54,3 @@ spec:
       port: 9999
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: config-server-claim0
-  namespace: default
-  labels:
-    app: config-server-claim0
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi

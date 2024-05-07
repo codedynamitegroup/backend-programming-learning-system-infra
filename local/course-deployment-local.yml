@@ -36,12 +36,12 @@ spec:
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-service:9999"
+              value: "http://config-server:9999"
             - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
               value: "http://discovery-service-1:8761/eureka/"
           volumeMounts:
             - name: course-service-log
-              mountPath: /workspace/course-service/logs
+              mountPath: /logs
           resources:
             limits:
               cpu: "500m"
@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: course-service-log
           persistentVolumeClaim:
-            claimName: course-service-claim0
+            claimName: course-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -73,17 +73,3 @@ spec:
       port: 8085
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: course-service-claim0
-  namespace: default
-  labels:
-    app: course-service-claim0
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi

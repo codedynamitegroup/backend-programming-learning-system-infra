@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash
+  namespace: default
+  labels:
+    app: logstash
+spec:
+  selector:
+    matchLabels:
+      app: logstash
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+        - name: logstash
+          image: docker.elastic.co/logstash/logstash:7.17.20
+          command: [ "logstash", "-f", "/etc/logstash/conf.d/logback.conf" ]
+          env:
+            - name: CLUSTER_NAME
+              value: "es-programming-learning-system-cluster"
+            - name: XPACK_MONITORING_ELASTICSEARCH_HOSTS
+              value: "http://elasticsearch:9200"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/logstash/conf.d/
+            - name: core-service-logstash-storage
+              mountPath: /logs/core-service
+              readOnly: true
+            - name: auth-service-logstash-storage
+              mountPath: /logs/auth-service
+              readOnly: true
+            - name: course-service-logstash-storage
+              mountPath: /logs/course-service
+              readOnly: true
+            - name: code-assessment-service-logstash-storage
+              mountPath: /logs/code-assessment-service
+              readOnly: true
+            - name: config-server-logstash-storage
+              mountPath: /logs/config-server
+              readOnly: true
+            - name: gateway-service-logstash-storage
+              mountPath: /logs/gateway-service
+              readOnly: true
+            - name: discovery-service-logstash-storage
+              mountPath: /logs/discovery-service
+              readOnly: true
+          resources:
+            limits:
+                cpu: "500m"
+                memory: "256Mi"
+            requests:
+                cpu: "200m"
+                memory: "128Mi"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: logstash-config
+        - name: core-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: core-service-pvc
+        - name: auth-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: auth-service-pvc
+        - name: course-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: course-service-pvc
+        - name: code-assessment-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: code-assessment-service-pvc
+        - name: config-server-logstash-storage
+          persistentVolumeClaim:
+            claimName: config-server-pvc
+        - name: gateway-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: gateway-service-pvc
+        - name: discovery-service-logstash-storage
+          persistentVolumeClaim:
+            claimName: discovery-service-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+  namespace: default
+  labels:
+    app: logstash
+spec:
+    selector:
+        app: logstash
+    ports:
+      - name: logstash-port
+        protocol: TCP
+        port: 9600
+    type: LoadBalancer
+    loadBalancerIP: ""

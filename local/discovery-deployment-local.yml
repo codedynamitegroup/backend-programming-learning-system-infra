@@ -34,12 +34,12 @@ spec:
             - name: EUREKA_INSTANCE_HOSTNAME
               value: "discovery-service-1"
           volumeMounts:
-            - mountPath: /workspace/discovery-service/logs
-              name: discovery-service-claim0
+            - mountPath: /logs
+              name: discovery-service-log
       volumes:
-        - name: discovery-service-claim0
+        - name: discovery-service-log
           persistentVolumeClaim:
-            claimName: discovery-service-claim0
+            claimName: discovery-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -57,19 +57,19 @@ spec:
       port: 8761
   type: LoadBalancer
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: discovery-service-claim0
-  namespace: default
-  labels:
-    app: discovery-service-claim0
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: discovery-service-claim0
+#  namespace: default
+#  labels:
+#    app: discovery-service-claim0
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 100Mi
 ---
 #apiVersion: apps/v1
 #kind: Deployment

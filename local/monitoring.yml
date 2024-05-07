@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-deployment
+  namespace: default
+  labels:
+    app: prometheus-deployment
 spec:
   replicas: 1
   selector:

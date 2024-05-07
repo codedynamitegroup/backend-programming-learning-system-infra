@@ -17,11 +17,11 @@ data:
         metrics_path: '/metrics'
         static_configs:
           - targets: ['grafana:3000']
-      - job_name: 'config-service'
+      - job_name: 'config-server'
         scrape_interval: 10s
         metrics_path: '/actuator/metrics'
         static_configs:
-          - targets: [ 'config-service:9999' ]
+          - targets: [ 'config-server:9999' ]
       - job_name: 'discovery-service-1'
         scrape_interval: 10s
         metrics_path: '/actuator/metrics'

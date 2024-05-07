@@ -3,6 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/helm/cp-helm-charts" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/helm/zipkin-helm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/helm/helm-charts" vcs="Git" />
   </component>
 </project>

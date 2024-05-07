@@ -28,7 +28,7 @@ spec:
             - name: LOG_APP-NAME
               value: "gateway-service"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: "http://config-service:9999"
+              value: "http://config-server:9999"
             - name: SPRING_REDIS_HOST
               value: "redis-master"
             - name: SPRING_REDIS_PORT
@@ -39,7 +39,7 @@ spec:
               value: "http://discovery-service-1:8761/eureka/"
           volumeMounts:
             - name: gateway-service-log
-              mountPath: /workspace/gateway-service/logs
+              mountPath: /logs
           resources:
             limits:
               cpu: "500m"
@@ -50,7 +50,7 @@ spec:
       volumes:
         - name: gateway-service-log
           persistentVolumeClaim:
-            claimName: gateway-service-claim0
+            claimName: gateway-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -68,17 +68,3 @@ spec:
       port: 9098
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: gateway-service-claim0
-  namespace: default
-  labels:
-    app: gateway-service-claim0
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
