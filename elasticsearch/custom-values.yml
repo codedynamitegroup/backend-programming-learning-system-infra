@@ -861,7 +861,7 @@ master:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 11
+    maxReplicas: 3
     targetCPU: ""
     targetMemory: ""
 ## @section Data-only nodes parameters
@@ -1260,7 +1260,7 @@ data:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 11
+    maxReplicas: 3
     targetCPU: ""
     targetMemory: ""
 ## @section Coordinating-only nodes parameters
@@ -1621,7 +1621,7 @@ coordinating:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 11
+    maxReplicas: 3
     targetCPU: ""
     targetMemory: ""
 ## @section Ingest-only nodes parameters
@@ -1990,7 +1990,7 @@ ingest:
   autoscaling:
     enabled: false
     minReplicas: 3
-    maxReplicas: 11
+    maxReplicas: 3
     targetCPU: ""
     targetMemory: ""
   ## Elasticsearch Ingest-only Service
