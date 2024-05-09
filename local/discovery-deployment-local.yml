@@ -17,14 +17,9 @@ spec:
       containers:
         - name: discovery-service-1
           image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "800Mi"
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: LOG_APP-NAME
@@ -33,6 +28,13 @@ spec:
               value: "peer1"
             - name: EUREKA_INSTANCE_HOSTNAME
               value: "discovery-service-1"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
           volumeMounts:
             - mountPath: /logs
               name: discovery-service-log
@@ -57,19 +59,19 @@ spec:
       port: 8761
   type: LoadBalancer
 ---
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: discovery-service-claim0
-#  namespace: default
-#  labels:
-#    app: discovery-service-claim0
-#spec:
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 100Mi
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: discovery-service-pvc
+  namespace: default
+  labels:
+    app: discovery-service-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
 ---
 #apiVersion: apps/v1
 #kind: Deployment

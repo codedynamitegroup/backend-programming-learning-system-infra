@@ -19,6 +19,10 @@ spec:
         - name: core-service
           image: com.backend.programming.learning.system/core.service:1.0-SNAPSHOT
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
               value: "info"
             - name: LOGGING_LEVEL_ROOT
@@ -31,6 +35,8 @@ spec:
               value: "localdb"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
+            - name: SPRING_ZIPKIN_BASE_URL
+              value: "http://zipkin:9411"
             - name: SPRING_ZIPKIN_SENDER_TYPE
               value: "kafka"
             - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
@@ -39,14 +45,14 @@ spec:
               value: "1.0"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
-            - name: SPRING_CLOUD_CONFIG_URI
+            - name: CONFIG_SERVER
               value: "http://config-server:9999"
-            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
-              value: "http://discovery-service-1:8761/eureka/"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service-1:8761/eureka"
           resources:
             limits:
               cpu: "500m"
-              memory: "800Mi"
+              memory: "1Gi"
             requests:
               cpu: "200m"
               memory: "256Mi"
@@ -74,3 +80,17 @@ spec:
       port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: core-service-pvc
+  namespace: default
+  labels:
+    app: core-service-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

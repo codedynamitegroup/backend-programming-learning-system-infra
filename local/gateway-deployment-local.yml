@@ -19,6 +19,10 @@ spec:
         - name: gateway-service
           image: com.backend.programming.learning.system/gateway.service:1.0-SNAPSHOT
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_ROOT
               value: "debug"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
@@ -27,7 +31,7 @@ spec:
               value: "9098"
             - name: LOG_APP-NAME
               value: "gateway-service"
-            - name: SPRING_CLOUD_CONFIG_URI
+            - name: CONFIG_SERVER
               value: "http://config-server:9999"
             - name: SPRING_REDIS_HOST
               value: "redis-master"
@@ -35,8 +39,8 @@ spec:
               value: "6379"
             - name: SPRING_REDIS_PASSWORD
               value: "admin"
-            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
-              value: "http://discovery-service-1:8761/eureka/"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service-1:8761/eureka"
             - name: SPRING_ZIPKIN_SENDER_TYPE
               value: "kafka"
             - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
@@ -49,7 +53,7 @@ spec:
           resources:
             limits:
               cpu: "500m"
-              memory: "800Mi"
+              memory: "1Gi"
             requests:
               cpu: "200m"
               memory: "128Mi"
@@ -74,3 +78,17 @@ spec:
       port: 9098
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gateway-service-pvc
+  namespace: default
+  labels:
+    app: gateway-service-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

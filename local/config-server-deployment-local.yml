@@ -19,6 +19,8 @@ spec:
         - name: config-server-service
           image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
             - name: LOG_APP-NAME
               value: "config-server"
             - name: SERVER_PORT
@@ -26,12 +28,12 @@ spec:
           resources:
             limits:
               cpu: "500m"
-              memory: "800Mi"
+              memory: "1Gi"
             requests:
               cpu: "200m"
               memory: "256Mi"
           volumeMounts:
-            - mountPath: /logs
+            - mountPath: /config-server/logs
               name: config-server-log
       volumes:
         - name: config-server-log
@@ -54,3 +56,17 @@ spec:
       port: 9999
   type: LoadBalancer
   loadBalancerIP: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: config-server-pvc
+  namespace: default
+  labels:
+    app: config-server-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
