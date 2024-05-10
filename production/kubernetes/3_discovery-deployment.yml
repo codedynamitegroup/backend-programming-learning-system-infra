@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-deployment
+  namespace: default
+  labels:
+    app: discovery-service
+spec:
+  selector:
+    matchLabels:
+      app: discovery-service
+  template:
+    metadata:
+      labels:
+        app: discovery-service
+    spec:
+      containers:
+        - name: discovery-service
+          image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "peer1"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "discovery-service"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service
+  namespace: default
+  labels:
+    app: discovery-service
+spec:
+  selector:
+    app: discovery-service
+  ports:
+    - name: discovery-service-port
+      protocol: TCP
+      port: 8761
+  type: ClusterIP

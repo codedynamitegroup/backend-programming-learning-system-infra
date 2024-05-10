@@ -5,15 +5,15 @@ metadata:
   name: auth-deployment
   namespace: default
   labels:
-    app: auth-deployment
+    app: auth-service
 spec:
   selector:
     matchLabels:
-      app: auth-deployment
+      app: auth-service
   template:
     metadata:
       labels:
-        app: auth-deployment
+        app: auth-service
     spec:
       containers:
         - name: auth-service
@@ -21,6 +21,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
               value: "info"
             - name: LOGGING_LEVEL_ROOT
@@ -33,20 +35,12 @@ spec:
               value: "localdb"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
-            - name: SPRING_ZIPKIN_BASE_URL
-              value: "http://zipkin:9411"
-            - name: SPRING_ZIPKIN_SENDER_TYPE
-              value: "kafka"
-            - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
-              value: "local-confluent-kafka-cp-kafka-headless:9092"
-            - name: SPRING_SLEUTH_SAMPLER_PROBABILITY
-              value: "1.0"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
             - name: CONFIG_SERVER
               value: "http://config-server:9999"
             - name: EUREKA_SERVER
-              value: "http://discovery-service-1:8761/eureka"
+              value: "http://discovery-service:8761/eureka"
           resources:
             limits:
               cpu: "500m"
@@ -54,13 +48,6 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
-          volumeMounts:
-            - name: auth-service-log
-              mountPath: /logs
-      volumes:
-        - name: auth-service-log
-          persistentVolumeClaim:
-            claimName: auth-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -71,25 +58,11 @@ metadata:
     app: auth-service
 spec:
   selector:
-    app: auth-deployment
+    app: auth-service
   ports:
     - name: auth-service-port
       protocol: TCP
-      port: 80
+      port: 8182
       targetPort: 8182
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: auth-service-pvc
-  namespace: default
-  labels:
-    app: auth-service-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi

@@ -5,15 +5,15 @@ metadata:
   name: core-deployment
   namespace: default
   labels:
-    app: core-deployment
+    app: core-service
 spec:
   selector:
     matchLabels:
-      app: core-deployment
+      app: core-service
   template:
     metadata:
       labels:
-        app: core-deployment
+        app: core-service
     spec:
       containers:
         - name: core-service
@@ -35,20 +35,12 @@ spec:
               value: "localdb"
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
               value: "local-confluent-kafka-cp-kafka-headless:9092"
-            - name: SPRING_ZIPKIN_BASE_URL
-              value: "http://zipkin:9411"
-            - name: SPRING_ZIPKIN_SENDER_TYPE
-              value: "kafka"
-            - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
-              value: "local-confluent-kafka-cp-kafka-headless:9092"
-            - name: SPRING_SLEUTH_SAMPLER_PROBABILITY
-              value: "1.0"
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
               value: "http://local-confluent-kafka-cp-schema-registry:8081"
             - name: CONFIG_SERVER
               value: "http://config-server:9999"
             - name: EUREKA_SERVER
-              value: "http://discovery-service-1:8761/eureka"
+              value: "http://discovery-service:8761/eureka"
           resources:
             limits:
               cpu: "500m"
@@ -56,13 +48,6 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
-          volumeMounts:
-            - name: core-service-log
-              mountPath: /logs
-      volumes:
-        - name: core-service-log
-          persistentVolumeClaim:
-            claimName: core-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -73,24 +58,10 @@ metadata:
     app: core-service
 spec:
   selector:
-    app: core-deployment
+    app: core-service
   ports:
     - name: core-service-port
       protocol: TCP
       port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: core-service-pvc
-  namespace: default
-  labels:
-    app: core-service-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi

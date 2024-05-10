@@ -1,0 +1,363 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-deployment
+  namespace: default
+  labels:
+    app: core-service
+spec:
+  selector:
+    matchLabels:
+      app: core-service
+  template:
+    metadata:
+      labels:
+        app: core-service
+    spec:
+      containers:
+        - name: core-service
+          image: com.backend.programming.learning.system/core.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "info"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+            - name: CONFIG_SERVER
+              value: "http://config-server:9999"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka"
+#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+#              value: "never"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-service
+  namespace: default
+  labels:
+    app: core-service
+spec:
+  selector:
+    app: core-service
+  ports:
+    - name: core-service-port
+      protocol: TCP
+      port: 8181
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: core-deployment-hpa
+  namespace: default
+  labels:
+    app: core-service
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: core-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 85
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  namespace: default
+  labels:
+    app: auth-service
+spec:
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+        - name: auth-service
+          image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "info"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+            - name: CONFIG_SERVER
+              value: "http://config-server:9999"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka"
+#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+#              value: "never"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+  namespace: default
+  labels:
+    app: auth-service
+spec:
+  selector:
+    app: auth-service
+  ports:
+    - name: auth-service-port
+      protocol: TCP
+      port: 8182
+      targetPort: 8182
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: auth-deployment-hpa
+  namespace: default
+  labels:
+    app: auth-service
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: auth-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 85
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-assessment-deployment
+  labels:
+    app: code-assessment-service
+spec:
+  selector:
+    matchLabels:
+      app: code-assessment-service
+  template:
+    metadata:
+      labels:
+        app: code-assessment-service
+    spec:
+      containers:
+        - name: code-assessment-service
+          image: com.backend.programming.learning.system/code.assessment.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "info"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+            - name: CONFIG_SERVER
+              value: "http://config-server:9999"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka"
+#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+#              value: "never"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-assessment-service
+  namespace: default
+  labels:
+    app: code-assessment-service
+spec:
+  selector:
+    app: code-assessment-service
+  ports:
+    - name: code-assessment-service-port
+      protocol: TCP
+      port: 8183
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: code-assessment-deployment-hpa
+  namespace: default
+  labels:
+    app: code-assessment-service
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: code-assessment-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 85
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-deployment
+  namespace: default
+  labels:
+    app: course-service
+spec:
+  selector:
+    matchLabels:
+      app: course-service
+  template:
+    metadata:
+      labels:
+        app: course-service
+    spec:
+      containers:
+        - name: course-service
+          image: com.backend.programming.learning.system/course.service:1.0-SNAPSHOT
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
+              value: "info"
+            - name: LOGGING_LEVEL_ROOT
+              value: "info"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgresadmin"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+            - name: CONFIG_SERVER
+              value: "http://config-server:9999"
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka"
+#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+#              value: "never"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: course-service
+  namespace: default
+  labels:
+    app: course-service
+spec:
+  selector:
+    app: course-service
+  ports:
+    - name: course-service-port
+      protocol: TCP
+      port: 8184
+    - name: socket-service-port
+      protocol: TCP
+      port: 8085
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: course-deployment-hpa
+  namespace: default
+  labels:
+    app: course-service
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: course-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 85

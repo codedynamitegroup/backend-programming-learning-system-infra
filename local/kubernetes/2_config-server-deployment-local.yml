@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+  namespace: default
+  labels:
+    app: config-server
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+        - name: config-server
+          image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx256m -Xms128m"
+            - name: SERVER_PORT
+              value: "9999"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+  namespace: default
+  labels:
+    app: config-server
+spec:
+  selector:
+    app: config-server
+  ports:
+    - name: config-server-port
+      protocol: TCP
+      port: 9999
+  type: LoadBalancer
+  loadBalancerIP: ""
+

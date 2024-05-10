@@ -1,33 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: discovery-deployment-1
+  name: discovery-deployment
   namespace: default
   labels:
-    app: discovery-deployment-1
+    app: discovery-service
 spec:
   selector:
     matchLabels:
-      app: discovery-deployment-1
+      app: discovery-service
   template:
     metadata:
       labels:
-        app: discovery-deployment-1
+        app: discovery-service
     spec:
       containers:
-        - name: discovery-service-1
+        - name: discovery-service
           image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
           env:
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_ROOT
               value: "info"
-            - name: LOG_APP-NAME
-              value: "discovery-service-1"
             - name: SPRING_PROFILES_ACTIVE
               value: "peer1"
             - name: EUREKA_INSTANCE_HOSTNAME
-              value: "discovery-service-1"
+              value: "discovery-service"
           resources:
             limits:
               cpu: "500m"
@@ -35,43 +33,22 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
-          volumeMounts:
-            - mountPath: /logs
-              name: discovery-service-log
-      volumes:
-        - name: discovery-service-log
-          persistentVolumeClaim:
-            claimName: discovery-service-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: discovery-service-1
+  name: discovery-service
   namespace: default
   labels:
-    app: discovery-service-1
+    app: discovery-service
 spec:
   selector:
-    app: discovery-deployment-1
+    app: discovery-service
   ports:
-    - name: discovery-service-1-port
+    - name: discovery-service-port
       protocol: TCP
       port: 8761
   type: LoadBalancer
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: discovery-service-pvc
-  namespace: default
-  labels:
-    app: discovery-service-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
 ---
 #apiVersion: apps/v1
 #kind: Deployment

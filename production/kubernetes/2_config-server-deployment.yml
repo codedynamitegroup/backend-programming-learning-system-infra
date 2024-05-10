@@ -5,24 +5,22 @@ metadata:
   name: config-server-deployment
   namespace: default
   labels:
-    app: config-server-deployment
+    app: config-server
 spec:
   selector:
     matchLabels:
-      app: config-server-deployment
+      app: config-server
   template:
     metadata:
       labels:
-        app: config-server-deployment
+        app: config-server
     spec:
       containers:
-        - name: config-server-service
+        - name: config-server
           image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
           env:
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
-            - name: LOG_APP-NAME
-              value: "config-server"
             - name: SERVER_PORT
               value: "9999"
           resources:
@@ -32,13 +30,6 @@ spec:
             requests:
               cpu: "200m"
               memory: "256Mi"
-          volumeMounts:
-            - mountPath: /config-server/logs
-              name: config-server-log
-      volumes:
-        - name: config-server-log
-          persistentVolumeClaim:
-            claimName: config-server-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -49,24 +40,10 @@ metadata:
     app: config-server
 spec:
   selector:
-    app: config-server-deployment
+    app: config-server
   ports:
-    - name: config-server-service-port
+    - name: config-server-port
       protocol: TCP
       port: 9999
-  type: LoadBalancer
-  loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: config-server-pvc
-  namespace: default
-  labels:
-    app: config-server-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
+  type: ClusterIP
+

@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-service
+  name: gateway-deployment
   namespace: default
   labels:
     app: gateway-service
@@ -19,8 +19,6 @@ spec:
         - name: gateway-service
           image: com.backend.programming.learning.system/gateway.service:1.0-SNAPSHOT
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_ROOT
@@ -29,8 +27,6 @@ spec:
               value: "debug"
             - name: SERVER_PORT
               value: "9098"
-            - name: LOG_APP-NAME
-              value: "gateway-service"
             - name: CONFIG_SERVER
               value: "http://config-server:9999"
             - name: SPRING_REDIS_HOST
@@ -40,16 +36,7 @@ spec:
             - name: SPRING_REDIS_PASSWORD
               value: "admin"
             - name: EUREKA_SERVER
-              value: "http://discovery-service-1:8761/eureka"
-            - name: SPRING_ZIPKIN_SENDER_TYPE
-              value: "kafka"
-            - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
-              value: "local-confluent-kafka-cp-kafka-headless:9092"
-            - name: SPRING_SLEUTH_SAMPLER_PROBABILITY
-              value: "1.0"
-          volumeMounts:
-            - name: gateway-service-log
-              mountPath: /logs
+              value: "http://discovery-service:8761/eureka"
           resources:
             limits:
               cpu: "500m"
@@ -57,10 +44,6 @@ spec:
             requests:
               cpu: "200m"
               memory: "128Mi"
-      volumes:
-        - name: gateway-service-log
-          persistentVolumeClaim:
-            claimName: gateway-service-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -78,17 +61,3 @@ spec:
       port: 9098
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: gateway-service-pvc
-  namespace: default
-  labels:
-    app: gateway-service-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
