@@ -86,7 +86,7 @@ admin:
   user: "admin"
   ## @param admin.password Admin password. If a password is not provided a random password will be generated
   ##
-  password: ""
+  password: "admin"
   ## @param admin.existingSecret Name of the existing secret containing admin password
   ##
   existingSecret: ""
@@ -495,7 +495,13 @@ grafana:
   ##     cpu: 3
   ##     memory: 1024Mi
   ##
-  resources: {}
+  resources:
+   requests:
+     cpu: 2
+     memory: 256Mi
+   limits:
+     cpu: 3
+     memory: 512Mi
   ## Grafana containers' liveness probe
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
   ## @param grafana.livenessProbe.enabled Enable livenessProbe
@@ -654,7 +660,7 @@ persistence:
   existingClaim: ""
   accessMode: ReadWriteOnce
   accessModes: []
-  size: 10Gi
+  size: 1Gi
 ## @section RBAC parameters
 
 ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
