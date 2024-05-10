@@ -19,10 +19,16 @@ spec:
           image: quay.io/keycloak/keycloak:24.0.1
           args: ["start-dev"]
           env:
-          - name: KEYCLOAK_ADMIN
-            value: "admin"
-          - name: KEYCLOAK_ADMIN_PASSWORD
-            value: "admin"
+            - name: KEYCLOAK_ADMIN
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KEYCLOAK_ADMIN
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KEYCLOAK_ADMIN_PASSWORD
           ports:
             - name: http
               containerPort: 8080

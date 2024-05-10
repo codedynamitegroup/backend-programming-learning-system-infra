@@ -23,9 +23,20 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_PROFILES_ACTIVE
-              value: "peer1"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_PROFILES_ACTIVE
+            - name: SPRING_APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_APPLICATION_NAME
             - name: EUREKA_INSTANCE_HOSTNAME
-              value: "discovery-service"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_INSTANCE_HOSTNAME
           resources:
             limits:
               cpu: "500m"

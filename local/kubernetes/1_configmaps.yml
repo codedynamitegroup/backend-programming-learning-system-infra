@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-programming-learning-system-configmap
+data:
+  SPRING_PROFILES_ACTIVE: "default"
+  CONFIG_SERVER: "http://config-server:9999"
+  EUREKA_SERVER: "http://discovery-service:8761/eureka"
+  CONFIGSERVER_APPLICATION_NAME: "config-server"
+  EUREKA_APPLICATION_NAME: "discovery-service"
+  EUREKA_INSTANCE_HOSTNAME: "discovery-service"
+  SPRING_REDIS_HOST: "redis-master"
+  SPRING_REDIS_PORT: "6379"
+  SPRING_REDIS_PASSWORD: "admin"
+  CORE_APPLICATION_NAME: "core-service"
+  AUTH_APPLICATION_NAME: "auth-service"
+  CODE_ASSESSMENT_APPLICATION_NAME: "code-assessment-service"
+  COURSE_APPLICATION_NAME: "course-service"
+  GATEWAY_APPLICATION_NAME: "gateway-service"
+  KEYCLOAK_ADMIN: "admin"
+  KEYCLOAK_ADMIN_PASSWORD: "admin"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "http://keycloak:7080/realms/master/protocol/openid-connect/certs"
+  CORE_SPRING_DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+  AUTH_SPRING_DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+  CODE_ASSESSMENT_SPRING_DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+  COURSE_SPRING_DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+  SPRING_DATASOURCE_USERNAME: "postgres"
+  SPRING_DATASOURCE_PASSWORD: "localdb"
+  KAFKA-CONFIG_BOOTSTRAP-SERVERS: "local-confluent-kafka-cp-kafka-headless:9092"
+  KAFKA-CONFIG_SCHEMA-REGISTRY-URL: "http://local-confluent-kafka-cp-schema-registry:8081"

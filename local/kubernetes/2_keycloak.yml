@@ -20,9 +20,15 @@ spec:
           args: ["start-dev"]
           env:
           - name: KEYCLOAK_ADMIN
-            value: "admin"
+            valueFrom:
+              configMapKeyRef:
+                name: backend-programming-learning-system-configmap
+                key: KEYCLOAK_ADMIN
           - name: KEYCLOAK_ADMIN_PASSWORD
-            value: "admin"
+            valueFrom:
+              configMapKeyRef:
+                name: backend-programming-learning-system-configmap
+                key: KEYCLOAK_ADMIN_PASSWORD
           ports:
             - name: http
               containerPort: 8080

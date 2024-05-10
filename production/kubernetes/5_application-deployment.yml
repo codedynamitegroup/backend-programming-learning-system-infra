@@ -20,7 +20,10 @@ spec:
           image: com.backend.programming.learning.system/core.service:1.0-SNAPSHOT
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_PROFILES_ACTIVE
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
@@ -28,21 +31,45 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/core-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CORE_SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "postgres"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_USERNAME
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_PASSWORD
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_BOOTSTRAP-SERVERS
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
             - name: CONFIG_SERVER
-              value: "http://config-server:9999"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CONFIG_SERVER
             - name: EUREKA_SERVER
-              value: "http://discovery-service:8761/eureka"
-#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
-#              value: "never"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_INITIALIZATION-MODE
           resources:
             limits:
               cpu: "500m"
@@ -110,7 +137,10 @@ spec:
           image: com.backend.programming.learning.system/auth.service:1.0-SNAPSHOT
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_PROFILES_ACTIVE
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
@@ -118,21 +148,45 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/auth-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: AUTH_SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "postgres"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_USERNAME
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_PASSWORD
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_BOOTSTRAP-SERVERS
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
             - name: CONFIG_SERVER
-              value: "http://config-server:9999"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CONFIG_SERVER
             - name: EUREKA_SERVER
-              value: "http://discovery-service:8761/eureka"
-#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
-#              value: "never"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_INITIALIZATION-MODE
           resources:
             limits:
               cpu: "500m"
@@ -200,7 +254,10 @@ spec:
           image: com.backend.programming.learning.system/code.assessment.service:1.0-SNAPSHOT
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_PROFILES_ACTIVE
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
@@ -208,21 +265,45 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/code-assessment-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CODE_ASSESSMENT_SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "postgres"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_USERNAME
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_PASSWORD
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_BOOTSTRAP-SERVERS
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
             - name: CONFIG_SERVER
-              value: "http://config-server:9999"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CONFIG_SERVER
             - name: EUREKA_SERVER
-              value: "http://discovery-service:8761/eureka"
-#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
-#              value: "never"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_INITIALIZATION-MODE
           resources:
             limits:
               cpu: "500m"
@@ -290,7 +371,10 @@ spec:
           image: com.backend.programming.learning.system/course.service:1.0-SNAPSHOT
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_PROFILES_ACTIVE
             - name: JAVA_TOOL_OPTIONS
               value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
@@ -298,21 +382,45 @@ spec:
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com:5432/course-service?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: COURSE_SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "postgres"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_USERNAME
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "postgresadmin"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_PASSWORD
             - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
-              value: "gke-confluent-kafka-cp-kafka-headless:9092"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_BOOTSTRAP-SERVERS
             - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
-              value: "http://gke-confluent-kafka-cp-schema-registry:8081"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
             - name: CONFIG_SERVER
-              value: "http://config-server:9999"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CONFIG_SERVER
             - name: EUREKA_SERVER
-              value: "http://discovery-service:8761/eureka"
-#            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
-#              value: "never"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
+            - name: SPRING_DATASOURCE_INITIALIZATION-MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_DATASOURCE_INITIALIZATION-MODE
           resources:
             limits:
               cpu: "500m"

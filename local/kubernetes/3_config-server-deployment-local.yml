@@ -20,7 +20,7 @@ spec:
           image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
           env:
             - name: JAVA_TOOL_OPTIONS
-              value: "-Xmx256m -Xms128m"
+              value: "-Xmx512m -Xms128m"
             - name: SERVER_PORT
               value: "9999"
           resources:

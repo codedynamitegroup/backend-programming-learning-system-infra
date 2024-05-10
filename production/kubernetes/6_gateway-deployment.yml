@@ -28,22 +28,42 @@ spec:
             - name: SERVER_PORT
               value: "9098"
             - name: CONFIG_SERVER
-              value: "http://config-server:9999"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: CONFIG_SERVER
             - name: SPRING_REDIS_HOST
-              value: "redis-master"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_REDIS_HOST
             - name: SPRING_REDIS_PORT
-              value: "6379"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_REDIS_PORT
             - name: SPRING_REDIS_PASSWORD
-              value: "admin"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_REDIS_PASSWORD
             - name: EUREKA_SERVER
-              value: "http://discovery-service:8761/eureka"
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
+            - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
           resources:
             limits:
               cpu: "500m"
               memory: "1Gi"
             requests:
               cpu: "200m"
-              memory: "128Mi"
+              memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
