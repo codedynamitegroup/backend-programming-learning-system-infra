@@ -17,5 +17,5 @@ global:
   springDataRedisHost: redis-master
   springDataRedisPort: 6379
   springDataRedisPassword: admin
-  loggingLevelRoot: WARN
-  loggingLevelComBackendProgrammingLearningSystem: WARN
+  loggingLevelRoot: INFO
+  loggingLevelComBackendProgrammingLearningSystem: INFO
