@@ -342,7 +342,13 @@ resourcesPreset: "none"
 ##     cpu: 3
 ##     memory: 1024Mi
 ##
-resources: {}
+resources:
+ requests:
+   cpu: 2
+   memory: 256Mi
+ limits:
+   cpu: 3
+   memory: 512Mi
 ## Configure extra options for Keycloak containers' liveness, readiness and startup probes
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
 ## @param livenessProbe.enabled Enable livenessProbe on Keycloak containers
@@ -1091,8 +1097,14 @@ keycloakConfigCli:
   ##   limits:
   ##     cpu: 3
   ##     memory: 1024Mi
-  ##
-  resources: {}
+
+  resources:
+    requests:
+      cpu: 2
+      memory: 256Mi
+    limits:
+      cpu: 3
+      memory: 512Mi
   ## keycloak-config-cli containers' Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param keycloakConfigCli.containerSecurityContext.enabled Enabled keycloak-config-cli Security Context
@@ -1235,9 +1247,6 @@ keycloakConfigCli:
 ##
 postgresql:
   enabled: true
-  primary:
-    persistence:
-      size: 1Gi
   auth:
     postgresPassword: ""
     username: bn_keycloak
