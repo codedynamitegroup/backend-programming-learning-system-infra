@@ -4,7 +4,7 @@ global:
   configServerURL: "http://config-server:9999"
   discoveryServerURL: "http://discovery-service:8761/eureka"
 #  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
-  keyCloakURL: "http://20.247.208.148:80/"
+  keyCloakURL: "http://108.59.85.101:80/"
   openTelemetryJavaAgent: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
   otelMetricsExporter: none
