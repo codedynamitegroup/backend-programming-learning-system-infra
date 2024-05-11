@@ -27,22 +27,16 @@ cp-zookeeper:
   securityContext: 
     runAsUser: 0
 
-  resources:
+  resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
-    limits:
-     cpu: 300m
-     memory: 526Mi
-    requests:
-     cpu: 100m
-     memory: 128Mi
 
 ## ------------------------------------------------------
 ## Kafka
 ## ------------------------------------------------------
 cp-kafka:
   enabled: true
-  brokers: 3
+  brokers: 2
   image: confluentinc/cp-enterprise-kafka
   imageTag: 6.1.0
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
@@ -55,15 +49,9 @@ cp-kafka:
     # storageClass: ""
     size: 1Gi
     disksPerBroker: 1
-  resources:
+  resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
-    limits:
-     cpu: 500m
-     memory: 800Mi
-    requests:
-     cpu: 100m
-     memory: 128Mi
   securityContext: 
     runAsUser: 0
 
@@ -79,15 +67,9 @@ cp-schema-registry:
   imagePullSecrets:
   #  - name: "regcred"
   heapOptions: "-Xms512M -Xmx512M"
-  resources:
+  resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
-    limits:
-     cpu: 300m
-     memory: 526Mi
-    requests:
-     cpu: 100m
-     memory: 128Mi
 
 ## ------------------------------------------------------
 ## REST Proxy
