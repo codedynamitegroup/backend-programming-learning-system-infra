@@ -1103,7 +1103,7 @@ keycloakConfigCli:
       cpu: 2
       memory: 256Mi
     limits:
-      cpu: 3
+      cpu: 5
       memory: 512Mi
   ## keycloak-config-cli containers' Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
@@ -1247,12 +1247,9 @@ keycloakConfigCli:
 ##
 postgresql:
   enabled: true
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessModes:
-      - ReadWriteOnce
-    size: 1Gi
+  primary:
+    persistence:
+      size: 3Gi
   auth:
     postgresPassword: ""
     username: bn_keycloak

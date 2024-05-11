@@ -393,18 +393,12 @@ compactor:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param compactor.podSecurityContext.enabled Enabled Compactor pods' Security Context
@@ -837,18 +831,12 @@ gateway:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param gateway.podSecurityContext.enabled Enabled Gateway pods' Security Context
@@ -1293,18 +1281,12 @@ indexGateway:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param indexGateway.podSecurityContext.enabled Enabled index-gateway pods' Security Context
@@ -1653,18 +1635,12 @@ distributor:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param distributor.podSecurityContext.enabled Enabled Distributor pods' Security Context
@@ -2016,18 +1992,12 @@ ingester:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param ingester.podSecurityContext.enabled Enabled Ingester pods' Security Context
@@ -2420,18 +2390,12 @@ querier:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param querier.podSecurityContext.enabled Enabled Querier pods' Security Context
@@ -2819,18 +2783,12 @@ queryFrontend:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param queryFrontend.podSecurityContext.enabled Enabled queryFrontend pods' Security Context
@@ -3188,18 +3146,12 @@ queryScheduler:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param queryScheduler.podSecurityContext.enabled Enabled queryScheduler pods' Security Context
@@ -3558,18 +3510,12 @@ ruler:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param ruler.podSecurityContext.enabled Enabled Ruler pods' Security Context
@@ -3957,18 +3903,12 @@ tableManager:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param tableManager.podSecurityContext.enabled Enabled table-manager pods' Security Context
@@ -4351,18 +4291,12 @@ promtail:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param promtail.podSecurityContext.enabled Enabled Promtail pods' Security Context
@@ -4773,18 +4707,12 @@ volumePermissions:
   ## resources:
   ##   requests:
   ##     cpu: 2
-  ##     memory: 512Mi
+  ##     memory: 800Mi
   ##   limits:
-  ##     cpu: 3
+  ##     cpu: 5
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Init container Container Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param volumePermissions.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in container
