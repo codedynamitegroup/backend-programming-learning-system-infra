@@ -1570,7 +1570,7 @@ ingester:
       - ReadWriteOnce
     ## @param ingester.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 1Gi
+    size: 2Gi
     ## @param ingester.persistence.annotations Additional PVC annotations
     ##
     annotations: {}

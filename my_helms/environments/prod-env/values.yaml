@@ -4,7 +4,7 @@ global:
   configServerURL: "http://config-server:9999"
   discoveryServerURL: "http://discovery-service:8761/eureka"
   keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
-  openTelemetryJavaAgent: "-javaagent:/app/libs/opentelemetry-javaagent-1.32.0.jar"
+  openTelemetryJavaAgent: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
   otelMetricsExporter: none
   kafkaBootstrapServers: gke-confluent-kafka-cp-kafka-headless:9092
@@ -17,5 +17,5 @@ global:
   springDataRedisHost: redis-master
   springDataRedisPort: 6379
   springDataRedisPassword: admin
-  loggingLevelRoot: INFO
-  loggingLevelComBackendProgrammingLearningSystem: INFO
+  loggingLevelRoot: WARN
+  loggingLevelComBackendProgrammingLearningSystem: WARN

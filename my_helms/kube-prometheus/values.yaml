@@ -396,13 +396,7 @@ operator:
   ##     memory: 1024Mi
   ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## @param operator.podAffinityPreset Pod affinity preset
   ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ##
@@ -969,13 +963,7 @@ prometheus:
   ##     memory: 1024Mi
   ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 128Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## @param prometheus.podAffinityPreset Prometheus Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
   ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ##
@@ -1548,13 +1536,7 @@ prometheus:
     ##     cpu: 3
     ##     memory: 1024Mi
     ##
-    resources:
-      requests:
-        cpu: 2
-        memory: 256Mi
-      limits:
-        cpu: 3
-        memory: 512Mi
+    resources: {}
     ## Configure extra options for liveness probe
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
     ## @param prometheus.thanos.livenessProbe.enabled Turn on and off liveness probe
@@ -2238,13 +2220,7 @@ alertmanager:
   ##     memory: 1024Mi
   ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## @param alertmanager.podAffinityPreset Alertmanager Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
   ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ##
@@ -2732,13 +2708,7 @@ blackboxExporter:
   ##     cpu: 3
   ##     memory: 1024Mi
   ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 128Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+  resources: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param blackboxExporter.podSecurityContext.enabled Enabled Blackbox Exporter pods' Security Context

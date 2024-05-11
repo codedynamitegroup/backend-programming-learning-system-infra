@@ -27,7 +27,7 @@ discovery_enabled: false
 eureka_instance_hostname_enabled: false
 resouceserver_enabled: false
 otel_enabled: true
-kafka_enabled: true
+kafka_enabled: false
 database_enabled: false
 resources_enabled: true
 redis_enabled: false

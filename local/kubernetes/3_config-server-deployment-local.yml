@@ -19,17 +19,22 @@ spec:
         - name: config-server
           image: com.backend.programming.learning.system/config.server:1.0-SNAPSHOT
           env:
-            - name: JAVA_TOOL_OPTIONS
-              value: "-Xmx512m -Xms128m"
             - name: SERVER_PORT
               value: "9999"
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "1Gi"
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: OTEL_EXPORTER_OTLP_ENDPOINT
+            - name: OTEL_METRICS_EXPORTER
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: OTEL_METRICS_EXPORTER
+            - name: OTEL_SERVICE_NAME
+              value: config-server
 ---
 apiVersion: v1
 kind: Service

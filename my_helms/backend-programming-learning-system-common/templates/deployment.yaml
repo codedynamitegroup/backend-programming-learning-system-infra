@@ -135,7 +135,14 @@ spec:
               name: {{ .Values.global.configMapName }}
               key: SPRING_DATA_REDIS_PASSWORD
         {{- end }}
+        {{- if .Values.resources_enabled }}
         resources:
-        {{- toYaml .Values.resources | nindent 12 }}
-        
+          limits:
+              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: "{{ .Values.resources.limits.memory }}"
+          requests:
+              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: "{{ .Values.resources.requests.memory }}"
+        {{- end }}
+
 {{- end -}}

@@ -18,8 +18,6 @@ spec:
         - name: discovery-service
           image: com.backend.programming.learning.system/discovery.service:1.0-SNAPSHOT
           env:
-            - name: JAVA_TOOL_OPTIONS
-              value: "-Xmx256m -Xms128m"
             - name: LOGGING_LEVEL_ROOT
               value: "info"
             - name: SPRING_PROFILES_ACTIVE
@@ -37,13 +35,6 @@ spec:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
                   key: EUREKA_INSTANCE_HOSTNAME
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "1Gi"
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service

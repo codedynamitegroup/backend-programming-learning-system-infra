@@ -30,7 +30,7 @@ resouceserver_enabled: false
 otel_enabled: true
 kafka_enabled: false
 database_enabled: false
-resources_enabled: true
+resources_enabled: false
 redis_enabled: false
 
 autoscaling:

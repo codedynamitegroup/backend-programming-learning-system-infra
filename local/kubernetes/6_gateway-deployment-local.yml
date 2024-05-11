@@ -30,6 +30,11 @@ spec:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
                   key: CONFIG_SERVER
+            - name: EUREKA_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-programming-learning-system-configmap
+                  key: EUREKA_SERVER
             - name: SPRING_DATA_REDIS_HOST
               valueFrom:
                 configMapKeyRef:
@@ -45,11 +50,6 @@ spec:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
                   key: SPRING_DATA_REDIS_PASSWORD
-            - name: EUREKA_SERVER
-              valueFrom:
-                configMapKeyRef:
-                  name: backend-programming-learning-system-configmap
-                  key: EUREKA_SERVER
             - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
               valueFrom:
                 configMapKeyRef:

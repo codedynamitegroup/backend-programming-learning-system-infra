@@ -24,4 +24,4 @@ dependencies:
   repository: file://../../backend-programming-learning-system-services/gateway-service
   version: 0.1.0
 digest: sha256:86824e9d8ea384b692a86170fc3e2bbc52671d85a598f18d4f99619e36fac3a3
-generated: "2024-05-11T00:36:22.652846+07:00"
+generated: "2024-05-11T17:02:06.673557+07:00"

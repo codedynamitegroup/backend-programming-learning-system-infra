@@ -28,3 +28,6 @@ data:
   SPRING_DATASOURCE_PASSWORD: "localdb"
   KAFKA-CONFIG_BOOTSTRAP-SERVERS: "local-confluent-kafka-cp-kafka-headless:9092"
   KAFKA-CONFIG_SCHEMA-REGISTRY-URL: "http://local-confluent-kafka-cp-schema-registry:8081"
+  JAVA_TOOL_OPTIONS: "-javaagent:/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://tempo-grafana-tempo-distributor:4317"
+  OTEL_METRICS_EXPORTER: "none"

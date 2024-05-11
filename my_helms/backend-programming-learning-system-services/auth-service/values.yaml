@@ -29,7 +29,7 @@ resouceserver_enabled: false
 otel_enabled: true
 kafka_enabled: true
 database_enabled: true
-resources_enabled: true
+resources_enabled: false
 redis_enabled: false
 
 springDatasourceDatabase: auth-service
