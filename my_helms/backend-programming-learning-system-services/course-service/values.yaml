@@ -10,7 +10,7 @@ hpaName: course-service-hpa
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/course.service
+  repository: khanhquang/course.service
   tag: 1.0-SNAPSHOT
 
 containerPort: 8184

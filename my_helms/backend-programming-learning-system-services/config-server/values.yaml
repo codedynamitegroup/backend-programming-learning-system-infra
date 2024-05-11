@@ -10,7 +10,7 @@ hpaName: config-server-hpa
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/config.server
+  repository: khanhquang/config.server
   tag: 1.0-SNAPSHOT
 
 containerPort: 9999

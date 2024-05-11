@@ -10,7 +10,7 @@ hpaName: core-service-hpa
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/core.service
+  repository: khanhquang/core.service
   tag: 1.0-SNAPSHOT
 
 containerPort: 8181

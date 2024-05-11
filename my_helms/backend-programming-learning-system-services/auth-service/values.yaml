@@ -10,7 +10,7 @@ hpaName: auth-service-hpa
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/auth.service
+  repository: khanhquang/auth.service
   tag: 1.0-SNAPSHOT
 
 containerPort: 8182

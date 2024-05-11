@@ -11,7 +11,7 @@ eurekaInstanceHostname: discovery-service
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/discovery.service
+  repository: khanhquang/discovery.service
   tag: 1.0-SNAPSHOT
 
 containerPort: 8761

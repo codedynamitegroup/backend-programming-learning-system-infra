@@ -10,7 +10,7 @@ hpaName: code-assessment-service-hpa
 replicaCount: 1
 
 image:
-  repository: com.backend.programming.learning.system/code.assessment.service
+  repository: khanhquang/code.assessment.service
   tag: 1.0-SNAPSHOT
 
 containerPort: 8183
