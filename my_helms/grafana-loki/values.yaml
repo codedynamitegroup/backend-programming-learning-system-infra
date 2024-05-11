@@ -2197,7 +2197,7 @@ ingester:
       - ReadWriteOnce
     ## @param ingester.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 8Gi
+    size: 1Gi
     ## @param ingester.persistence.annotations Additional PVC annotations
     ##
     annotations: {}
@@ -2600,7 +2600,7 @@ querier:
       - ReadWriteOnce
     ## @param querier.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 8Gi
+    size: 1Gi
     ## @param querier.persistence.annotations Additional PVC annotations
     ##
     annotations: {}
@@ -3735,7 +3735,7 @@ ruler:
       - ReadWriteOnce
     ## @param ruler.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 8Gi
+    size: 1Gi
     ## @param ruler.persistence.annotations Additional PVC annotations
     ##
     annotations: {}
