@@ -3,7 +3,8 @@ global:
   activeProfile: prod
   configServerURL: "http://config-server:9999"
   discoveryServerURL: "http://discovery-service:8761/eureka"
-  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
+#  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
+  keyCloakURL: "http://20.247.208.148:80/"
   openTelemetryJavaAgent: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
   otelMetricsExporter: none
@@ -13,9 +14,9 @@ global:
   springDatasourcePort: 5432
   springDatasourceUsername: postgres
   springDatasourcePassword: postgresadmin
-  springDatasourceInitializationMode: always
-  springDataRedisHost: redis-master
-  springDataRedisPort: 6379
-  springDataRedisPassword: admin
+  springDatasourceInitializationMode: never
+  springDataRedisHost: redis-13960.c9.us-east-1-2.ec2.redns.redis-cloud.com
+  springDataRedisPort: 13960
+  springDataRedisPassword: N7qkA39hffMIU9B99uFjAptksNmt1ALG
   loggingLevelRoot: INFO
   loggingLevelComBackendProgrammingLearningSystem: INFO
