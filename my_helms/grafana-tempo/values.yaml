@@ -1594,7 +1594,7 @@ ingester:
       - ReadWriteOnce
     ## @param ingester.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 1Gi
+    size: 8Gi
     ## @param ingester.persistence.annotations Additional PVC annotations
     ##
     annotations: {}
@@ -2480,13 +2480,13 @@ queryFrontend:
     ##     cpu: 3
     ##     memory: 1024Mi
     ##
-  resources:
-    requests:
-      cpu: 2
-      memory: 256Mi
-    limits:
-      cpu: 3
-      memory: 512Mi
+    resources:
+      requests:
+        cpu: 2
+        memory: 256Mi
+      limits:
+        cpu: 3
+        memory: 512Mi
     ## @param queryFrontend.query.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the queryFrontend container(s)
     ##
     extraVolumeMounts: []
