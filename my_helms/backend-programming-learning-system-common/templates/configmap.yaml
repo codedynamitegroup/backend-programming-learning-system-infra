@@ -4,23 +4,23 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.global.configMapName }}
 data:
-  SPRING_PROFILES_ACTIVE: {{ .Values.global.activeProfile }}
-  CONFIG_SERVER: {{ .Values.global.configServerURL }}
-  EUREKA_SERVER: {{ .Values.global.discoveryServerURL }}
-  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: {{ .Values.global.keyCloakURL }}
-  JAVA_TOOL_OPTIONS: {{ .Values.global.openTelemetryJavaAgent }}
-  OTEL_EXPORTER_OTLP_ENDPOINT: {{ .Values.global.otelExporterEndPoint }}
-  OTEL_METRICS_EXPORTER: {{ .Values.global.otelMetricsExporter }}
-  KAFKA-CONFIG_BOOTSTRAP-SERVERS: {{ .Values.global.kafkaBootstrapServers }}
-  KAFKA-CONFIG_SCHEMA-REGISTRY-URL: {{ .Values.global.kafkaSchemaRegistryURL }}
-  SPRING_DATASOURCE_HOST: {{ .Values.global.springDatasourceHost }}
-  SPRING_DATASOURCE_PORT: {{ .Values.global.springDatasourcePort }}
-  SPRING_DATASOURCE_USERNAME: {{ .Values.global.springDatasourceUsername }}
-  SPRING_DATASOURCE_PASSWORD: {{ .Values.global.springDatasourcePassword }}
-  SPRING_DATASOURCE_INITIALIZATION-MODE: {{ .Values.global.springDatasourceInitializationMode }}
-  SPRING_DATA_REDIS_HOST: {{ .Values.global.springDataRedisHost }}
-  SPRING_DATA_REDIS_PORT: {{ .Values.global.springDataRedisPort }}
-  SPRING_DATA_REDIS_PASSWORD: {{ .Values.global.springDataRedisPassword }}
-  LOGGING_LEVEL_ROOT: {{ .Values.global.loggingLevelRoot }}
-  LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM: {{ .Values.global.loggingLevelComBackendProgrammingLearningSystem }}
+  SPRING_PROFILES_ACTIVE: "{{ .Values.global.activeProfile }}"
+  CONFIG_SERVER: "{{ .Values.global.configServerURL }}"
+  EUREKA_SERVER: "{{ .Values.global.discoveryServerURL }}"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "{{ .Values.global.keyCloakURL }}"
+  JAVA_TOOL_OPTIONS: "{{ .Values.global.openTelemetryJavaAgent }}"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "{{ .Values.global.otelExporterEndPoint }}"
+  OTEL_METRICS_EXPORTER: "{{ .Values.global.otelMetricsExporter }}"
+  KAFKA-CONFIG_BOOTSTRAP-SERVERS: "{{ .Values.global.kafkaBootstrapServers }}"
+  KAFKA-CONFIG_SCHEMA-REGISTRY-URL: "{{ .Values.global.kafkaSchemaRegistryURL }}"
+  SPRING_DATASOURCE_HOST: "{{ .Values.global.springDatasourceHost }}"
+  SPRING_DATASOURCE_PORT: "{{ .Values.global.springDatasourcePort }}"
+  SPRING_DATASOURCE_USERNAME: "{{ .Values.global.springDatasourceUsername }}"
+  SPRING_DATASOURCE_PASSWORD: "{{ .Values.global.springDatasourcePassword }}"
+  SPRING_DATASOURCE_INITIALIZATION-MODE: "{{ .Values.global.springDatasourceInitializationMode }}"
+  SPRING_DATA_REDIS_HOST: "{{ .Values.global.springDataRedisHost }}"
+  SPRING_DATA_REDIS_PORT: "{{ .Values.global.springDataRedisPort }}"
+  SPRING_DATA_REDIS_PASSWORD: "{{ .Values.global.springDataRedisPassword }}"
+  LOGGING_LEVEL_ROOT: "{{ .Values.global.loggingLevelRoot }}"
+  LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM: "{{ .Values.global.loggingLevelComBackendProgrammingLearningSystem }}"
 {{- end -}}
