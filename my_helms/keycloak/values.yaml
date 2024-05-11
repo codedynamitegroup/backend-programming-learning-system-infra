@@ -1234,9 +1234,6 @@ keycloakConfigCli:
 ##
 postgresql:
   enabled: true
-  primary:
-    persistence:
-      size: 2Gi
   auth:
     postgresPassword: ""
     username: bn_keycloak
