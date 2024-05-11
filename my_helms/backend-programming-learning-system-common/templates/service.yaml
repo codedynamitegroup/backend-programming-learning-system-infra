@@ -1,0 +1,33 @@
+{{- define "common.service" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceName }}
+spec:
+  selector:
+    app: {{ .Values.appLabel }}
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+{{- end -}}
+
+{{- define "common.socket" -}}
+{{- if .Values.socket.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceName }}-socket
+spec:
+  selector:
+    app: {{ .Values.appLabel }}
+  type: {{ .Values.socket.type }}
+  ports:
+    - name: socket
+      protocol: TCP
+      port: {{ .Values.socket.port }}
+      targetPort: {{ .Values.socket.targetPort }}
+{{- end -}}
+{{- end -}}

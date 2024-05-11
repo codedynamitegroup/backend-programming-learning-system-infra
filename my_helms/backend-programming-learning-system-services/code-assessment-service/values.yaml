@@ -1,0 +1,56 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: code-assessment-deployment
+serviceName: code-assessment-service
+appLabel: code-assessment-service
+appName: code-assessment-service
+hpaName: code-assessment-service-hpa
+
+replicaCount: 1
+
+image:
+  repository: com.backend.programming.learning.system/code.assessment.service
+  tag: 1.0-SNAPSHOT
+
+containerPort: 8183
+
+service:
+  type: ClusterIP
+  port: 8183
+  targetPort: 8183
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+discovery_enabled: true
+eureka_instance_hostname_enabled: false
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: true
+database_enabled: true
+resources_enabled: true
+redis_enabled: false
+
+springDatasourceDatabase: code-assessment-service
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 85
+  targetMemoryUtilizationPercentage: ""
+
+socket:
+  enabled: false
+  type: LoadBalancer
+  port: 8082
+  targetPort: 8184
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"

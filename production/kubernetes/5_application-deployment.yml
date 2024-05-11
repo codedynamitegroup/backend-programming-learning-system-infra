@@ -98,9 +98,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: core-deployment-hpa
-  namespace: default
-  labels:
-    app: core-service
 spec:
   scaleTargetRef:
     kind: Deployment
@@ -216,9 +213,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: auth-deployment-hpa
-  namespace: default
-  labels:
-    app: auth-service
 spec:
   scaleTargetRef:
     kind: Deployment
@@ -332,9 +326,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: code-assessment-deployment-hpa
-  namespace: default
-  labels:
-    app: code-assessment-service
 spec:
   scaleTargetRef:
     kind: Deployment
@@ -443,18 +434,28 @@ spec:
     - name: course-service-port
       protocol: TCP
       port: 8184
-    - name: socket-service-port
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: course-service-socket
+  namespace: default
+  labels:
+    app: course-service
+spec:
+  selector:
+    app: course-service
+  ports:
+    - name: socket-service-socket-port
       protocol: TCP
       port: 8085
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: course-deployment-hpa
-  namespace: default
-  labels:
-    app: course-service
 spec:
   scaleTargetRef:
     kind: Deployment

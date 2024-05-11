@@ -1,0 +1,6 @@
+dependencies:
+- name: backend-programming-learning-system-common
+  repository: file://../../backend-programming-learning-system-common
+  version: 0.1.0
+digest: sha256:f85c352208e06e457ac30bcc0ad155058a1b8153757a144992187e76b974ba31
+generated: "2024-05-11T00:18:54.501988+07:00"

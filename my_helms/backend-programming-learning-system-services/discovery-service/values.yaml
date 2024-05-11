@@ -1,0 +1,55 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: discovery-deployment
+serviceName: discovery-service
+appLabel: discovery-service
+appName: discovery-service
+hpaName: discovery-service-hpa
+eurekaInstanceHostname: discovery-service
+
+replicaCount: 1
+
+image:
+  repository: com.backend.programming.learning.system/discovery.service
+  tag: 1.0-SNAPSHOT
+
+containerPort: 8761
+
+service:
+  type: ClusterIP
+  port: 8761
+  targetPort: 8761
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: false
+discovery_enabled: false
+eureka_instance_hostname_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: false
+database_enabled: false
+resources_enabled: true
+redis_enabled: false
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 85
+  targetMemoryUtilizationPercentage: ""
+
+socket:
+  enabled: false
+  type: LoadBalancer
+  port: 8085
+  targetPort: 8085
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"

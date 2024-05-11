@@ -1,0 +1,27 @@
+dependencies:
+- name: backend-programming-learning-system-common
+  repository: file://../../backend-programming-learning-system-common
+  version: 0.1.0
+- name: config-server
+  repository: file://../../backend-programming-learning-system-services/config-server
+  version: 0.1.0
+- name: discovery-service
+  repository: file://../../backend-programming-learning-system-services/discovery-service
+  version: 0.1.0
+- name: core-service
+  repository: file://../../backend-programming-learning-system-services/core-service
+  version: 0.1.0
+- name: auth-service
+  repository: file://../../backend-programming-learning-system-services/auth-service
+  version: 0.1.0
+- name: course-service
+  repository: file://../../backend-programming-learning-system-services/course-service
+  version: 0.1.0
+- name: code-assessment-service
+  repository: file://../../backend-programming-learning-system-services/code-assessment-service
+  version: 0.1.0
+- name: gateway-service
+  repository: file://../../backend-programming-learning-system-services/gateway-service
+  version: 0.1.0
+digest: sha256:86824e9d8ea384b692a86170fc3e2bbc52671d85a598f18d4f99619e36fac3a3
+generated: "2024-05-11T00:36:34.714875+07:00"

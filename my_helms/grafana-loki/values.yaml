@@ -398,7 +398,13 @@ compactor:
   ##     cpu: 3
   ##     memory: 1024Mi
   ##
-  resources: {}
+  resources:
+    requests:
+      cpu: 2
+      memory: 256Mi
+    limits:
+      cpu: 3
+      memory: 512Mi
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param compactor.podSecurityContext.enabled Enabled Compactor pods' Security Context
@@ -564,7 +570,7 @@ compactor:
       - ReadWriteOnce
     ## @param compactor.persistence.size PVC Storage Request for Memcached data volume
     ##
-    size: 8Gi
+    size: 1Gi
     ## @param compactor.persistence.annotations Additional PVC annotations
     ##
     annotations: {}

@@ -1,0 +1,48 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: gateway-service-deployment
+serviceName: gateway-service
+appLabel: gateway-service
+appName: gateway-service
+hpaName: gateway-service-hpa
+
+replicaCount: 1
+
+image:
+  repository: com.backend.programming.learning.system/gateway.service
+  tag: 1.0-SNAPSHOT
+
+containerPort: 9098
+
+service:
+  type: LoadBalancer
+  port: 9098
+  targetPort: 9098
+
+appname_enabled: true
+profile_enabled: false
+config_enabled: true
+discovery_enabled: true
+eureka_instance_hostname_enabled: false
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: false
+database_enabled: false
+resources_enabled: true
+redis_enabled: true
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 85
+  targetMemoryUtilizationPercentage: ""
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"

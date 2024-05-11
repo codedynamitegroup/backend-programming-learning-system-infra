@@ -25,28 +25,26 @@ spec:
               value: "debug"
             - name: LOGGING_LEVEL_COM_BACKEND_PROGRAMMING_LEARNING_SYSTEM
               value: "debug"
-            - name: SERVER_PORT
-              value: "9098"
             - name: CONFIG_SERVER
               valueFrom:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
                   key: CONFIG_SERVER
-            - name: SPRING_REDIS_HOST
+            - name: SPRING_DATA_REDIS_HOST
               valueFrom:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
-                  key: SPRING_REDIS_HOST
-            - name: SPRING_REDIS_PORT
+                  key: SPRING_DATA_REDIS_HOST
+            - name: SPRING_DATA_REDIS_PORT
               valueFrom:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
-                  key: SPRING_REDIS_PORT
-            - name: SPRING_REDIS_PASSWORD
+                  key: SPRING_DATA_REDIS_PORT
+            - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: backend-programming-learning-system-configmap
-                  key: SPRING_REDIS_PASSWORD
+                  key: SPRING_DATA_REDIS_PASSWORD
             - name: EUREKA_SERVER
               valueFrom:
                 configMapKeyRef:

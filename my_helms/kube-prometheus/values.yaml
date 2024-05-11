@@ -963,7 +963,13 @@ prometheus:
   ##     memory: 1024Mi
   ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
   ##
-  resources: {}
+  resources:
+    requests:
+      cpu: 2
+      memory: 128Mi
+    limits:
+      cpu: 3
+      memory: 512Mi
   ## @param prometheus.podAffinityPreset Prometheus Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
   ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ##
@@ -1335,56 +1341,65 @@ prometheus:
     internal:
       jobList: [
         {
-            "job_name": "configserver",
+            "job_name": "config-server",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["configserver:8071"]
+                "targets": ["config-server:9999"]
               }
             ]
        },
        {
-            "job_name": "eurekaserver",
+            "job_name": "discovery-service",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["eurekaserver:8070"]
+                "targets": ["discovery-service:8761"]
               }
             ]
        },
        {
-            "job_name": "accounts",
+            "job_name": "core-service",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["accounts:8080"]
+                "targets": ["core-service:8181"]
               }
             ]
        },
        {
-            "job_name": "loans",
+            "job_name": "auth-service",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["loans:8090"]
+                "targets": ["auth-service:8182"]
               }
             ]
        },
        {
-            "job_name": "cards",
+            "job_name": "code-assessment-service",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["cards:9000"]
+                "targets": ["code-assessment-service:8183"]
               }
             ]
        },
        {
-            "job_name": "gatewayserver",
+            "job_name": "course-service",
             "metrics_path": "/actuator/prometheus",
             "static_configs": [
               {
-                "targets": ["gatewayserver:8072"]
+                "targets": [ "course-service:8184" ]
+              }
+            ]
+       },
+       {
+            "job_name": "gateway-service",
+            "metrics_path": "/actuator/prometheus",
+            "static_configs": [
+              {
+                "targets": ["gateway-service:9098"]
               }
             ]
        }
@@ -2699,7 +2714,13 @@ blackboxExporter:
   ##     cpu: 3
   ##     memory: 1024Mi
   ##
-  resources: {}
+  resources:
+    requests:
+      cpu: 2
+      memory: 128Mi
+    limits:
+      cpu: 3
+      memory: 512Mi
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param blackboxExporter.podSecurityContext.enabled Enabled Blackbox Exporter pods' Security Context

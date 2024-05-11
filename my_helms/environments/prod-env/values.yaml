@@ -1,0 +1,21 @@
+global:
+  configMapName: backend-programming-learning-system-prod-configmap
+  activeProfile: prod
+  configServerURL: "http://config-server:9999"
+  discoveryServerURL: "http://discovery-service:8761/eureka"
+  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
+  openTelemetryJavaAgent: "-javaagent:/app/libs/opentelemetry-javaagent-1.32.0.jar"
+  otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
+  otelMetricsExporter: none
+  kafkaBootstrapServers: gke-confluent-kafka-cp-kafka-headless:9092
+  kafkaSchemaRegistryURL: http://gke-confluent-kafka-cp-schema-registry:8081
+  springDatasourceHost: aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com
+  springDatasourcePort: 5432
+  springDatasourceUsername: postgres
+  springDatasourcePassword: postgresadmin
+  springDatasourceInitializationMode: always
+  springDataRedisHost: redis-master
+  springDataRedisPort: 6379
+  springDataRedisPassword: admin
+  loggingLevelRoot: INFO
+  loggingLevelComBackendProgrammingLearningSystem: INFO
