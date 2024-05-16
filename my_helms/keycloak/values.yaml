@@ -1236,9 +1236,9 @@ postgresql:
   enabled: true
   primary:
     persistence:
-      size: 2Gi
+      size: 8Gi
   auth:
-    postgresPassword: ""
+    postgresPassword: "localdb"
     username: bn_keycloak
     password: ""
     database: bitnami_keycloak
