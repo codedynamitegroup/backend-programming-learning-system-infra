@@ -1236,7 +1236,7 @@ postgresql:
   enabled: true
   primary:
     persistence:
-      size: 8Gi
+      size: 2Gi
   auth:
     postgresPassword: "localdb"
     username: bn_keycloak

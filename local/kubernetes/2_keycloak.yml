@@ -1,3 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: default
+  labels:
+    app: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: postgres-deployment
+    spec:
+      containers:
+        - name: postgres-deployment
+          image: postgres:latest
+          env:
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_USER
+              value: keycloak
+            - name: POSTGRES_DB
+              value: keycloak
+            - name: POSTGRES_MAX_CONNECTIONS
+              value: "200"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: postgres-deployment
+  ports:
+    - name: postgres-service-port
+      protocol: TCP
+      port: 5432
+  type: LoadBalancer
+  loadBalancerIP: ""
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,25 +64,23 @@ spec:
           args: ["start-dev"]
           env:
           - name: KEYCLOAK_ADMIN
-            valueFrom:
-              configMapKeyRef:
-                name: backend-programming-learning-system-configmap
-                key: KEYCLOAK_ADMIN
+            value: admin
           - name: KEYCLOAK_ADMIN_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: backend-programming-learning-system-configmap
-                key: KEYCLOAK_ADMIN_PASSWORD
-          ports:
-            - name: http
-              containerPort: 8080
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
-            requests:
-              cpu: "200m"
-              memory: "128Mi"
+            value: admin
+          - name: KC_DB
+            value: postgres
+          - name: KC_DB_URL_HOST
+            value: postgres-service
+          - name: KC_DB_URL_DATABASE
+            value: keycloak
+          - name: KC_DB_SCHEMA
+            value: public
+          - name: KC_DB_USERNAME
+            value: keycloak
+          - name: KC_DB_PASSWORD
+            value: password
+          - name: KC_FEATURES
+            value: token-exchange,admin-fine-grained-authz
 ---
 apiVersion: v1
 kind: Service
@@ -52,5 +94,5 @@ spec:
   type: LoadBalancer
   ports:
     - name: http
-      port: 7080
+      port: 8080
       targetPort: 8080
