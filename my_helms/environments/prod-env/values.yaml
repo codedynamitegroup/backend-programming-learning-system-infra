@@ -13,7 +13,7 @@ global:
   springDatasourcePort: 5432
   springDatasourceUsername: postgres
   springDatasourcePassword: localdb
-  springDatasourceInitializationMode: always
+  springDatasourceInitializationMode: never
   springDataRedisHost: "redis-master"
   springDataRedisPort: 6379
   loggingLevelRoot: INFO
