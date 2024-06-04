@@ -129,11 +129,6 @@ spec:
             configMapKeyRef:
               name: {{ .Values.global.configMapName }}
               key: SPRING_DATA_REDIS_PORT
-        - name: SPRING_DATA_REDIS_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: {{ .Values.global.configMapName }}
-              key: SPRING_DATA_REDIS_PASSWORD
         {{- end }}
         {{- if .Values.resources_enabled }}
         resources:

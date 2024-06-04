@@ -14,8 +14,7 @@ global:
   springDatasourceUsername: postgres
   springDatasourcePassword: localdb
   springDatasourceInitializationMode: always
-  springDataRedisHost: redis-13960.c9.us-east-1-2.ec2.redns.redis-cloud.com
-  springDataRedisPort: 13960
-  springDataRedisPassword: N7qkA39hffMIU9B99uFjAptksNmt1ALG
+  springDataRedisHost: "redis-master"
+  springDataRedisPort: 6379
   loggingLevelRoot: INFO
   loggingLevelComBackendProgrammingLearningSystem: INFO
