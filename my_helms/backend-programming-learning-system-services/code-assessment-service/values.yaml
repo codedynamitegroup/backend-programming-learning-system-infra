@@ -29,7 +29,7 @@ resouceserver_enabled: false
 otel_enabled: true
 kafka_enabled: true
 database_enabled: true
-resources_enabled: false
+resources_enabled: true
 redis_enabled: false
 
 springDatasourceDatabase: code-assessment-service
