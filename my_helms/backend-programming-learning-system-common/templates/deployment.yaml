@@ -62,11 +62,11 @@ spec:
               key: EUREKA_SERVER
         {{- end }}
         {{- if .Values.resouceserver_enabled }}
-        - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
+        - name: KEYCLOAK_DOMAIN
           valueFrom: 
             configMapKeyRef:
               name: {{ .Values.global.configMapName }}
-              key: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
+              key: KEYCLOAK_DOMAIN
         {{- end }}
         {{- if .Values.otel_enabled }}
         - name: JAVA_TOOL_OPTIONS

@@ -9,10 +9,10 @@ global:
   otelMetricsExporter: none
   kafkaBootstrapServers: local-confluent-kafka-cp-kafka-headless:9092
   kafkaSchemaRegistryURL: http://local-confluent-kafka-cp-schema-registry:8081
-  springDatasourceHost: aws-postgresql.ctso2e4midpm.ap-southeast-2.rds.amazonaws.com
+  springDatasourceHost: 35.226.5.241
   springDatasourcePort: 5432
   springDatasourceUsername: postgres
-  springDatasourcePassword: postgresadmin
+  springDatasourcePassword: localdb
   springDatasourceInitializationMode: never
   springDataRedisHost: redis-13960.c9.us-east-1-2.ec2.redns.redis-cloud.com
   springDataRedisPort: 13960

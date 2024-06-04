@@ -7,7 +7,7 @@ data:
   SPRING_PROFILES_ACTIVE: "{{ .Values.global.activeProfile }}"
   CONFIG_SERVER: "{{ .Values.global.configServerURL }}"
   EUREKA_SERVER: "{{ .Values.global.discoveryServerURL }}"
-  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "{{ .Values.global.keyCloakURL }}"
+  KEYCLOAK_DOMAIN: "{{ .Values.global.keyCloakURL }}"
   JAVA_TOOL_OPTIONS: "{{ .Values.global.openTelemetryJavaAgent }}"
   OTEL_EXPORTER_OTLP_ENDPOINT: "{{ .Values.global.otelExporterEndPoint }}"
   OTEL_METRICS_EXPORTER: "{{ .Values.global.otelMetricsExporter }}"
