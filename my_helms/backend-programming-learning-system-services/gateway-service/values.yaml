@@ -35,7 +35,7 @@ redis_enabled: true
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 2
+  maxReplicas: 1
   targetCPUUtilizationPercentage: 85
   targetMemoryUtilizationPercentage: ""
 
