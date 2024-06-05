@@ -25,11 +25,11 @@ profile_enabled: true
 config_enabled: true
 discovery_enabled: true
 eureka_instance_hostname_enabled: false
-resouceserver_enabled: false
+resouceserver_enabled: true
 otel_enabled: true
 kafka_enabled: true
 database_enabled: true
-resources_enabled: true
+resources_enabled: false
 redis_enabled: false
 
 springDatasourceDatabase: auth-service
