@@ -3,7 +3,7 @@ global:
   activeProfile: prod
   configServerURL: "http://config-server:9999"
   discoveryServerURL: "http://discovery-service:8761/eureka"
-  keyCloakURL: "http://4.144.152.222:8080/"
+  keyCloakURL: "4.144.152.222:8080"
   openTelemetryJavaAgent: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
   otelMetricsExporter: none
