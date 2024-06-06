@@ -118,6 +118,11 @@ spec:
             configMapKeyRef:
               name: {{ .Values.global.configMapName }}
               key: SPRING_DATASOURCE_INITIALIZATION-MODE
+        - name: SPRING_SQL_INIT_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.global.configMapName }}
+              key: SPRING_DATASOURCE_INITIALIZATION-MODE
         {{- end }}
         {{- if .Values.redis_enabled }}
         - name: SPRING_DATA_REDIS_HOST
