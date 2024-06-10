@@ -30,7 +30,7 @@ otel_enabled: true
 kafka_enabled: true
 database_enabled: true
 resources_enabled: false
-redis_enabled: false
+redis_enabled: true
 
 springDatasourceDatabase: core-service
 

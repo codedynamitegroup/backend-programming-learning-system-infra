@@ -16,5 +16,6 @@ global:
   springDatasourceInitializationMode: never
   springDataRedisHost: "redis-master"
   springDataRedisPort: 6379
+  springDataRedisPassword: "admin"
   loggingLevelRoot: INFO
   loggingLevelComBackendProgrammingLearningSystem: INFO
