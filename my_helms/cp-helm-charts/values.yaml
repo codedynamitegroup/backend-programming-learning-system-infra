@@ -47,7 +47,7 @@ cp-kafka:
   persistence:
     enabled: true
     # storageClass: ""
-    size: 1Gi
+    size: 3Gi
     disksPerBroker: 1
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
