@@ -10,6 +10,14 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-response --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-request-code-assessment --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-response-code-assessment --delete --if-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-core-service --delete --if-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-course-service --delete --if-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-code-assessment-service --delete --if-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic course-service-user-request-to-auth-service --delete --if-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic any-services-user-response-to-auth-service --delete --if-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-response-to-course-service --delete --if-exists
       
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-user-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic course-user-request --delete --if-exists
@@ -33,6 +41,14 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-response --create --partitions 2 --replication-factor 2 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-request-code-assessment --create --partitions 2 --replication-factor 2 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-response-code-assessment --create --partitions 2 --replication-factor 2 --if-not-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-core-service --create --partitions 2 --replication-factor 2 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-course-service --create --partitions 2 --replication-factor 2 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-request-to-code-assessment-service --create --partitions 2 --replication-factor 2 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic course-service-user-request-to-auth-service --create --partitions 2 --replication-factor 2 --if-not-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic any-services-user-response-to-auth-service --create --partitions 2 --replication-factor 2 --if-not-exists
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-response-to-course-service --create --partitions 2 --replication-factor 2 --if-not-exists
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-user-request --create --partitions 2 --replication-factor 2 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic course-user-request --create --partitions 2 --replication-factor 2 --if-not-exists
