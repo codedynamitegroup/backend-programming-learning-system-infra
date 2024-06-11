@@ -68,6 +68,11 @@ spec:
             configMapKeyRef:
               name: {{ .Values.global.configMapName }}
               key: KEYCLOAK_DOMAIN
+        - name: KEYCLOAK_URLS
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.global.configMapName }}
+              key: KEYCLOAK_URLS
         {{- end }}
         {{- if .Values.otel_enabled }}
         - name: JAVA_TOOL_OPTIONS

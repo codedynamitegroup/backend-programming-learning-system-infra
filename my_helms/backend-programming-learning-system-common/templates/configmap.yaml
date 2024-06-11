@@ -8,6 +8,7 @@ data:
   CONFIG_SERVER: "{{ .Values.global.configServerURL }}"
   EUREKA_SERVER: "{{ .Values.global.discoveryServerURL }}"
   KEYCLOAK_DOMAIN: "{{ .Values.global.keyCloakURL }}"
+  KEYCLOAK_URLS: "{{ .Values.global.keyCloakURLs }}"
   JAVA_TOOL_OPTIONS: "{{ .Values.global.openTelemetryJavaAgent }}"
   OTEL_EXPORTER_OTLP_ENDPOINT: "{{ .Values.global.otelExporterEndPoint }}"
   OTEL_METRICS_EXPORTER: "{{ .Values.global.otelMetricsExporter }}"
