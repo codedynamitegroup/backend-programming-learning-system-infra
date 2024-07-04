@@ -10,7 +10,7 @@ global:
   otelMetricsExporter: none
   kafkaBootstrapServers: gke-confluent-kafka-cp-kafka-headless:9092
   kafkaSchemaRegistryURL: http://gke-confluent-kafka-cp-schema-registry:8081
-  springDatasourceHost: 35.247.143.3
+  springDatasourceHost: 35.240.219.147
   springDatasourcePort: 5432
   springDatasourceUsername: postgres
   springDatasourcePassword: localdb
