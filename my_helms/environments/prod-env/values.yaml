@@ -16,7 +16,6 @@ global:
   springDatasourcePassword: localdb
   springDatasourceInitializationMode: never
   springDataRedisHost: "redis-master"
-#  springDataRedisHost: "redis-cluster"
   springDataRedisPort: 6379
   springDataRedisPassword: "admin"
   loggingLevelRoot: INFO
