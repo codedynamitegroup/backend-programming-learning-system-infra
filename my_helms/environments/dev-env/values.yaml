@@ -3,13 +3,14 @@ global:
   activeProfile: default
   configServerURL: "http://config-server:9999"
   discoveryServerURL: "http://discovery-service:8761/eureka"
-  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
+#  keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
+  keyCloakURL: keycloak
   openTelemetryJavaAgent: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317
   otelMetricsExporter: none
-  kafkaBootstrapServers: local-confluent-kafka-cp-kafka-headless:9092
-  kafkaSchemaRegistryURL: http://local-confluent-kafka-cp-schema-registry:8081
-  springDatasourceHost: postgres-service
+  kafkaBootstrapServers: gke-confluent-kafka-cp-kafka-headless:9092
+  kafkaSchemaRegistryURL: http://gke-confluent-kafka-cp-schema-registry:8081
+  springDatasourceHost: database-postgres-service
   springDatasourcePort: 5432
   springDatasourceUsername: postgres
   springDatasourcePassword: localdb

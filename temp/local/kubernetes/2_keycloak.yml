@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:22.0.4
+          args: ["start-dev"]
+          env:
+          - name: KEYCLOAK_ADMIN
+            value: admin
+          - name: KEYCLOAK_ADMIN_PASSWORD
+            value: admin
+          - name: KC_DB
+            value: postgres
+          - name: KC_DB_URL_HOST
+            value: postgres-service
+          - name: KC_DB_URL_DATABASE
+            value: keycloak
+          - name: KC_DB_SCHEMA
+            value: public
+          - name: KC_DB_USERNAME
+            value: keycloak
+          - name: KC_DB_PASSWORD
+            value: password
+          - name: KC_FEATURES
+            value: token-exchange,admin-fine-grained-authz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  selector:
+    app: keycloak
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
