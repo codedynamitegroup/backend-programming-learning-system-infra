@@ -26,6 +26,8 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-response --delete --if-exists
 
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-submission-sender-request --delete --if-exists
+
 # Create topics
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-question-update-request-to-core-service --create --partitions 2 --replication-factor 2 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-question-update-response-from-core-service --create --partitions 2 --replication-factor 2 --if-not-exists
@@ -51,5 +53,7 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-request --create --partitions 2 --replication-factor 2 --if-not-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-response --create --partitions 2 --replication-factor 2 --if-not-exists
+
+kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-submission-sender-request --create --partitions 2 --replication-factor 2 --if-not-exists
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --list
