@@ -17,10 +17,10 @@ cp-zookeeper:
     ## production servers this number should likely be much larger.
     ##
     ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
-    dataDirSize: 1Gi
+    dataDirSize: 10Gi
     # dataDirStorageClass: ""
     ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
-    dataLogDirSize: 1Gi
+    dataLogDirSize: 10Gi
     # dataLogDirStorageClass: ""
     
   # TODO: find correct security context for user in this zk-image  
@@ -30,13 +30,19 @@ cp-zookeeper:
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
+  #  limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  #  requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 ## ------------------------------------------------------
 ## Kafka
 ## ------------------------------------------------------
 cp-kafka:
   enabled: true
-  brokers: 2
+  brokers: 3
   image: confluentinc/cp-enterprise-kafka
   imageTag: 6.1.0
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
@@ -47,11 +53,17 @@ cp-kafka:
   persistence:
     enabled: true
     # storageClass: ""
-    size: 3Gi
+    size: 5Gi
     disksPerBroker: 1
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
+  #  limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  #  requests:
+  #   cpu: 100m
+  #   memory: 128Mi
   securityContext: 
     runAsUser: 0
 
@@ -70,6 +82,12 @@ cp-schema-registry:
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
+  #  limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  #  requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 ## ------------------------------------------------------
 ## REST Proxy
