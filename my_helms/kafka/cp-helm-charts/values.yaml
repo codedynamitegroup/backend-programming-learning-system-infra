@@ -17,10 +17,10 @@ cp-zookeeper:
     ## production servers this number should likely be much larger.
     ##
     ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
-    dataDirSize: 10Gi
+    dataDirSize: 3Gi
     # dataDirStorageClass: ""
     ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
-    dataLogDirSize: 10Gi
+    dataLogDirSize: 3Gi
     # dataLogDirStorageClass: ""
     
   # TODO: find correct security context for user in this zk-image  
@@ -42,7 +42,7 @@ cp-zookeeper:
 ## ------------------------------------------------------
 cp-kafka:
   enabled: true
-  brokers: 3
+  brokers: 2
   image: confluentinc/cp-enterprise-kafka
   imageTag: 6.1.0
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
