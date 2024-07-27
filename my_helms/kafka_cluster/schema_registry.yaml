@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schema-registry
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: schema-registry
+  template:
+    metadata:
+      labels:
+        app: schema-registry
+    spec:
+      containers:
+        - name: schema-registry
+          image: confluentinc/cp-schema-registry:latest
+          ports:
+            - containerPort: 8081
+              name: schema-registry
+          env:
+            - name: SCHEMA_REGISTRY_HOST_NAME
+              value: "schema-registry"
+            - name: SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL
+              value: "zookeeper:2181"
+            - name: SCHEMA_REGISTRY_LISTENERS
+              value: "http://schema-registry:8081"
+            - name: SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS
+              value: "PLAINTEXT://kafka-broker-2:9092,LISTENER_LOCAL://localhost:29092"
+            - name: SCHEMA_REGISTRY_DEBUG
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: schema-registry
+  namespace: default
+spec:
+  ports:
+    - port: 8081
+      targetPort: 8081
+      protocol: TCP
+      name: schema-registry
+  selector:
+    app: schema-registry

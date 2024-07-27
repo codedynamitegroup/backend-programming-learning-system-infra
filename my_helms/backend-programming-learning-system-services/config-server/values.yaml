@@ -26,7 +26,7 @@ config_enabled: false
 discovery_enabled: false
 eureka_instance_hostname_enabled: false
 resouceserver_enabled: false
-otel_enabled: true
+otel_enabled: false
 kafka_enabled: false
 database_enabled: false
 resources_enabled: true

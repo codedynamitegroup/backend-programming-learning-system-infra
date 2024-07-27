@@ -5,7 +5,7 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-question-update-response-from-core-service --delete --if-exists
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic code-submission-update-request-to-core-service --delete --if-exists
-      
+
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-response --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-question-request-code-assessment --delete --if-exists
@@ -18,11 +18,11 @@ kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic 
 
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic any-services-user-response-to-auth-service --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic auth-service-user-response-to-course-service --delete --if-exists
-      
+
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic core-organization-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic course-organization-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic organization-response --delete --if-exists
-      
+
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-request --delete --if-exists
 kafka-topics --zookeeper gke-confluent-kafka-cp-zookeeper-headless:2181 --topic calendar-event-update-response --delete --if-exists
 

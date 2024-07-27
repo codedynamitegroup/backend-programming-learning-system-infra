@@ -1,0 +1,119 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-zookeeper-data
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/zookeeper/data
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-zookeeper-transactions
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/zookeeper/transactions
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-zookeeper-data
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-zookeeper-transactions
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+        - name: zookeeper
+          image: confluentinc/cp-zookeeper:latest
+          ports:
+            - containerPort: 2181
+              name: zookeeper
+          env:
+            - name: ZOOKEEPER_SERVER_ID
+              value: "1"
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "2181"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "2000"
+            - name: ZOOKEEPER_INIT_LIMIT
+              value: "5"
+            - name: ZOOKEEPER_SYNC_LIMIT
+              value: "2"
+            - name: ZOOKEEPER_SERVERS
+              value: "zookeeper:2888:3888"
+            - name: KAFKA_OPTS
+              value: "-Dzookeeper.4lw.commands.whitelist=ruok"
+          volumeMounts:
+            - name: zookeeper-data
+              mountPath: /var/lib/zookeeper/data
+            - name: zookeeper-transactions
+              mountPath: /var/lib/zookeeper/log
+      volumes:
+        - name: zookeeper-data
+          persistentVolumeClaim:
+            claimName: pvc-zookeeper-data
+        - name: zookeeper-transactions
+          persistentVolumeClaim:
+            claimName: pvc-zookeeper-transactions
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+  namespace: default
+spec:
+  ports:
+    - port: 2181
+      name: zookeeper
+  selector:
+    app: zookeeper
