@@ -1,18 +1,18 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : keycloak_host
+ Source Server         : PG
  Source Server Type    : PostgreSQL
- Source Server Version : 160003 (160003)
- Source Host           : 57.155.56.2:5432
+ Source Server Version : 150006 (150006)
+ Source Host           : localhost:5436
  Source Catalog        : keycloak
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
- Target Server Version : 160003 (160003)
+ Target Server Version : 150006 (150006)
  File Encoding         : 65001
 
- Date: 06/07/2024 13:45:35
+ Date: 04/08/2024 14:18:51
 */
 
 
@@ -21,18 +21,18 @@
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."admin_event_entity";
 CREATE TABLE "public"."admin_event_entity" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "admin_event_time" int8,
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "operation_type" varchar(255) COLLATE "pg_catalog"."default",
-  "auth_realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "auth_client_id" varchar(255) COLLATE "pg_catalog"."default",
-  "auth_user_id" varchar(255) COLLATE "pg_catalog"."default",
-  "ip_address" varchar(255) COLLATE "pg_catalog"."default",
-  "resource_path" varchar(2550) COLLATE "pg_catalog"."default",
-  "representation" text COLLATE "pg_catalog"."default",
-  "error" varchar(255) COLLATE "pg_catalog"."default",
-  "resource_type" varchar(64) COLLATE "pg_catalog"."default"
+                                               "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "admin_event_time" int8,
+                                               "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                               "operation_type" varchar(255) COLLATE "pg_catalog"."default",
+                                               "auth_realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                               "auth_client_id" varchar(255) COLLATE "pg_catalog"."default",
+                                               "auth_user_id" varchar(255) COLLATE "pg_catalog"."default",
+                                               "ip_address" varchar(255) COLLATE "pg_catalog"."default",
+                                               "resource_path" varchar(2550) COLLATE "pg_catalog"."default",
+                                               "representation" text COLLATE "pg_catalog"."default",
+                                               "error" varchar(255) COLLATE "pg_catalog"."default",
+                                               "resource_type" varchar(64) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -45,8 +45,8 @@ CREATE TABLE "public"."admin_event_entity" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."associated_policy";
 CREATE TABLE "public"."associated_policy" (
-  "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "associated_policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                              "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "associated_policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -61,16 +61,16 @@ INSERT INTO "public"."associated_policy" VALUES ('975f2b8c-344a-4e00-9a6d-de34e2
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."authentication_execution";
 CREATE TABLE "public"."authentication_execution" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "alias" varchar(255) COLLATE "pg_catalog"."default",
-  "authenticator" varchar(36) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "flow_id" varchar(36) COLLATE "pg_catalog"."default",
-  "requirement" int4,
-  "priority" int4,
-  "authenticator_flow" bool NOT NULL DEFAULT false,
-  "auth_flow_id" varchar(36) COLLATE "pg_catalog"."default",
-  "auth_config" varchar(36) COLLATE "pg_catalog"."default"
+                                                     "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "alias" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "authenticator" varchar(36) COLLATE "pg_catalog"."default",
+                                                     "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                     "flow_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                     "requirement" int4,
+                                                     "priority" int4,
+                                                     "authenticator_flow" bool NOT NULL DEFAULT false,
+                                                     "auth_flow_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                     "auth_config" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -168,13 +168,13 @@ INSERT INTO "public"."authentication_execution" VALUES ('a605393d-8a0e-41bb-8577
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."authentication_flow";
 CREATE TABLE "public"."authentication_flow" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "alias" varchar(255) COLLATE "pg_catalog"."default",
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'basic-flow'::character varying,
-  "top_level" bool NOT NULL DEFAULT false,
-  "built_in" bool NOT NULL DEFAULT false
+                                                "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "alias" varchar(255) COLLATE "pg_catalog"."default",
+                                                "description" varchar(255) COLLATE "pg_catalog"."default",
+                                                "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                "provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'basic-flow'::character varying,
+                                                "top_level" bool NOT NULL DEFAULT false,
+                                                "built_in" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -224,9 +224,9 @@ INSERT INTO "public"."authentication_flow" VALUES ('1dd2567d-999c-4cde-9757-9edf
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."authenticator_config";
 CREATE TABLE "public"."authenticator_config" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "alias" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                 "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "alias" varchar(255) COLLATE "pg_catalog"."default",
+                                                 "realm_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -243,9 +243,9 @@ INSERT INTO "public"."authenticator_config" VALUES ('ff2b5125-7734-4f1a-b9ad-b33
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."authenticator_config_entry";
 CREATE TABLE "public"."authenticator_config_entry" (
-  "authenticator_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                       "authenticator_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                       "value" text COLLATE "pg_catalog"."default",
+                                                       "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -262,13 +262,13 @@ INSERT INTO "public"."authenticator_config_entry" VALUES ('ff2b5125-7734-4f1a-b9
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."broker_link";
 CREATE TABLE "public"."broker_link" (
-  "identity_provider" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "broker_user_id" varchar(255) COLLATE "pg_catalog"."default",
-  "broker_username" varchar(255) COLLATE "pg_catalog"."default",
-  "token" text COLLATE "pg_catalog"."default",
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                        "identity_provider" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "storage_provider_id" varchar(255) COLLATE "pg_catalog"."default",
+                                        "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "broker_user_id" varchar(255) COLLATE "pg_catalog"."default",
+                                        "broker_username" varchar(255) COLLATE "pg_catalog"."default",
+                                        "token" text COLLATE "pg_catalog"."default",
+                                        "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -281,32 +281,32 @@ CREATE TABLE "public"."broker_link" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client";
 CREATE TABLE "public"."client" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "enabled" bool NOT NULL DEFAULT false,
-  "full_scope_allowed" bool NOT NULL DEFAULT false,
-  "client_id" varchar(255) COLLATE "pg_catalog"."default",
-  "not_before" int4,
-  "public_client" bool NOT NULL DEFAULT false,
-  "secret" varchar(255) COLLATE "pg_catalog"."default",
-  "base_url" varchar(255) COLLATE "pg_catalog"."default",
-  "bearer_only" bool NOT NULL DEFAULT false,
-  "management_url" varchar(255) COLLATE "pg_catalog"."default",
-  "surrogate_auth_required" bool NOT NULL DEFAULT false,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "protocol" varchar(255) COLLATE "pg_catalog"."default",
-  "node_rereg_timeout" int4 DEFAULT 0,
-  "frontchannel_logout" bool NOT NULL DEFAULT false,
-  "consent_required" bool NOT NULL DEFAULT false,
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "service_accounts_enabled" bool NOT NULL DEFAULT false,
-  "client_authenticator_type" varchar(255) COLLATE "pg_catalog"."default",
-  "root_url" varchar(255) COLLATE "pg_catalog"."default",
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "registration_token" varchar(255) COLLATE "pg_catalog"."default",
-  "standard_flow_enabled" bool NOT NULL DEFAULT true,
-  "implicit_flow_enabled" bool NOT NULL DEFAULT false,
-  "direct_access_grants_enabled" bool NOT NULL DEFAULT false,
-  "always_display_in_console" bool NOT NULL DEFAULT false
+                                   "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                   "enabled" bool NOT NULL DEFAULT false,
+                                   "full_scope_allowed" bool NOT NULL DEFAULT false,
+                                   "client_id" varchar(255) COLLATE "pg_catalog"."default",
+                                   "not_before" int4,
+                                   "public_client" bool NOT NULL DEFAULT false,
+                                   "secret" varchar(255) COLLATE "pg_catalog"."default",
+                                   "base_url" varchar(255) COLLATE "pg_catalog"."default",
+                                   "bearer_only" bool NOT NULL DEFAULT false,
+                                   "management_url" varchar(255) COLLATE "pg_catalog"."default",
+                                   "surrogate_auth_required" bool NOT NULL DEFAULT false,
+                                   "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                   "protocol" varchar(255) COLLATE "pg_catalog"."default",
+                                   "node_rereg_timeout" int4 DEFAULT 0,
+                                   "frontchannel_logout" bool NOT NULL DEFAULT false,
+                                   "consent_required" bool NOT NULL DEFAULT false,
+                                   "name" varchar(255) COLLATE "pg_catalog"."default",
+                                   "service_accounts_enabled" bool NOT NULL DEFAULT false,
+                                   "client_authenticator_type" varchar(255) COLLATE "pg_catalog"."default",
+                                   "root_url" varchar(255) COLLATE "pg_catalog"."default",
+                                   "description" varchar(255) COLLATE "pg_catalog"."default",
+                                   "registration_token" varchar(255) COLLATE "pg_catalog"."default",
+                                   "standard_flow_enabled" bool NOT NULL DEFAULT true,
+                                   "implicit_flow_enabled" bool NOT NULL DEFAULT false,
+                                   "direct_access_grants_enabled" bool NOT NULL DEFAULT false,
+                                   "always_display_in_console" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -334,9 +334,9 @@ INSERT INTO "public"."client" VALUES ('39132819-80be-4746-861d-ce870d61b7c1', 't
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_attributes";
 CREATE TABLE "public"."client_attributes" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default"
+                                              "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "value" text COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -376,9 +376,9 @@ INSERT INTO "public"."client_attributes" VALUES ('39132819-80be-4746-861d-ce870d
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_auth_flow_bindings";
 CREATE TABLE "public"."client_auth_flow_bindings" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "flow_id" varchar(36) COLLATE "pg_catalog"."default",
-  "binding_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "flow_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                      "binding_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -391,12 +391,12 @@ CREATE TABLE "public"."client_auth_flow_bindings" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_initial_access";
 CREATE TABLE "public"."client_initial_access" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "timestamp" int4,
-  "expiration" int4,
-  "count" int4,
-  "remaining_count" int4
+                                                  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "timestamp" int4,
+                                                  "expiration" int4,
+                                                  "count" int4,
+                                                  "remaining_count" int4
 )
 ;
 
@@ -409,9 +409,9 @@ CREATE TABLE "public"."client_initial_access" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_node_registrations";
 CREATE TABLE "public"."client_node_registrations" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" int4,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "value" int4,
+                                                      "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -424,11 +424,11 @@ CREATE TABLE "public"."client_node_registrations" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_scope";
 CREATE TABLE "public"."client_scope" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "protocol" varchar(255) COLLATE "pg_catalog"."default"
+                                         "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "name" varchar(255) COLLATE "pg_catalog"."default",
+                                         "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                         "description" varchar(255) COLLATE "pg_catalog"."default",
+                                         "protocol" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -461,9 +461,9 @@ INSERT INTO "public"."client_scope" VALUES ('9b50f631-7ede-4ed2-8ac2-bcd3f4014fe
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_scope_attributes";
 CREATE TABLE "public"."client_scope_attributes" (
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(2048) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                    "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                    "value" varchar(2048) COLLATE "pg_catalog"."default",
+                                                    "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -528,9 +528,9 @@ INSERT INTO "public"."client_scope_attributes" VALUES ('9b50f631-7ede-4ed2-8ac2-
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_scope_client";
 CREATE TABLE "public"."client_scope_client" (
-  "client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "default_scope" bool NOT NULL DEFAULT false
+                                                "client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "scope_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "default_scope" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -669,8 +669,8 @@ INSERT INTO "public"."client_scope_client" VALUES ('ab045118-6511-45fb-93d5-e6bc
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_scope_role_mapping";
 CREATE TABLE "public"."client_scope_role_mapping" (
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -685,16 +685,16 @@ INSERT INTO "public"."client_scope_role_mapping" VALUES ('50056c1c-f13e-4dea-bc4
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_session";
 CREATE TABLE "public"."client_session" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(36) COLLATE "pg_catalog"."default",
-  "redirect_uri" varchar(255) COLLATE "pg_catalog"."default",
-  "state" varchar(255) COLLATE "pg_catalog"."default",
-  "timestamp" int4,
-  "session_id" varchar(36) COLLATE "pg_catalog"."default",
-  "auth_method" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "auth_user_id" varchar(36) COLLATE "pg_catalog"."default",
-  "current_action" varchar(36) COLLATE "pg_catalog"."default"
+                                           "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "client_id" varchar(36) COLLATE "pg_catalog"."default",
+                                           "redirect_uri" varchar(255) COLLATE "pg_catalog"."default",
+                                           "state" varchar(255) COLLATE "pg_catalog"."default",
+                                           "timestamp" int4,
+                                           "session_id" varchar(36) COLLATE "pg_catalog"."default",
+                                           "auth_method" varchar(255) COLLATE "pg_catalog"."default",
+                                           "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                           "auth_user_id" varchar(36) COLLATE "pg_catalog"."default",
+                                           "current_action" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -707,9 +707,9 @@ CREATE TABLE "public"."client_session" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_session_auth_status";
 CREATE TABLE "public"."client_session_auth_status" (
-  "authenticator" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "status" int4,
-  "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                       "authenticator" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                       "status" int4,
+                                                       "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -722,9 +722,9 @@ CREATE TABLE "public"."client_session_auth_status" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_session_note";
 CREATE TABLE "public"."client_session_note" (
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "value" varchar(255) COLLATE "pg_catalog"."default",
+                                                "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -737,8 +737,8 @@ CREATE TABLE "public"."client_session_note" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_session_prot_mapper";
 CREATE TABLE "public"."client_session_prot_mapper" (
-  "protocol_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                       "protocol_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                       "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -751,8 +751,8 @@ CREATE TABLE "public"."client_session_prot_mapper" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_session_role";
 CREATE TABLE "public"."client_session_role" (
-  "role_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                "role_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -765,9 +765,9 @@ CREATE TABLE "public"."client_session_role" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."client_user_session_note";
 CREATE TABLE "public"."client_user_session_note" (
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(2048) COLLATE "pg_catalog"."default",
-  "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                     "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "value" varchar(2048) COLLATE "pg_catalog"."default",
+                                                     "client_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -780,13 +780,13 @@ CREATE TABLE "public"."client_user_session_note" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."component";
 CREATE TABLE "public"."component" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "parent_id" varchar(36) COLLATE "pg_catalog"."default",
-  "provider_id" varchar(36) COLLATE "pg_catalog"."default",
-  "provider_type" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "sub_type" varchar(255) COLLATE "pg_catalog"."default"
+                                      "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                      "name" varchar(255) COLLATE "pg_catalog"."default",
+                                      "parent_id" varchar(36) COLLATE "pg_catalog"."default",
+                                      "provider_id" varchar(36) COLLATE "pg_catalog"."default",
+                                      "provider_type" varchar(255) COLLATE "pg_catalog"."default",
+                                      "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                      "sub_type" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -824,10 +824,10 @@ INSERT INTO "public"."component" VALUES ('0cda033c-802a-4660-a0b8-a948ef77cc55',
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."component_config";
 CREATE TABLE "public"."component_config" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "component_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(4000) COLLATE "pg_catalog"."default"
+                                             "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "component_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "value" varchar(4000) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -914,8 +914,8 @@ INSERT INTO "public"."component_config" VALUES ('55212df4-9f4f-4dbb-99c1-c5b9718
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."composite_role";
 CREATE TABLE "public"."composite_role" (
-  "composite" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "child_role" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                           "composite" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "child_role" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1012,15 +1012,15 @@ INSERT INTO "public"."composite_role" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."credential";
 CREATE TABLE "public"."credential" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "salt" bytea,
-  "type" varchar(255) COLLATE "pg_catalog"."default",
-  "user_id" varchar(36) COLLATE "pg_catalog"."default",
-  "created_date" int8,
-  "user_label" varchar(255) COLLATE "pg_catalog"."default",
-  "secret_data" text COLLATE "pg_catalog"."default",
-  "credential_data" text COLLATE "pg_catalog"."default",
-  "priority" int4
+                                       "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                       "salt" bytea,
+                                       "type" varchar(255) COLLATE "pg_catalog"."default",
+                                       "user_id" varchar(36) COLLATE "pg_catalog"."default",
+                                       "created_date" int8,
+                                       "user_label" varchar(255) COLLATE "pg_catalog"."default",
+                                       "secret_data" text COLLATE "pg_catalog"."default",
+                                       "credential_data" text COLLATE "pg_catalog"."default",
+                                       "priority" int4
 )
 ;
 
@@ -1037,30 +1037,74 @@ INSERT INTO "public"."credential" VALUES ('62a99fca-8650-432d-afc5-ab4a3878fed4'
 INSERT INTO "public"."credential" VALUES ('ab16d6ae-ebc7-427b-983b-862a40d57697', NULL, 'password', '4116f768-847e-4fa7-af0a-0bc3e88171f5', 1717404868623, 'My password', '{"value":"FJTDCzI7a0VzGHhxffNAeR3UGm4+9rwdyDFhpIA1YXA=","salt":"FyjE/94+lEvwibxsItGbdA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 INSERT INTO "public"."credential" VALUES ('dc5b57a9-6b37-462f-b46f-b0701f3c8ca4', NULL, 'password', '0cdd81ff-749c-493e-afc9-592f1cc1f499', 1717517429024, 'My password', '{"value":"az8YimobswODNsrm7VhSfOJ2ovZ/MStJwfnO+t9i7bo=","salt":"BxOwtGWfme9qavarkl2Q0Q==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 INSERT INTO "public"."credential" VALUES ('10f0e054-8f7f-4c9c-9629-aab9796b7b37', NULL, 'password', '83a84381-bcc3-4bfe-b1cc-11d59b2869ab', 1717517464460, 'My password', '{"value":"W/DoO5bAoEGX49D+Or1gV+vBM1Eau80m9EwlnJApY58=","salt":"e8a5EW/0xFvyxVeR2dKAZA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
-INSERT INTO "public"."credential" VALUES ('ec77d352-fa55-4156-acf1-60d14416218d', NULL, 'password', '7ad37931-d638-4de4-b5c3-6fcd3f447285', 1717510199616, NULL, '{"value":"q7Z5OWkBa/sTVZaGRnBf0HKu/9gNzx76X7nZv4K745w=","salt":"XzltPgsTVunAeldnFD5Fgw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 INSERT INTO "public"."credential" VALUES ('b3918522-736e-454c-b550-3a7c8b9136a2', NULL, 'password', '4f5ce30b-5d15-4c31-a0c3-4629416f83f6', 1717517284615, 'My password', '{"value":"JkevdShC0N020Qqp7ribEYzHFqOlEQXGQA1YAMZHtM8=","salt":"jvz0YN5Iu/OozKXJGSggrA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 INSERT INTO "public"."credential" VALUES ('9a36ef3b-925f-4e90-baae-446fa58578bb', NULL, 'password', 'cb077939-8190-49fd-87f0-1a598666c29d', 1717517337432, 'My password', '{"value":"rX0rh/jkDIM8kcnRMA81tbjvEKgxEkSyE8b4xPa0b/M=","salt":"gH9p4R+Bxlpe6XAAuwaNVg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 INSERT INTO "public"."credential" VALUES ('ff2f5fa1-944b-4dfa-8fc8-d54beaaf822f', NULL, 'password', '443c7f23-8ab8-47c0-a711-9d3edf0a0379', 1717517514219, 'My password', '{"value":"KtEPmIQMdfQGGMDQ2fFvCRqF+owEes++KwqgkCulT1Y=","salt":"1xmudVmIFygrLU8KgYPKrA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('471407a4-683a-4b42-9191-2d1bfeef8f03', NULL, 'password', '61a8d1de-b206-4cd8-9c81-59a3fb0f960a', 1722078311952, 'My password', '{"value":"Bv8DkvheunjL9sBX0iO/27sBwsXqqkLlVONQrzz+Of0=","salt":"eQ2aBU+WtHz5KL2RI68g+g==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('ec77d352-fa55-4156-acf1-60d14416218d', NULL, 'password', '7ad37931-d638-4de4-b5c3-6fcd3f447285', 1722242986267, NULL, '{"value":"1bO5qLPQGS89ro3MeeqOs0wQ0Ekxc4UuaJsdMGloiio=","salt":"h1nBRuul7GPekFjxgMUMTw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('f112d1bd-75c4-4bc8-8fb0-9564de67099d', NULL, 'password', '66e4c4a0-fab9-4856-97fd-5b7092b9aaf8', 1722755793143, NULL, '{"value":"TMwvUw6/l1W7pL+5DDMyB507gYv8PwGhc7yUsSgF3rs=","salt":"fcziLQZZbWHs0Qf4UlGu6A==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('21700a9c-1b19-453d-b98e-247e79dc16cf', NULL, 'password', '3931de26-a3c6-4588-8b8f-83f213651a2e', 1722755795439, NULL, '{"value":"Q+Q51R1//73Fe3rOI94g0Lub2eZOubCWWXXF54PHgwU=","salt":"0L8TXwb+5HVF9OcMLqRkRg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('3c75c2d3-5706-4a9e-ad92-694fa0a33c18', NULL, 'password', '4826d508-1542-4d3b-9338-96d2db81ad82', 1722755797289, NULL, '{"value":"Z3x9B9bNFPiRWQUODZXmoftW8Yn8pjZ42VYj8zND6jw=","salt":"gX9/KenZmHTpbsgSdg+QxQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('2f1a929a-38e2-4c5e-8379-0159cd2c9a47', NULL, 'password', '1f2ddda5-20f2-4ed1-84b1-c9c7f5abaaa3', 1722755797898, NULL, '{"value":"N5wZLqlfd6DMT8qbh0YR2+XR8AWv6SmXCZI/osjnUV0=","salt":"FvFbo9in7oOmSAVMXqfTkg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('ff96f184-2ce5-4689-8fde-c27b9c292f70', NULL, 'password', 'c011a480-5434-41b1-a175-601be618f457', 1722755798949, NULL, '{"value":"jjfWJ1fTN1GGwFnKMEBSyVvIZE2vnwzdt1MXg3DQ91k=","salt":"14j+fv10F/uzn1BsXOdy2w==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('a86f5f04-2d4a-4da6-8ba2-16925dc925fb', NULL, 'password', '73698777-0805-47fb-92a1-0cda85a0820e', 1722755800461, NULL, '{"value":"5ov+H796VvxcHmvcjw+kEdLZqV9eB0YjKFuafXUf8os=","salt":"XO8mrZTT+NSGKrOc/fNFLw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('7896acd9-e859-4a6b-a7fd-748864cf4fd7', NULL, 'password', '73407ed0-a7fb-4e13-996e-5fabfe376e32', 1722755804159, NULL, '{"value":"aiIralZCs6tfj/pVtSlq6ekh37rsyyPG3xh9UNxxmRU=","salt":"PsNblFQj4Wv3VjQCreXQCA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('e9633ffe-af79-4022-8bc3-bba35ffd706b', NULL, 'password', 'c9961067-88d6-4813-8ae7-e89d80eaf688', 1722755804946, NULL, '{"value":"KwjTw6nYOqXXyWVzKut41FmSIxY3jBp5+V+l6VALwZs=","salt":"dmTpjF6pMGvXfXk/6XFSIQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('2cd349c5-e377-46a8-a3e3-2f0cd3c5cd41', NULL, 'password', '46184360-9e9e-49be-a27d-8e7ca0be08e4', 1722755810406, NULL, '{"value":"2U5lO82tvXl3ZAmmwoasd3beQc8fVv8wsOXcLtsHekI=","salt":"m/LTfj9EZn0glH2mNxD+lQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('a5423eef-9a1c-41f4-a5f9-8255526ee4d8', NULL, 'password', '67e470c2-694b-4c80-b2d7-add9f7acbf72', 1722755793179, NULL, '{"value":"pvGkpe0mNHJTOB9AIEIP/K40I77Vy+8sBxBHgv8sEwk=","salt":"wjY4Ks22LkAxyu4/7zq5Iw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('83d169bb-94c6-4a2c-8b02-83147dd981f3', NULL, 'password', 'cff2c92a-9528-46e9-a847-e34f8f07fc93', 1722755795296, NULL, '{"value":"Lj9AWXPY5ILCKnguem28vJzEC60JWRcFQSm2nmk8r2E=","salt":"9UQv5t2jCerXgYizSo5Sxg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('81e33ba8-34bc-455c-8bca-bfeaef58aa63', NULL, 'password', '657e399c-26a1-415e-a1b7-2bf02bca5f6c', 1722755798742, NULL, '{"value":"ruPUTgrJXPY23ElqevSKIBZn/nuUFA8tR7Bqcm0udUM=","salt":"ZJkRGaMDtpHVJuH2F0DpcQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('d72d4d07-e1e2-4f26-a3ab-a376f3ce8d11', NULL, 'password', 'bb02f36a-bd0d-4a87-9929-01d485b157a2', 1722755799786, NULL, '{"value":"NkWuWVrjlxc5qB6hxNsI4DxfUb1vhoVdFh/LOCymCJE=","salt":"o9iXHQGFCesie7a/rc9v2A==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('fb5d23a8-8d9f-42d0-acb4-cc1132a10de0', NULL, 'password', 'a0f574bc-9d93-4ce0-88ac-0dc71d2a7e77', 1722755801017, NULL, '{"value":"OMEp2XKK7JVZ8pkTpATKH+SU5voyQ0tvHtKGQEm7pqA=","salt":"tXl40IE9iJ3El9rbySIZjQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('506b01b2-fff9-470a-819d-65c15b019057', NULL, 'password', '4111fb40-1975-4218-8b6c-657561d85c41', 1722755801287, NULL, '{"value":"au4vw98xGOnUiwiGNY1R1kTgKG/Gg09BjVn7HqnSbOc=","salt":"AwqYm+Q752r0Bs7Aq2UN7Q==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('9dac569d-d6cd-437b-96dd-a7f2c2718a04', NULL, 'password', '4f4ea100-40fc-4508-bff6-1b7bedd42385', 1722755803181, NULL, '{"value":"LmQ74APilwus+Ywxr0Q/HxZs19Oe+42unVlfU1rWQ5E=","salt":"VdNahFso0N3Lz3Rxme8kFw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('3a2dab81-159f-40c0-abc5-716904d3febb', NULL, 'password', 'aaee720c-99b5-41a3-a845-84c87a804fa9', 1722755806368, NULL, '{"value":"i0n+dTPHT5QsubCf+LmgWruRRzI/sDFuVrVgJLy6quQ=","salt":"PwqUn4MwOz06EpsN+AHXtg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('016843e2-cd17-4efc-aed1-d603ecf47213', NULL, 'password', 'e7ce9c40-d825-47d4-a553-0c2c9e12641b', 1722755809725, NULL, '{"value":"d1Rqz9fC6QlEHgtanGYTMn0haAEgdEulYDTsMOl6SUg=","salt":"Lrz0kJ6sDMwn9pJI6SVDLQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('8953b8f9-8f34-4d23-be58-fd1de79bd0b0', NULL, 'password', 'd7f196a5-997f-432e-a0db-06ad9397ccb9', 1722755810830, NULL, '{"value":"0oiM4/ICxlpF1jFMck3Ny7F44U5XzlgQAjY+yg/Y0Xo=","salt":"pkvaVJO9HzHs0BcMl3o84g==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('291af68f-e2c7-4b28-b09f-5cd34959cb73', NULL, 'password', '6e810fd7-960f-468d-9df0-ddd62b273ae8', 1722755811289, NULL, '{"value":"iLowCT3FaoJnJs7FreOrp011FoeCFDMglPpJGYFBRx4=","salt":"CJyKJ6Z6mPQBNe9VnbjONw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('b87348d4-27cd-4542-86d1-f5c4f8ca18a1', NULL, 'password', '65791433-596f-4ad0-8d61-ae0d6a3e6163', 1722755812348, NULL, '{"value":"iu/sSjrDSt0hVN9C3wVBb9KX8iLHmfmtkobquRcVXso=","salt":"ngMqBaNCVjjskHM/pf1moA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('6ed23f02-29a7-4965-8395-a94113fc2839', NULL, 'password', 'd29bb866-5226-41b6-b327-36d4914466f8', 1722755813703, NULL, '{"value":"/kjsYFvykqMTxtMDaUPafHCU2RW4z2uKj1GJ9OuaTmU=","salt":"f40CR0DcARMAcO50Sjgurw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('d2fc9049-4c40-43a8-b450-de9d58536b39', NULL, 'password', '67ba949d-8dc9-428f-9e7a-78c887c18ff8', 1722755814076, NULL, '{"value":"jo+M9E6DEyMIDt7OEG/Z/uHMoGCPx/uuWZnId5dlVVU=","salt":"bMF1sv1Y5+aLo2rIczs8SA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('61dfd786-55af-4193-b18b-6a7487fa030b', NULL, 'password', 'afa748dc-78b8-46a5-98e3-67f4b58afd6d', 1722755815105, NULL, '{"value":"W1+d+ftbhromtkkwnofsGJ2XmfkgZMh2l1yHdhhZwho=","salt":"WAov04It/eZNwxYz7MR6mQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('be9f0f34-0213-4f48-b957-b9c5887c757f', NULL, 'password', 'a0704269-ce0b-4a27-8f47-dc6db163f108', 1722755793200, NULL, '{"value":"/MFZai0I7oUCmrHIb+v57iQc/ligDVlvlfT/9VvupT8=","salt":"vKgKfBWxZAk3nSZMOV3hcA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('a10a93db-1d2d-47fe-b437-06f0ece5c76a', NULL, 'password', '7522f465-aef2-4dc6-915a-4953e4f6c7bc', 1722755795325, NULL, '{"value":"753FlLAJDyQzFu/Y3tkp/TdRVCeM7iHIoee1v1gt9Sk=","salt":"uUoG2PihFgx7YpspVApL8Q==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('36c713e9-1f92-4a9f-baec-558e3aa18aec', NULL, 'password', 'b62f6156-adfe-491d-8fe2-37bca7fda794', 1722755797227, NULL, '{"value":"cCtb4yL8YJ2J/WAyi/I4VJzwYT8hw+b2RHRMl4zVtVY=","salt":"vULJLzPJB9v+lId75Rmk7w==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('c68da025-d0d0-4695-b615-184e35dd831e', NULL, 'password', 'ce01504c-578c-4938-8871-e2c0efd0be7c', 1722755798956, NULL, '{"value":"xKC5bgNJkavK8r5Q4K5qWa/1q0Zw+oE2k1XPyHSQrIQ=","salt":"7vKqc29YKcdggzV0MlsIsw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('b6d81559-31eb-44e5-baf1-1ec6de11d1e4', NULL, 'password', 'bfb1e95e-bfd1-41fe-a4ac-38641156c8a8', 1722755800449, NULL, '{"value":"Lu416zxp1LeqGqE84olYZKphZfiG5MXMztDTRcA9cd4=","salt":"2gOCVmqUyEZtzEcFA5a+9w==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('cbe0ee16-45ba-4e67-85e2-182567d648c7', NULL, 'password', '6af9fc0f-251c-40c3-ad20-ae07f62832fb', 1722755801294, NULL, '{"value":"CoFoYjk2jimMux0v9vT4QKDLbpdM0pHEtXKngobFtO4=","salt":"ZAgaKv8cqYRJCzqHAfKGFw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('1c9e5cbb-ca52-4e6d-b22e-af4639a076ea', NULL, 'password', 'cbdd5e83-49bf-4759-883a-f020b7b6b5b9', 1722755802291, NULL, '{"value":"uX+77Hnv4q7vkXdNtZcXXNyV76YO41bibl4fwZsn5Ag=","salt":"8+yIn7tuoK9h5y2N/5+O+w==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('297507b4-0163-4386-bbda-583fd98fac47', NULL, 'password', '5b632d32-2431-40e4-89e4-e8ef49dc47f1', 1722755802441, NULL, '{"value":"/iG8va05WNPkmSRX3RIGGyW6t30b4mbQ2Pq/yNqMsd0=","salt":"ZJd/4jvw5ICZ7gTkBdVXIQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('ff1b82d0-d28d-408c-a82f-ab17b8675167', NULL, 'password', '2ad01de0-d043-4931-9d81-e0fab76f4115', 1722755802620, NULL, '{"value":"pjLfI6xq0n6RBVlFC13cpwtTB4jkzl1QHP20DpVrTf0=","salt":"3oRbhWecsXyrw5yk8dnpPg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('a0d66cce-a12e-44a2-8896-dd1f9bcee3bb', NULL, 'password', 'adb4266c-dfc5-4c58-9933-19823b9542ea', 1722755803338, NULL, '{"value":"KMG6c9Zo1DHjSzFzX2LZIN/pro9g2j2UqxJ3OSlrOH0=","salt":"CVx//K3hXQC2SQZg7Bv2Yw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('2eafcb80-fef2-4e8a-b6d5-c27d783952f0', NULL, 'password', 'c02405da-8a08-452c-b6a3-a9694bd2618f', 1722755806468, NULL, '{"value":"6VDMwSz2udG05DkKHiJ43LWlNzMcyZfCfDgFSFHoAfk=","salt":"4IACSngQP2Yd56WCSbwcFw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('4e303315-ade2-4ea4-976b-8556779cc43d', NULL, 'password', '7e9a5225-3f74-463e-967b-ea3de89a4874', 1722755808174, NULL, '{"value":"Ls6kbLjHGFxcF2Go/fAcTeFQYYT0N8NCyN0MQo8Lq/c=","salt":"/dqzhJZeNglNf1GS+IdmBA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('9f137b35-8a47-4c6c-8ce6-12b458445676', NULL, 'password', 'a3ae8d3c-3716-485e-b1c3-22c04a6aae60', 1722755809542, NULL, '{"value":"pwMh9ET0PZno5KCnmnn9wly8zcpjB5YSMgcl+oEiysA=","salt":"K6Ghit63Mnzv9RpKvfy/qA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('3550c3c0-2734-4489-a538-60201a8c46b3', NULL, 'password', '337f4e59-a65d-46ed-bdc2-c188d8d1a21a', 1722755812851, NULL, '{"value":"/XS6XVh793b9a9L6l36P1Q6JR3HMJTk8pZuGleMQgTo=","salt":"BBEDnRoFnuC5icZNOPo59w==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('590eabe2-4f80-4e57-b0e0-834b5211e36f', NULL, 'password', '4558725b-8c3e-44ca-9be4-ca167627ed44', 1722755814901, NULL, '{"value":"55fIKFMnjv8eHidk3IZPikqtPyEeT1QSSwSvlTmm/AA=","salt":"CrkdWV9qZGVqDGg066F/qQ==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('773c677e-a396-41b5-8a33-67140b1c3aad', NULL, 'password', 'c1bd324b-10ef-4de0-97b4-fa502c9e7d52', 1722755816161, NULL, '{"value":"+htqTKGFb9gplOXYP59dYP8FoeY0DbGCSAL0u1yL2PE=","salt":"W7BeFN0/zudIpjc2K1j0Zg==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('a665935e-2441-4477-a191-ce1a7c605204', NULL, 'password', '80bc1ac0-f5e7-408e-908c-7948959c24ab', 1722755816537, NULL, '{"value":"8NHvZL1/PPXIZZgA+d1DF++uch6zEIfI3hCzITF+dVY=","salt":"CgzMJq8viy+pY3PQBzAdbw==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('e61e5ec3-ce28-4bb6-b9cf-c32d730f8c5d', NULL, 'password', '0b118497-fb4a-4580-9e3b-7350f65c1014', 1722755816959, NULL, '{"value":"XQn9t40o9SGTdnVn8BFTGQP3a88PjjjhSga/+xQggeo=","salt":"yU7aytkeOwdmiOwObmXBRA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
+INSERT INTO "public"."credential" VALUES ('416e34ab-f2cc-44cd-ae5c-326e0d1d9790', NULL, 'password', 'cb127011-ce9c-4c14-83f5-4f99b53c7748', 1722755817822, NULL, '{"value":"puqdMJjkrpGY8xIdy8SgwIFQ3NQpmzBkfi3oWE0aErs=","salt":"SZ2NvNPiNKh4RZny2kIDoA==","additionalParameters":{}}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256","additionalParameters":{}}', 10);
 
 -- ----------------------------
 -- Table structure for databasechangelog
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."databasechangelog";
 CREATE TABLE "public"."databasechangelog" (
-  "id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "author" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "filename" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "dateexecuted" timestamp(6) NOT NULL,
-  "orderexecuted" int4 NOT NULL,
-  "exectype" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
-  "md5sum" varchar(35) COLLATE "pg_catalog"."default",
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "comments" varchar(255) COLLATE "pg_catalog"."default",
-  "tag" varchar(255) COLLATE "pg_catalog"."default",
-  "liquibase" varchar(20) COLLATE "pg_catalog"."default",
-  "contexts" varchar(255) COLLATE "pg_catalog"."default",
-  "labels" varchar(255) COLLATE "pg_catalog"."default",
-  "deployment_id" varchar(10) COLLATE "pg_catalog"."default"
+                                              "id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "author" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "filename" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "dateexecuted" timestamp(6) NOT NULL,
+                                              "orderexecuted" int4 NOT NULL,
+                                              "exectype" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "md5sum" varchar(35) COLLATE "pg_catalog"."default",
+                                              "description" varchar(255) COLLATE "pg_catalog"."default",
+                                              "comments" varchar(255) COLLATE "pg_catalog"."default",
+                                              "tag" varchar(255) COLLATE "pg_catalog"."default",
+                                              "liquibase" varchar(20) COLLATE "pg_catalog"."default",
+                                              "contexts" varchar(255) COLLATE "pg_catalog"."default",
+                                              "labels" varchar(255) COLLATE "pg_catalog"."default",
+                                              "deployment_id" varchar(10) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1187,10 +1231,10 @@ INSERT INTO "public"."databasechangelog" VALUES ('22.0.0-17484', 'keycloak', 'ME
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."databasechangeloglock";
 CREATE TABLE "public"."databasechangeloglock" (
-  "id" int4 NOT NULL,
-  "locked" bool NOT NULL,
-  "lockgranted" timestamp(6),
-  "lockedby" varchar(255) COLLATE "pg_catalog"."default"
+                                                  "id" int4 NOT NULL,
+                                                  "locked" bool NOT NULL,
+                                                  "lockgranted" timestamp(6),
+                                                  "lockedby" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1206,9 +1250,9 @@ INSERT INTO "public"."databasechangeloglock" VALUES (1001, 'f', NULL, NULL);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."default_client_scope";
 CREATE TABLE "public"."default_client_scope" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "default_scope" bool NOT NULL DEFAULT false
+                                                 "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "default_scope" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -1241,16 +1285,16 @@ INSERT INTO "public"."default_client_scope" VALUES ('e668ca58-deb8-459c-9294-39e
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."event_entity";
 CREATE TABLE "public"."event_entity" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(255) COLLATE "pg_catalog"."default",
-  "details_json" varchar(2550) COLLATE "pg_catalog"."default",
-  "error" varchar(255) COLLATE "pg_catalog"."default",
-  "ip_address" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "session_id" varchar(255) COLLATE "pg_catalog"."default",
-  "event_time" int8,
-  "type" varchar(255) COLLATE "pg_catalog"."default",
-  "user_id" varchar(255) COLLATE "pg_catalog"."default"
+                                         "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "client_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "details_json" varchar(2550) COLLATE "pg_catalog"."default",
+                                         "error" varchar(255) COLLATE "pg_catalog"."default",
+                                         "ip_address" varchar(255) COLLATE "pg_catalog"."default",
+                                         "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "session_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "event_time" int8,
+                                         "type" varchar(255) COLLATE "pg_catalog"."default",
+                                         "user_id" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1263,12 +1307,12 @@ CREATE TABLE "public"."event_entity" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_attribute";
 CREATE TABLE "public"."fed_user_attribute" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
-  "value" varchar(2024) COLLATE "pg_catalog"."default"
+                                               "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
+                                               "value" varchar(2024) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1281,15 +1325,15 @@ CREATE TABLE "public"."fed_user_attribute" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_consent";
 CREATE TABLE "public"."fed_user_consent" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(255) COLLATE "pg_catalog"."default",
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
-  "created_date" int8,
-  "last_updated_date" int8,
-  "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default",
-  "external_client_id" varchar(255) COLLATE "pg_catalog"."default"
+                                             "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "client_id" varchar(255) COLLATE "pg_catalog"."default",
+                                             "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                             "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
+                                             "created_date" int8,
+                                             "last_updated_date" int8,
+                                             "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default",
+                                             "external_client_id" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1302,8 +1346,8 @@ CREATE TABLE "public"."fed_user_consent" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_consent_cl_scope";
 CREATE TABLE "public"."fed_user_consent_cl_scope" (
-  "user_consent_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "user_consent_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1316,17 +1360,17 @@ CREATE TABLE "public"."fed_user_consent_cl_scope" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_credential";
 CREATE TABLE "public"."fed_user_credential" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "salt" bytea,
-  "type" varchar(255) COLLATE "pg_catalog"."default",
-  "created_date" int8,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
-  "user_label" varchar(255) COLLATE "pg_catalog"."default",
-  "secret_data" text COLLATE "pg_catalog"."default",
-  "credential_data" text COLLATE "pg_catalog"."default",
-  "priority" int4
+                                                "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "salt" bytea,
+                                                "type" varchar(255) COLLATE "pg_catalog"."default",
+                                                "created_date" int8,
+                                                "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                "user_label" varchar(255) COLLATE "pg_catalog"."default",
+                                                "secret_data" text COLLATE "pg_catalog"."default",
+                                                "credential_data" text COLLATE "pg_catalog"."default",
+                                                "priority" int4
 )
 ;
 
@@ -1339,10 +1383,10 @@ CREATE TABLE "public"."fed_user_credential" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_group_membership";
 CREATE TABLE "public"."fed_user_group_membership" (
-  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                      "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1355,10 +1399,10 @@ CREATE TABLE "public"."fed_user_group_membership" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_required_action";
 CREATE TABLE "public"."fed_user_required_action" (
-  "required_action" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT ' '::character varying,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                     "required_action" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT ' '::character varying,
+                                                     "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1371,10 +1415,10 @@ CREATE TABLE "public"."fed_user_required_action" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."fed_user_role_mapping";
 CREATE TABLE "public"."fed_user_role_mapping" (
-  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "storage_provider_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1387,12 +1431,12 @@ CREATE TABLE "public"."fed_user_role_mapping" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."federated_identity";
 CREATE TABLE "public"."federated_identity" (
-  "identity_provider" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "federated_user_id" varchar(255) COLLATE "pg_catalog"."default",
-  "federated_username" varchar(255) COLLATE "pg_catalog"."default",
-  "token" text COLLATE "pg_catalog"."default",
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                               "identity_provider" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                               "federated_user_id" varchar(255) COLLATE "pg_catalog"."default",
+                                               "federated_username" varchar(255) COLLATE "pg_catalog"."default",
+                                               "token" text COLLATE "pg_catalog"."default",
+                                               "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1407,9 +1451,9 @@ INSERT INTO "public"."federated_identity" VALUES ('microsoft', 'e668ca58-deb8-45
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."federated_user";
 CREATE TABLE "public"."federated_user" (
-  "id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "storage_provider_id" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                           "id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "storage_provider_id" varchar(255) COLLATE "pg_catalog"."default",
+                                           "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1422,10 +1466,10 @@ CREATE TABLE "public"."federated_user" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."group_attribute";
 CREATE TABLE "public"."group_attribute" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                            "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying,
+                                            "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "value" varchar(255) COLLATE "pg_catalog"."default",
+                                            "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1438,8 +1482,8 @@ CREATE TABLE "public"."group_attribute" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."group_role_mapping";
 CREATE TABLE "public"."group_role_mapping" (
-  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                               "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1452,19 +1496,19 @@ CREATE TABLE "public"."group_role_mapping" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."identity_provider";
 CREATE TABLE "public"."identity_provider" (
-  "internal_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "enabled" bool NOT NULL DEFAULT false,
-  "provider_alias" varchar(255) COLLATE "pg_catalog"."default",
-  "provider_id" varchar(255) COLLATE "pg_catalog"."default",
-  "store_token" bool NOT NULL DEFAULT false,
-  "authenticate_by_default" bool NOT NULL DEFAULT false,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "add_token_role" bool NOT NULL DEFAULT true,
-  "trust_email" bool NOT NULL DEFAULT false,
-  "first_broker_login_flow_id" varchar(36) COLLATE "pg_catalog"."default",
-  "post_broker_login_flow_id" varchar(36) COLLATE "pg_catalog"."default",
-  "provider_display_name" varchar(255) COLLATE "pg_catalog"."default",
-  "link_only" bool NOT NULL DEFAULT false
+                                              "internal_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "enabled" bool NOT NULL DEFAULT false,
+                                              "provider_alias" varchar(255) COLLATE "pg_catalog"."default",
+                                              "provider_id" varchar(255) COLLATE "pg_catalog"."default",
+                                              "store_token" bool NOT NULL DEFAULT false,
+                                              "authenticate_by_default" bool NOT NULL DEFAULT false,
+                                              "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                              "add_token_role" bool NOT NULL DEFAULT true,
+                                              "trust_email" bool NOT NULL DEFAULT false,
+                                              "first_broker_login_flow_id" varchar(36) COLLATE "pg_catalog"."default",
+                                              "post_broker_login_flow_id" varchar(36) COLLATE "pg_catalog"."default",
+                                              "provider_display_name" varchar(255) COLLATE "pg_catalog"."default",
+                                              "link_only" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -1479,9 +1523,9 @@ INSERT INTO "public"."identity_provider" VALUES ('583acf5e-efa5-490f-bf2a-96af3f
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."identity_provider_config";
 CREATE TABLE "public"."identity_provider_config" (
-  "identity_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                     "identity_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "value" text COLLATE "pg_catalog"."default",
+                                                     "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1503,11 +1547,11 @@ INSERT INTO "public"."identity_provider_config" VALUES ('583acf5e-efa5-490f-bf2a
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."identity_provider_mapper";
 CREATE TABLE "public"."identity_provider_mapper" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "idp_alias" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "idp_mapper_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                     "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "idp_alias" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "idp_mapper_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1520,9 +1564,9 @@ CREATE TABLE "public"."identity_provider_mapper" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."idp_mapper_config";
 CREATE TABLE "public"."idp_mapper_config" (
-  "idp_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                              "idp_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "value" text COLLATE "pg_catalog"."default",
+                                              "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -1535,10 +1579,10 @@ CREATE TABLE "public"."idp_mapper_config" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."keycloak_group";
 CREATE TABLE "public"."keycloak_group" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "parent_group" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default"
+                                           "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "name" varchar(255) COLLATE "pg_catalog"."default",
+                                           "parent_group" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "realm_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1551,14 +1595,14 @@ CREATE TABLE "public"."keycloak_group" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."keycloak_role";
 CREATE TABLE "public"."keycloak_role" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_realm_constraint" varchar(255) COLLATE "pg_catalog"."default",
-  "client_role" bool NOT NULL DEFAULT false,
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "client" varchar(36) COLLATE "pg_catalog"."default",
-  "realm" varchar(36) COLLATE "pg_catalog"."default"
+                                          "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "client_realm_constraint" varchar(255) COLLATE "pg_catalog"."default",
+                                          "client_role" bool NOT NULL DEFAULT false,
+                                          "description" varchar(255) COLLATE "pg_catalog"."default",
+                                          "name" varchar(255) COLLATE "pg_catalog"."default",
+                                          "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                          "client" varchar(36) COLLATE "pg_catalog"."default",
+                                          "realm" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1660,9 +1704,9 @@ INSERT INTO "public"."keycloak_role" VALUES ('c9e89928-e6ee-4d03-b954-06dc4f53af
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."migration_model";
 CREATE TABLE "public"."migration_model" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "version" varchar(36) COLLATE "pg_catalog"."default",
-  "update_time" int8 NOT NULL DEFAULT 0
+                                            "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "version" varchar(36) COLLATE "pg_catalog"."default",
+                                            "update_time" int8 NOT NULL DEFAULT 0
 )
 ;
 
@@ -1676,13 +1720,13 @@ INSERT INTO "public"."migration_model" VALUES ('4baw8', '22.0.4', 1715777593);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."offline_client_session";
 CREATE TABLE "public"."offline_client_session" (
-  "user_session_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "offline_flag" varchar(4) COLLATE "pg_catalog"."default" NOT NULL,
-  "timestamp" int4,
-  "data" text COLLATE "pg_catalog"."default",
-  "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'local'::character varying,
-  "external_client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'local'::character varying
+                                                   "user_session_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "offline_flag" varchar(4) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "timestamp" int4,
+                                                   "data" text COLLATE "pg_catalog"."default",
+                                                   "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'local'::character varying,
+                                                   "external_client_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'local'::character varying
 )
 ;
 
@@ -1695,13 +1739,13 @@ CREATE TABLE "public"."offline_client_session" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."offline_user_session";
 CREATE TABLE "public"."offline_user_session" (
-  "user_session_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "created_on" int4 NOT NULL,
-  "offline_flag" varchar(4) COLLATE "pg_catalog"."default" NOT NULL,
-  "data" text COLLATE "pg_catalog"."default",
-  "last_session_refresh" int4 NOT NULL DEFAULT 0
+                                                 "user_session_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "user_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "created_on" int4 NOT NULL,
+                                                 "offline_flag" varchar(4) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "data" text COLLATE "pg_catalog"."default",
+                                                 "last_session_refresh" int4 NOT NULL DEFAULT 0
 )
 ;
 
@@ -1714,9 +1758,9 @@ CREATE TABLE "public"."offline_user_session" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."policy_config";
 CREATE TABLE "public"."policy_config" (
-  "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default"
+                                          "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "value" text COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1731,12 +1775,12 @@ INSERT INTO "public"."policy_config" VALUES ('e1a403f3-c854-4ceb-a018-2b27daf79b
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."protocol_mapper";
 CREATE TABLE "public"."protocol_mapper" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "protocol" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "protocol_mapper_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(36) COLLATE "pg_catalog"."default",
-  "client_scope_id" varchar(36) COLLATE "pg_catalog"."default"
+                                            "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "protocol" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "protocol_mapper_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "client_id" varchar(36) COLLATE "pg_catalog"."default",
+                                            "client_scope_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1813,9 +1857,9 @@ INSERT INTO "public"."protocol_mapper" VALUES ('0296fe38-4fe3-4217-a131-08785c25
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."protocol_mapper_config";
 CREATE TABLE "public"."protocol_mapper_config" (
-  "protocol_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                   "protocol_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "value" text COLLATE "pg_catalog"."default",
+                                                   "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2152,59 +2196,59 @@ INSERT INTO "public"."protocol_mapper_config" VALUES ('77c9e9b1-2e6e-4684-9ea6-e
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm";
 CREATE TABLE "public"."realm" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "access_code_lifespan" int4,
-  "user_action_lifespan" int4,
-  "access_token_lifespan" int4,
-  "account_theme" varchar(255) COLLATE "pg_catalog"."default",
-  "admin_theme" varchar(255) COLLATE "pg_catalog"."default",
-  "email_theme" varchar(255) COLLATE "pg_catalog"."default",
-  "enabled" bool NOT NULL DEFAULT false,
-  "events_enabled" bool NOT NULL DEFAULT false,
-  "events_expiration" int8,
-  "login_theme" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "not_before" int4,
-  "password_policy" varchar(2550) COLLATE "pg_catalog"."default",
-  "registration_allowed" bool NOT NULL DEFAULT false,
-  "remember_me" bool NOT NULL DEFAULT false,
-  "reset_password_allowed" bool NOT NULL DEFAULT false,
-  "social" bool NOT NULL DEFAULT false,
-  "ssl_required" varchar(255) COLLATE "pg_catalog"."default",
-  "sso_idle_timeout" int4,
-  "sso_max_lifespan" int4,
-  "update_profile_on_soc_login" bool NOT NULL DEFAULT false,
-  "verify_email" bool NOT NULL DEFAULT false,
-  "master_admin_client" varchar(36) COLLATE "pg_catalog"."default",
-  "login_lifespan" int4,
-  "internationalization_enabled" bool NOT NULL DEFAULT false,
-  "default_locale" varchar(255) COLLATE "pg_catalog"."default",
-  "reg_email_as_username" bool NOT NULL DEFAULT false,
-  "admin_events_enabled" bool NOT NULL DEFAULT false,
-  "admin_events_details_enabled" bool NOT NULL DEFAULT false,
-  "edit_username_allowed" bool NOT NULL DEFAULT false,
-  "otp_policy_counter" int4 DEFAULT 0,
-  "otp_policy_window" int4 DEFAULT 1,
-  "otp_policy_period" int4 DEFAULT 30,
-  "otp_policy_digits" int4 DEFAULT 6,
-  "otp_policy_alg" varchar(36) COLLATE "pg_catalog"."default" DEFAULT 'HmacSHA1'::character varying,
-  "otp_policy_type" varchar(36) COLLATE "pg_catalog"."default" DEFAULT 'totp'::character varying,
-  "browser_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "registration_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "direct_grant_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "reset_credentials_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "client_auth_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "offline_session_idle_timeout" int4 DEFAULT 0,
-  "revoke_refresh_token" bool NOT NULL DEFAULT false,
-  "access_token_life_implicit" int4 DEFAULT 0,
-  "login_with_email_allowed" bool NOT NULL DEFAULT true,
-  "duplicate_emails_allowed" bool NOT NULL DEFAULT false,
-  "docker_auth_flow" varchar(36) COLLATE "pg_catalog"."default",
-  "refresh_token_max_reuse" int4 DEFAULT 0,
-  "allow_user_managed_access" bool NOT NULL DEFAULT false,
-  "sso_max_lifespan_remember_me" int4 NOT NULL DEFAULT 0,
-  "sso_idle_timeout_remember_me" int4 NOT NULL DEFAULT 0,
-  "default_role" varchar(255) COLLATE "pg_catalog"."default"
+                                  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                  "access_code_lifespan" int4,
+                                  "user_action_lifespan" int4,
+                                  "access_token_lifespan" int4,
+                                  "account_theme" varchar(255) COLLATE "pg_catalog"."default",
+                                  "admin_theme" varchar(255) COLLATE "pg_catalog"."default",
+                                  "email_theme" varchar(255) COLLATE "pg_catalog"."default",
+                                  "enabled" bool NOT NULL DEFAULT false,
+                                  "events_enabled" bool NOT NULL DEFAULT false,
+                                  "events_expiration" int8,
+                                  "login_theme" varchar(255) COLLATE "pg_catalog"."default",
+                                  "name" varchar(255) COLLATE "pg_catalog"."default",
+                                  "not_before" int4,
+                                  "password_policy" varchar(2550) COLLATE "pg_catalog"."default",
+                                  "registration_allowed" bool NOT NULL DEFAULT false,
+                                  "remember_me" bool NOT NULL DEFAULT false,
+                                  "reset_password_allowed" bool NOT NULL DEFAULT false,
+                                  "social" bool NOT NULL DEFAULT false,
+                                  "ssl_required" varchar(255) COLLATE "pg_catalog"."default",
+                                  "sso_idle_timeout" int4,
+                                  "sso_max_lifespan" int4,
+                                  "update_profile_on_soc_login" bool NOT NULL DEFAULT false,
+                                  "verify_email" bool NOT NULL DEFAULT false,
+                                  "master_admin_client" varchar(36) COLLATE "pg_catalog"."default",
+                                  "login_lifespan" int4,
+                                  "internationalization_enabled" bool NOT NULL DEFAULT false,
+                                  "default_locale" varchar(255) COLLATE "pg_catalog"."default",
+                                  "reg_email_as_username" bool NOT NULL DEFAULT false,
+                                  "admin_events_enabled" bool NOT NULL DEFAULT false,
+                                  "admin_events_details_enabled" bool NOT NULL DEFAULT false,
+                                  "edit_username_allowed" bool NOT NULL DEFAULT false,
+                                  "otp_policy_counter" int4 DEFAULT 0,
+                                  "otp_policy_window" int4 DEFAULT 1,
+                                  "otp_policy_period" int4 DEFAULT 30,
+                                  "otp_policy_digits" int4 DEFAULT 6,
+                                  "otp_policy_alg" varchar(36) COLLATE "pg_catalog"."default" DEFAULT 'HmacSHA1'::character varying,
+                                  "otp_policy_type" varchar(36) COLLATE "pg_catalog"."default" DEFAULT 'totp'::character varying,
+                                  "browser_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "registration_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "direct_grant_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "reset_credentials_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "client_auth_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "offline_session_idle_timeout" int4 DEFAULT 0,
+                                  "revoke_refresh_token" bool NOT NULL DEFAULT false,
+                                  "access_token_life_implicit" int4 DEFAULT 0,
+                                  "login_with_email_allowed" bool NOT NULL DEFAULT true,
+                                  "duplicate_emails_allowed" bool NOT NULL DEFAULT false,
+                                  "docker_auth_flow" varchar(36) COLLATE "pg_catalog"."default",
+                                  "refresh_token_max_reuse" int4 DEFAULT 0,
+                                  "allow_user_managed_access" bool NOT NULL DEFAULT false,
+                                  "sso_max_lifespan_remember_me" int4 NOT NULL DEFAULT 0,
+                                  "sso_idle_timeout_remember_me" int4 NOT NULL DEFAULT 0,
+                                  "default_role" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2219,9 +2263,9 @@ INSERT INTO "public"."realm" VALUES ('e668ca58-deb8-459c-9294-39e5e530c03f', 60,
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_attribute";
 CREATE TABLE "public"."realm_attribute" (
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default"
+                                            "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "value" text COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2314,8 +2358,8 @@ INSERT INTO "public"."realm_attribute" VALUES ('_browser_header.strictTransportS
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_default_groups";
 CREATE TABLE "public"."realm_default_groups" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                 "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2328,8 +2372,8 @@ CREATE TABLE "public"."realm_default_groups" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_enabled_event_types";
 CREATE TABLE "public"."realm_enabled_event_types" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2342,8 +2386,8 @@ CREATE TABLE "public"."realm_enabled_event_types" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_events_listeners";
 CREATE TABLE "public"."realm_events_listeners" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                   "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2358,9 +2402,9 @@ INSERT INTO "public"."realm_events_listeners" VALUES ('e668ca58-deb8-459c-9294-3
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_localizations";
 CREATE TABLE "public"."realm_localizations" (
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "locale" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "texts" text COLLATE "pg_catalog"."default" NOT NULL
+                                                "realm_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "locale" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                "texts" text COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2373,11 +2417,11 @@ CREATE TABLE "public"."realm_localizations" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_required_credential";
 CREATE TABLE "public"."realm_required_credential" (
-  "type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "form_label" varchar(255) COLLATE "pg_catalog"."default",
-  "input" bool NOT NULL DEFAULT false,
-  "secret" bool NOT NULL DEFAULT false,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "form_label" varchar(255) COLLATE "pg_catalog"."default",
+                                                      "input" bool NOT NULL DEFAULT false,
+                                                      "secret" bool NOT NULL DEFAULT false,
+                                                      "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2392,9 +2436,9 @@ INSERT INTO "public"."realm_required_credential" VALUES ('password', 'password',
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_smtp_config";
 CREATE TABLE "public"."realm_smtp_config" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                              "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "value" varchar(255) COLLATE "pg_catalog"."default",
+                                              "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2407,8 +2451,8 @@ CREATE TABLE "public"."realm_smtp_config" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."realm_supported_locales";
 CREATE TABLE "public"."realm_supported_locales" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                    "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                    "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2421,8 +2465,8 @@ CREATE TABLE "public"."realm_supported_locales" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."redirect_uris";
 CREATE TABLE "public"."redirect_uris" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                          "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2443,9 +2487,9 @@ INSERT INTO "public"."redirect_uris" VALUES ('ab045118-6511-45fb-93d5-e6bcd83aa0
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."required_action_config";
 CREATE TABLE "public"."required_action_config" (
-  "required_action_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" text COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                   "required_action_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "value" text COLLATE "pg_catalog"."default",
+                                                   "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2458,14 +2502,14 @@ CREATE TABLE "public"."required_action_config" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."required_action_provider";
 CREATE TABLE "public"."required_action_provider" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "alias" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default",
-  "enabled" bool NOT NULL DEFAULT false,
-  "default_action" bool NOT NULL DEFAULT false,
-  "provider_id" varchar(255) COLLATE "pg_catalog"."default",
-  "priority" int4
+                                                     "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "alias" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "name" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "realm_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                     "enabled" bool NOT NULL DEFAULT false,
+                                                     "default_action" bool NOT NULL DEFAULT false,
+                                                     "provider_id" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "priority" int4
 )
 ;
 
@@ -2496,10 +2540,10 @@ INSERT INTO "public"."required_action_provider" VALUES ('ab151bc7-5f25-4892-b7bc
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_attribute";
 CREATE TABLE "public"."resource_attribute" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                               "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying,
+                                               "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                               "value" varchar(255) COLLATE "pg_catalog"."default",
+                                               "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2512,8 +2556,8 @@ CREATE TABLE "public"."resource_attribute" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_policy";
 CREATE TABLE "public"."resource_policy" (
-  "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                            "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2528,8 +2572,8 @@ INSERT INTO "public"."resource_policy" VALUES ('2ec07e8f-94a2-4b6e-824c-27196ea6
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_scope";
 CREATE TABLE "public"."resource_scope" (
-  "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                           "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2544,10 +2588,10 @@ INSERT INTO "public"."resource_scope" VALUES ('2ec07e8f-94a2-4b6e-824c-27196ea66
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_server";
 CREATE TABLE "public"."resource_server" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "allow_rs_remote_mgmt" bool NOT NULL DEFAULT false,
-  "policy_enforce_mode" int2 NOT NULL,
-  "decision_strategy" int2 NOT NULL DEFAULT 1
+                                            "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                            "allow_rs_remote_mgmt" bool NOT NULL DEFAULT false,
+                                            "policy_enforce_mode" int2 NOT NULL,
+                                            "decision_strategy" int2 NOT NULL DEFAULT 1
 )
 ;
 
@@ -2561,15 +2605,15 @@ INSERT INTO "public"."resource_server" VALUES ('20d9416e-0e2d-48d3-bfff-f256d60c
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_server_perm_ticket";
 CREATE TABLE "public"."resource_server_perm_ticket" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "owner" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "requester" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "created_timestamp" int8 NOT NULL,
-  "granted_timestamp" int8,
-  "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default",
-  "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "policy_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                        "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                        "owner" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                        "requester" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                        "created_timestamp" int8 NOT NULL,
+                                                        "granted_timestamp" int8,
+                                                        "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                        "scope_id" varchar(36) COLLATE "pg_catalog"."default",
+                                                        "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                        "policy_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2582,14 +2626,14 @@ CREATE TABLE "public"."resource_server_perm_ticket" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_server_policy";
 CREATE TABLE "public"."resource_server_policy" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "description" varchar(255) COLLATE "pg_catalog"."default",
-  "type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "decision_strategy" int2,
-  "logic" int2,
-  "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "owner" varchar(255) COLLATE "pg_catalog"."default"
+                                                   "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "description" varchar(255) COLLATE "pg_catalog"."default",
+                                                   "type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "decision_strategy" int2,
+                                                   "logic" int2,
+                                                   "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "owner" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2606,14 +2650,14 @@ INSERT INTO "public"."resource_server_policy" VALUES ('975f2b8c-344a-4e00-9a6d-d
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_server_resource";
 CREATE TABLE "public"."resource_server_resource" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "type" varchar(255) COLLATE "pg_catalog"."default",
-  "icon_uri" varchar(255) COLLATE "pg_catalog"."default",
-  "owner" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "owner_managed_access" bool NOT NULL DEFAULT false,
-  "display_name" varchar(255) COLLATE "pg_catalog"."default"
+                                                     "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "type" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "icon_uri" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "owner" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "owner_managed_access" bool NOT NULL DEFAULT false,
+                                                     "display_name" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2628,11 +2672,11 @@ INSERT INTO "public"."resource_server_resource" VALUES ('2ec07e8f-94a2-4b6e-824c
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_server_scope";
 CREATE TABLE "public"."resource_server_scope" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "icon_uri" varchar(255) COLLATE "pg_catalog"."default",
-  "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "display_name" varchar(255) COLLATE "pg_catalog"."default"
+                                                  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "icon_uri" varchar(255) COLLATE "pg_catalog"."default",
+                                                  "resource_server_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "display_name" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2646,8 +2690,8 @@ INSERT INTO "public"."resource_server_scope" VALUES ('1d252b93-e258-4f5b-8c84-b9
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."resource_uris";
 CREATE TABLE "public"."resource_uris" (
-  "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                          "resource_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2660,10 +2704,10 @@ CREATE TABLE "public"."resource_uris" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."role_attribute";
 CREATE TABLE "public"."role_attribute" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default"
+                                           "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "value" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2676,8 +2720,8 @@ CREATE TABLE "public"."role_attribute" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."scope_mapping";
 CREATE TABLE "public"."scope_mapping" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                          "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                          "role_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2694,8 +2738,8 @@ INSERT INTO "public"."scope_mapping" VALUES ('aa5445f5-a056-46f7-97e8-7d5fe2ab44
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."scope_policy";
 CREATE TABLE "public"."scope_policy" (
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                         "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "policy_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2710,10 +2754,10 @@ INSERT INTO "public"."scope_policy" VALUES ('1d252b93-e258-4f5b-8c84-b9e80a8e976
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_attribute";
 CREATE TABLE "public"."user_attribute" (
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying
+                                           "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "value" varchar(255) COLLATE "pg_catalog"."default",
+                                           "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                           "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'sybase-needs-something-here'::character varying
 )
 ;
 
@@ -2726,13 +2770,13 @@ CREATE TABLE "public"."user_attribute" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_consent";
 CREATE TABLE "public"."user_consent" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "client_id" varchar(255) COLLATE "pg_catalog"."default",
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "created_date" int8,
-  "last_updated_date" int8,
-  "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default",
-  "external_client_id" varchar(255) COLLATE "pg_catalog"."default"
+                                         "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "client_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "created_date" int8,
+                                         "last_updated_date" int8,
+                                         "client_storage_provider" varchar(36) COLLATE "pg_catalog"."default",
+                                         "external_client_id" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2745,8 +2789,8 @@ CREATE TABLE "public"."user_consent" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_consent_client_scope";
 CREATE TABLE "public"."user_consent_client_scope" (
-  "user_consent_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                      "user_consent_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                      "scope_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2759,19 +2803,19 @@ CREATE TABLE "public"."user_consent_client_scope" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_entity";
 CREATE TABLE "public"."user_entity" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "email" varchar(255) COLLATE "pg_catalog"."default",
-  "email_constraint" varchar(255) COLLATE "pg_catalog"."default",
-  "email_verified" bool NOT NULL DEFAULT false,
-  "enabled" bool NOT NULL DEFAULT false,
-  "federation_link" varchar(255) COLLATE "pg_catalog"."default",
-  "first_name" varchar(255) COLLATE "pg_catalog"."default",
-  "last_name" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "username" varchar(255) COLLATE "pg_catalog"."default",
-  "created_timestamp" int8,
-  "service_account_client_link" varchar(255) COLLATE "pg_catalog"."default",
-  "not_before" int4 NOT NULL DEFAULT 0
+                                        "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "email" varchar(255) COLLATE "pg_catalog"."default",
+                                        "email_constraint" varchar(255) COLLATE "pg_catalog"."default",
+                                        "email_verified" bool NOT NULL DEFAULT false,
+                                        "enabled" bool NOT NULL DEFAULT false,
+                                        "federation_link" varchar(255) COLLATE "pg_catalog"."default",
+                                        "first_name" varchar(255) COLLATE "pg_catalog"."default",
+                                        "last_name" varchar(255) COLLATE "pg_catalog"."default",
+                                        "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                        "username" varchar(255) COLLATE "pg_catalog"."default",
+                                        "created_timestamp" int8,
+                                        "service_account_client_link" varchar(255) COLLATE "pg_catalog"."default",
+                                        "not_before" int4 NOT NULL DEFAULT 0
 )
 ;
 
@@ -2794,15 +2838,59 @@ INSERT INTO "public"."user_entity" VALUES ('7ad37931-d638-4de4-b5c3-6fcd3f447285
 INSERT INTO "public"."user_entity" VALUES ('4f5ce30b-5d15-4c31-a0c3-4629416f83f6', 'kayonkiu@gmail.com', 'kayonkiu@gmail.com', 'f', 't', NULL, 'Admin', 'User', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'kayonkiu@gmail.com', 1717517252732, NULL, 0);
 INSERT INTO "public"."user_entity" VALUES ('1a1d2bc4-1235-433a-b00e-bbff136a4195', NULL, 'ab1d9865-55f9-468b-8acd-3a56099c7a69', 'f', 't', NULL, 'admin', '', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'admin', 1716007047975, NULL, 0);
 INSERT INTO "public"."user_entity" VALUES ('e554a98a-0c8e-434c-ad16-1b3e10a7d518', 'tgtien852@gmail.com', 'tgtien852@gmail.com', 'f', 't', NULL, 'Tien', 'Truong', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'tgtien852@gmail.com', 1716296452101, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('73407ed0-a7fb-4e13-996e-5fabfe376e32', '20127318@student.hcmus.edu.vn', '20127318@student.hcmus.edu.vn', 'f', 't', NULL, 'Phan Trí', 'Tài', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127318@student.hcmus.edu.vn', 1722755803714, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('66e4c4a0-fab9-4856-97fd-5b7092b9aaf8', 'kaitokid23454@gmail.com', 'kaitokid23454@gmail.com', 'f', 't', NULL, 'Mai', 'Tô Kiệt', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'kaitokid23454@gmail.com', 1722755792795, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('3931de26-a3c6-4588-8b8f-83f213651a2e', '20127574@student.hcmus.edu.vn', '20127574@student.hcmus.edu.vn', 'f', 't', NULL, 'Hoàng Phước Gia', 'Nguyên', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127574@student.hcmus.edu.vn', 1722755795269, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('c9961067-88d6-4813-8ae7-e89d80eaf688', '20127069@student.hcmus.edu.vn', '20127069@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Sanh', 'Tài', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127069@student.hcmus.edu.vn', 1722755804761, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('4826d508-1542-4d3b-9338-96d2db81ad82', '20127597@student.hcmus.edu.vn', '20127597@student.hcmus.edu.vn', 'f', 't', NULL, 'Bùi Tấn', 'Phương', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127597@student.hcmus.edu.vn', 1722755797090, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('1f2ddda5-20f2-4ed1-84b1-c9c7f5abaaa3', '20127281@student.hcmus.edu.vn', '20127281@student.hcmus.edu.vn', 'f', 't', NULL, 'Lê Đình', 'Phúc', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127281@student.hcmus.edu.vn', 1722755797366, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('46184360-9e9e-49be-a27d-8e7ca0be08e4', '20127143@student.hcmus.edu.vn', '20127143@student.hcmus.edu.vn', 'f', 't', NULL, 'Phạm Giang Thái', 'Dương', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127143@student.hcmus.edu.vn', 1722755810333, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('c011a480-5434-41b1-a175-601be618f457', '20127161@student.hcmus.edu.vn', '20127161@student.hcmus.edu.vn', 'f', 't', NULL, 'Bùi Thị Thanh', 'Hoa', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127161@student.hcmus.edu.vn', 1722755798844, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('73698777-0805-47fb-92a1-0cda85a0820e', '20127116@student.hcmus.edu.vn', '20127116@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Gia', 'Bảo', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127116@student.hcmus.edu.vn', 1722755800351, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('61a8d1de-b206-4cd8-9c81-59a3fb0f960a', 'truonggiatien456@gmail.com', 'truonggiatien456@gmail.com', 'f', 't', NULL, 'Trương', 'Tiến', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'truonggiatien456@gmail.com', 1722078293988, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('aaee720c-99b5-41a3-a845-84c87a804fa9', '20120052@student.hcmus.edu.vn', '20120052@student.hcmus.edu.vn', 'f', 't', NULL, 'Lê Đức', 'Đạt', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20120052@student.hcmus.edu.vn', 1722755805618, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('67e470c2-694b-4c80-b2d7-add9f7acbf72', 'haiduong@gmail.com', 'haiduong@gmail.com', 'f', 't', NULL, 'Pam', 'Hải Đường', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'haiduong@gmail.com', 1722755792880, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('e7ce9c40-d825-47d4-a553-0c2c9e12641b', '20127633@student.hcmus.edu.vn', '20127633@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Hoàng', 'Thịnh', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127633@student.hcmus.edu.vn', 1722755809632, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('cff2c92a-9528-46e9-a847-e34f8f07fc93', 'huydtw@gmail.com', 'huydtw@gmail.com', 'f', 't', NULL, 'Bùi Lê Quang', 'Huy', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'huydtw@gmail.com', 1722755795123, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('657e399c-26a1-415e-a1b7-2bf02bca5f6c', '20127329@student.hcmus.edu.vn', '20127329@student.hcmus.edu.vn', 'f', 't', NULL, 'Bùi', 'Quang Thành', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127329@student.hcmus.edu.vn', 1722755798651, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('d7f196a5-997f-432e-a0db-06ad9397ccb9', '20127644@student.hcmus.edu.vn', '20127644@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Khắc', 'Tiệp', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127644@student.hcmus.edu.vn', 1722755810782, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('bb02f36a-bd0d-4a87-9929-01d485b157a2', '20127291@student.hcmus.edu.vn', '20127291@student.hcmus.edu.vn', 'f', 't', NULL, 'Lâm Quang Anh', 'Quân', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127291@student.hcmus.edu.vn', 1722755799323, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('a0f574bc-9d93-4ce0-88ac-0dc71d2a7e77', '20127275@student.hcmus.edu.vn', '20127275@student.hcmus.edu.vn', 'f', 't', NULL, 'Lê Nhất', 'Duy', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127275@student.hcmus.edu.vn', 1722755800935, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('6e810fd7-960f-468d-9df0-ddd62b273ae8', '20127607@student.hcmus.edu.vn', '20127607@student.hcmus.edu.vn', 'f', 't', NULL, 'Phạm Việt', 'Quang', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127607@student.hcmus.edu.vn', 1722755811211, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('4111fb40-1975-4218-8b6c-657561d85c41', '20127666@student.hcmus.edu.vn', '20127666@student.hcmus.edu.vn', 'f', 't', NULL, 'Huỳnh Tấn', 'Vinh', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127666@student.hcmus.edu.vn', 1722755801217, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('4f4ea100-40fc-4508-bff6-1b7bedd42385', '20127334@student.hcmus.edu.vn', '20127334@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Phát', 'Thịnh', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127334@student.hcmus.edu.vn', 1722755803073, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('65791433-596f-4ad0-8d61-ae0d6a3e6163', '20127456@student.hcmus.edu.vn', '20127456@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Mạnh', 'Cường', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127456@student.hcmus.edu.vn', 1722755812113, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('d29bb866-5226-41b6-b327-36d4914466f8', '20127277@student.hcmus.edu.vn', '20127277@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Triệu', 'Phú', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127277@student.hcmus.edu.vn', 1722755813468, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('67ba949d-8dc9-428f-9e7a-78c887c18ff8', '20127600@student.hcmus.edu.vn', '20127600@student.hcmus.edu.vn', 'f', 't', NULL, 'Bảo', 'Nguyễn Ngọc Phi', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127600@student.hcmus.edu.vn', 1722755813858, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('afa748dc-78b8-46a5-98e3-67f4b58afd6d', 'nttung2024@gmail.com', 'nttung2024@gmail.com', 'f', 't', NULL, 'Tùng', 'Nguyễn Thanh', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'nttung2024@gmail.com', 1722755815007, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('c02405da-8a08-452c-b6a3-a9694bd2618f', '20127323@student.hcmus.edu.vn', '20127323@student.hcmus.edu.vn', 'f', 't', NULL, 'Võ Nhật', 'Tân', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127323@student.hcmus.edu.vn', 1722755806255, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('a0704269-ce0b-4a27-8f47-dc6db163f108', 'hailong@gmail.com', 'hailong@gmail.com', 'f', 't', NULL, 'Hải', 'Long', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'hailong@gmail.com', 1722755793071, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('7e9a5225-3f74-463e-967b-ea3de89a4874', '20127573@student.hcmus.edu.vn', '20127573@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Thị Hồng', 'Ngọc', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127573@student.hcmus.edu.vn', 1722755807942, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('7522f465-aef2-4dc6-915a-4953e4f6c7bc', 'kimngan@gmail.com', 'kimngan@gmail.com', 'f', 't', NULL, 'Hoàng', 'Kim Ngân', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'kimngan@gmail.com', 1722755795233, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('a3ae8d3c-3716-485e-b1c3-22c04a6aae60', 'tmhieu2024@gmail.com', 'tmhieu2024@gmail.com', 'f', 't', NULL, 'Hiếu', 'Trần Minh', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'tmhieu2024@gmail.com', 1722755809274, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('337f4e59-a65d-46ed-bdc2-c188d8d1a21a', '20127556@student.hcmus.edu.vn', '20127556@student.hcmus.edu.vn', 'f', 't', NULL, 'Tăng Kim', 'Long', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127556@student.hcmus.edu.vn', 1722755812766, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('b62f6156-adfe-491d-8fe2-37bca7fda794', '20127447@student.hcmus.edu.vn', '20127447@student.hcmus.edu.vn', 'f', 't', NULL, 'Ngô', 'Đức Bảo', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127447@student.hcmus.edu.vn', 1722755797078, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('4558725b-8c3e-44ca-9be4-ca167627ed44', '20127595@student.hcmus.edu.vn', '20127595@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Trọng', 'Phúc', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127595@student.hcmus.edu.vn', 1722755814798, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('c1bd324b-10ef-4de0-97b4-fa502c9e7d52', '20127562@student.hcmus.edu.vn', '20127562@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Đăng', 'Minh', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127562@student.hcmus.edu.vn', 1722755816066, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('ce01504c-578c-4938-8871-e2c0efd0be7c', 'ltphat20@clc.fitus.edu.vn', 'ltphat20@clc.fitus.edu.vn', 'f', 't', NULL, 'Lưu Tấn', 'Phát', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'ltphat20@clc.fitus.edu.vn', 1722755798886, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('80bc1ac0-f5e7-408e-908c-7948959c24ab', '20127681@student.hcmus.edu.vn', '20127681@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Thiên', 'Phúc', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127681@student.hcmus.edu.vn', 1722755816495, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('bfb1e95e-bfd1-41fe-a4ac-38641156c8a8', 'nlhdung@fit.hcmus.edu.vn', 'nlhdung@fit.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Lê Hoàng', 'Dũng', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'nlhdung@fit.hcmus.edu.vn', 1722755800321, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('0b118497-fb4a-4580-9e3b-7350f65c1014', '20127569@student.hcmus.edu.vn', '20127569@student.hcmus.edu.vn', 'f', 't', NULL, 'Tô Đình Phương', 'Nam', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127569@student.hcmus.edu.vn', 1722755816924, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('cb127011-ce9c-4c14-83f5-4f99b53c7748', 'tmhung2024@gmail.com', 'tmhung2024@gmail.com', 'f', 't', NULL, 'Hùng', 'Trần Mạnh', 'e668ca58-deb8-459c-9294-39e5e530c03f', 'tmhung2024@gmail.com', 1722755817727, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('6af9fc0f-251c-40c3-ad20-ae07f62832fb', '20127043@student.hcmus.edu.vn', '20127043@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Thoại Đăng', 'Khoa', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127043@student.hcmus.edu.vn', 1722755801203, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('cbdd5e83-49bf-4759-883a-f020b7b6b5b9', '20127252@student.hcmus.edu.vn', '20127252@student.hcmus.edu.vn', 'f', 't', NULL, 'Ngô Gia', 'Ngân', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127252@student.hcmus.edu.vn', 1722755802222, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('5b632d32-2431-40e4-89e4-e8ef49dc47f1', '20127358@student.hcmus.edu.vn', '20127358@student.hcmus.edu.vn', 'f', 't', NULL, 'Lê Châu', 'Toàn', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127358@student.hcmus.edu.vn', 1722755802369, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('2ad01de0-d043-4931-9d81-e0fab76f4115', '20127064@student.hcmus.edu.vn', '20127064@student.hcmus.edu.vn', 'f', 't', NULL, 'Nguyễn Trần Mai', 'Phương', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127064@student.hcmus.edu.vn', 1722755802494, NULL, 0);
+INSERT INTO "public"."user_entity" VALUES ('adb4266c-dfc5-4c58-9933-19823b9542ea', '20127090@student.hcmus.edu.vn', '20127090@student.hcmus.edu.vn', 'f', 't', NULL, 'Lê Thanh', 'Tú', 'e668ca58-deb8-459c-9294-39e5e530c03f', '20127090@student.hcmus.edu.vn', 1722755803248, NULL, 0);
 
 -- ----------------------------
 -- Table structure for user_federation_config
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_federation_config";
 CREATE TABLE "public"."user_federation_config" (
-  "user_federation_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                   "user_federation_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "value" varchar(255) COLLATE "pg_catalog"."default",
+                                                   "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2815,11 +2903,11 @@ CREATE TABLE "public"."user_federation_config" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_federation_mapper";
 CREATE TABLE "public"."user_federation_mapper" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "federation_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "federation_mapper_type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                   "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "federation_provider_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "federation_mapper_type" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2832,9 +2920,9 @@ CREATE TABLE "public"."user_federation_mapper" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_federation_mapper_config";
 CREATE TABLE "public"."user_federation_mapper_config" (
-  "user_federation_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                                          "user_federation_mapper_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                          "value" varchar(255) COLLATE "pg_catalog"."default",
+                                                          "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2847,14 +2935,14 @@ CREATE TABLE "public"."user_federation_mapper_config" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_federation_provider";
 CREATE TABLE "public"."user_federation_provider" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "changed_sync_period" int4,
-  "display_name" varchar(255) COLLATE "pg_catalog"."default",
-  "full_sync_period" int4,
-  "last_sync" int4,
-  "priority" int4,
-  "provider_name" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default"
+                                                     "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                     "changed_sync_period" int4,
+                                                     "display_name" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "full_sync_period" int4,
+                                                     "last_sync" int4,
+                                                     "priority" int4,
+                                                     "provider_name" varchar(255) COLLATE "pg_catalog"."default",
+                                                     "realm_id" varchar(36) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2867,8 +2955,8 @@ CREATE TABLE "public"."user_federation_provider" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_group_membership";
 CREATE TABLE "public"."user_group_membership" (
-  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                                  "group_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2881,8 +2969,8 @@ CREATE TABLE "public"."user_group_membership" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_required_action";
 CREATE TABLE "public"."user_required_action" (
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "required_action" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT ' '::character varying
+                                                 "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                 "required_action" varchar(255) COLLATE "pg_catalog"."default" NOT NULL DEFAULT ' '::character varying
 )
 ;
 
@@ -2895,8 +2983,8 @@ CREATE TABLE "public"."user_required_action" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_role_mapping";
 CREATE TABLE "public"."user_role_mapping" (
-  "role_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
+                                              "role_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "user_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -2925,7 +3013,7 @@ INSERT INTO "public"."user_role_mapping" VALUES ('dcbc2317-ac1e-4599-875b-232717
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'f7fe4331-157c-4c8d-8d63-9182aede34b9');
 INSERT INTO "public"."user_role_mapping" VALUES ('c9e89928-e6ee-4d03-b954-06dc4f53afc0', 'f7fe4331-157c-4c8d-8d63-9182aede34b9');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'a591b629-e766-4d2a-a6d9-d3ab2371f250');
-INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'a591b629-e766-4d2a-a6d9-d3ab2371f250');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '66e4c4a0-fab9-4856-97fd-5b7092b9aaf8');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4116f768-847e-4fa7-af0a-0bc3e88171f5');
 INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '4116f768-847e-4fa7-af0a-0bc3e88171f5');
 INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '7ad37931-d638-4de4-b5c3-6fcd3f447285');
@@ -2934,35 +3022,167 @@ INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4f5ce30b-5d15-4c31-a0c3-4629416f83f6');
 INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', '4f5ce30b-5d15-4c31-a0c3-4629416f83f6');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'cb077939-8190-49fd-87f0-1a598666c29d');
-INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'cb077939-8190-49fd-87f0-1a598666c29d');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '67e470c2-694b-4c80-b2d7-add9f7acbf72');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'f49ae64d-45dc-4c73-bde8-b6b693303a0c');
 INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '0cdd81ff-749c-493e-afc9-592f1cc1f499');
 INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', '83a84381-bcc3-4bfe-b1cc-11d59b2869ab');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '443c7f23-8ab8-47c0-a711-9d3edf0a0379');
 INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '443c7f23-8ab8-47c0-a711-9d3edf0a0379');
 INSERT INTO "public"."user_role_mapping" VALUES ('61852137-d50d-41a8-88d3-32abec061941', 'e554a98a-0c8e-434c-ad16-1b3e10a7d518');
-INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'f49ae64d-45dc-4c73-bde8-b6b693303a0c');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'a0704269-ce0b-4a27-8f47-dc6db163f108');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '0cdd81ff-749c-493e-afc9-592f1cc1f499');
 INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '83a84381-bcc3-4bfe-b1cc-11d59b2869ab');
 INSERT INTO "public"."user_role_mapping" VALUES ('b63687c2-e689-4c46-852f-a2e0698d834b', '1a1d2bc4-1235-433a-b00e-bbff136a4195');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '66e4c4a0-fab9-4856-97fd-5b7092b9aaf8');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'a0704269-ce0b-4a27-8f47-dc6db163f108');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '67e470c2-694b-4c80-b2d7-add9f7acbf72');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '66e4c4a0-fab9-4856-97fd-5b7092b9aaf8');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '67e470c2-694b-4c80-b2d7-add9f7acbf72');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'a0704269-ce0b-4a27-8f47-dc6db163f108');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'cff2c92a-9528-46e9-a847-e34f8f07fc93');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '61a8d1de-b206-4cd8-9c81-59a3fb0f960a');
+INSERT INTO "public"."user_role_mapping" VALUES ('61852137-d50d-41a8-88d3-32abec061941', '61a8d1de-b206-4cd8-9c81-59a3fb0f960a');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '61a8d1de-b206-4cd8-9c81-59a3fb0f960a');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '7522f465-aef2-4dc6-915a-4953e4f6c7bc');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '3931de26-a3c6-4588-8b8f-83f213651a2e');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'cff2c92a-9528-46e9-a847-e34f8f07fc93');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '7522f465-aef2-4dc6-915a-4953e4f6c7bc');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '3931de26-a3c6-4588-8b8f-83f213651a2e');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'cff2c92a-9528-46e9-a847-e34f8f07fc93');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', '7522f465-aef2-4dc6-915a-4953e4f6c7bc');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '3931de26-a3c6-4588-8b8f-83f213651a2e');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'b62f6156-adfe-491d-8fe2-37bca7fda794');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4826d508-1542-4d3b-9338-96d2db81ad82');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '1f2ddda5-20f2-4ed1-84b1-c9c7f5abaaa3');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'b62f6156-adfe-491d-8fe2-37bca7fda794');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '4826d508-1542-4d3b-9338-96d2db81ad82');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '1f2ddda5-20f2-4ed1-84b1-c9c7f5abaaa3');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'b62f6156-adfe-491d-8fe2-37bca7fda794');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '4826d508-1542-4d3b-9338-96d2db81ad82');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'cb077939-8190-49fd-87f0-1a598666c29d');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'f49ae64d-45dc-4c73-bde8-b6b693303a0c');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '1f2ddda5-20f2-4ed1-84b1-c9c7f5abaaa3');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '657e399c-26a1-415e-a1b7-2bf02bca5f6c');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'c011a480-5434-41b1-a175-601be618f457');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'ce01504c-578c-4938-8871-e2c0efd0be7c');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'a591b629-e766-4d2a-a6d9-d3ab2371f250');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '657e399c-26a1-415e-a1b7-2bf02bca5f6c');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '657e399c-26a1-415e-a1b7-2bf02bca5f6c');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'bb02f36a-bd0d-4a87-9929-01d485b157a2');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'bb02f36a-bd0d-4a87-9929-01d485b157a2');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'bb02f36a-bd0d-4a87-9929-01d485b157a2');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'a0f574bc-9d93-4ce0-88ac-0dc71d2a7e77');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4111fb40-1975-4218-8b6c-657561d85c41');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '4111fb40-1975-4218-8b6c-657561d85c41');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '4111fb40-1975-4218-8b6c-657561d85c41');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '5b632d32-2431-40e4-89e4-e8ef49dc47f1');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4f4ea100-40fc-4508-bff6-1b7bedd42385');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '4f4ea100-40fc-4508-bff6-1b7bedd42385');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'c011a480-5434-41b1-a175-601be618f457');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'bfb1e95e-bfd1-41fe-a4ac-38641156c8a8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '6af9fc0f-251c-40c3-ad20-ae07f62832fb');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '6af9fc0f-251c-40c3-ad20-ae07f62832fb');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'cbdd5e83-49bf-4759-883a-f020b7b6b5b9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '6af9fc0f-251c-40c3-ad20-ae07f62832fb');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '5b632d32-2431-40e4-89e4-e8ef49dc47f1');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '2ad01de0-d043-4931-9d81-e0fab76f4115');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '2ad01de0-d043-4931-9d81-e0fab76f4115');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '5b632d32-2431-40e4-89e4-e8ef49dc47f1');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'adb4266c-dfc5-4c58-9933-19823b9542ea');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'adb4266c-dfc5-4c58-9933-19823b9542ea');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'c9961067-88d6-4813-8ae7-e89d80eaf688');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '73407ed0-a7fb-4e13-996e-5fabfe376e32');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'c9961067-88d6-4813-8ae7-e89d80eaf688');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'c02405da-8a08-452c-b6a3-a9694bd2618f');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'aaee720c-99b5-41a3-a845-84c87a804fa9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '7e9a5225-3f74-463e-967b-ea3de89a4874');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '46184360-9e9e-49be-a27d-8e7ca0be08e4');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'a3ae8d3c-3716-485e-b1c3-22c04a6aae60');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '4f4ea100-40fc-4508-bff6-1b7bedd42385');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '73407ed0-a7fb-4e13-996e-5fabfe376e32');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'adb4266c-dfc5-4c58-9933-19823b9542ea');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'c02405da-8a08-452c-b6a3-a9694bd2618f');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '7e9a5225-3f74-463e-967b-ea3de89a4874');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'a3ae8d3c-3716-485e-b1c3-22c04a6aae60');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'a3ae8d3c-3716-485e-b1c3-22c04a6aae60');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '46184360-9e9e-49be-a27d-8e7ca0be08e4');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '46184360-9e9e-49be-a27d-8e7ca0be08e4');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'd7f196a5-997f-432e-a0db-06ad9397ccb9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '6e810fd7-960f-468d-9df0-ddd62b273ae8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '337f4e59-a65d-46ed-bdc2-c188d8d1a21a');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '337f4e59-a65d-46ed-bdc2-c188d8d1a21a');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'd29bb866-5226-41b6-b327-36d4914466f8');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'd29bb866-5226-41b6-b327-36d4914466f8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '4558725b-8c3e-44ca-9be4-ca167627ed44');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '4558725b-8c3e-44ca-9be4-ca167627ed44');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'afa748dc-78b8-46a5-98e3-67f4b58afd6d');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '4558725b-8c3e-44ca-9be4-ca167627ed44');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'c1bd324b-10ef-4de0-97b4-fa502c9e7d52');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'c1bd324b-10ef-4de0-97b4-fa502c9e7d52');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'c1bd324b-10ef-4de0-97b4-fa502c9e7d52');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '80bc1ac0-f5e7-408e-908c-7948959c24ab');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '80bc1ac0-f5e7-408e-908c-7948959c24ab');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '80bc1ac0-f5e7-408e-908c-7948959c24ab');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '0b118497-fb4a-4580-9e3b-7350f65c1014');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '0b118497-fb4a-4580-9e3b-7350f65c1014');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '0b118497-fb4a-4580-9e3b-7350f65c1014');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'cb127011-ce9c-4c14-83f5-4f99b53c7748');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'cb127011-ce9c-4c14-83f5-4f99b53c7748');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'cb127011-ce9c-4c14-83f5-4f99b53c7748');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'aaee720c-99b5-41a3-a845-84c87a804fa9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'c9961067-88d6-4813-8ae7-e89d80eaf688');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'aaee720c-99b5-41a3-a845-84c87a804fa9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'c02405da-8a08-452c-b6a3-a9694bd2618f');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '7e9a5225-3f74-463e-967b-ea3de89a4874');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'e7ce9c40-d825-47d4-a553-0c2c9e12641b');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'e7ce9c40-d825-47d4-a553-0c2c9e12641b');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'e7ce9c40-d825-47d4-a553-0c2c9e12641b');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'd7f196a5-997f-432e-a0db-06ad9397ccb9');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'd7f196a5-997f-432e-a0db-06ad9397ccb9');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '6e810fd7-960f-468d-9df0-ddd62b273ae8');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '6e810fd7-960f-468d-9df0-ddd62b273ae8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '65791433-596f-4ad0-8d61-ae0d6a3e6163');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '65791433-596f-4ad0-8d61-ae0d6a3e6163');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '337f4e59-a65d-46ed-bdc2-c188d8d1a21a');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '65791433-596f-4ad0-8d61-ae0d6a3e6163');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'd29bb866-5226-41b6-b327-36d4914466f8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '67ba949d-8dc9-428f-9e7a-78c887c18ff8');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '67ba949d-8dc9-428f-9e7a-78c887c18ff8');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '67ba949d-8dc9-428f-9e7a-78c887c18ff8');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', 'afa748dc-78b8-46a5-98e3-67f4b58afd6d');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'afa748dc-78b8-46a5-98e3-67f4b58afd6d');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'ce01504c-578c-4938-8871-e2c0efd0be7c');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'ce01504c-578c-4938-8871-e2c0efd0be7c');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'c011a480-5434-41b1-a175-601be618f457');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '73698777-0805-47fb-92a1-0cda85a0820e');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', '73698777-0805-47fb-92a1-0cda85a0820e');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'bfb1e95e-bfd1-41fe-a4ac-38641156c8a8');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '73698777-0805-47fb-92a1-0cda85a0820e');
+INSERT INTO "public"."user_role_mapping" VALUES ('049e75e3-e22e-416c-9cb0-3e33d4957281', 'bfb1e95e-bfd1-41fe-a4ac-38641156c8a8');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'a0f574bc-9d93-4ce0-88ac-0dc71d2a7e77');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'a0f574bc-9d93-4ce0-88ac-0dc71d2a7e77');
+INSERT INTO "public"."user_role_mapping" VALUES ('2499f3ff-56d8-465e-bda8-485e7f87e9fe', 'cbdd5e83-49bf-4759-883a-f020b7b6b5b9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', 'cbdd5e83-49bf-4759-883a-f020b7b6b5b9');
+INSERT INTO "public"."user_role_mapping" VALUES ('314099bf-da5a-4655-ba0f-e2b27c6caa28', '2ad01de0-d043-4931-9d81-e0fab76f4115');
+INSERT INTO "public"."user_role_mapping" VALUES ('35579285-15b3-403c-a636-4c5a2767c90a', '73407ed0-a7fb-4e13-996e-5fabfe376e32');
 
 -- ----------------------------
 -- Table structure for user_session
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_session";
 CREATE TABLE "public"."user_session" (
-  "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "auth_method" varchar(255) COLLATE "pg_catalog"."default",
-  "ip_address" varchar(255) COLLATE "pg_catalog"."default",
-  "last_session_refresh" int4,
-  "login_username" varchar(255) COLLATE "pg_catalog"."default",
-  "realm_id" varchar(255) COLLATE "pg_catalog"."default",
-  "remember_me" bool NOT NULL DEFAULT false,
-  "started" int4,
-  "user_id" varchar(255) COLLATE "pg_catalog"."default",
-  "user_session_state" int4,
-  "broker_session_id" varchar(255) COLLATE "pg_catalog"."default",
-  "broker_user_id" varchar(255) COLLATE "pg_catalog"."default"
+                                         "id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                         "auth_method" varchar(255) COLLATE "pg_catalog"."default",
+                                         "ip_address" varchar(255) COLLATE "pg_catalog"."default",
+                                         "last_session_refresh" int4,
+                                         "login_username" varchar(255) COLLATE "pg_catalog"."default",
+                                         "realm_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "remember_me" bool NOT NULL DEFAULT false,
+                                         "started" int4,
+                                         "user_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "user_session_state" int4,
+                                         "broker_session_id" varchar(255) COLLATE "pg_catalog"."default",
+                                         "broker_user_id" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2975,9 +3195,9 @@ CREATE TABLE "public"."user_session" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."user_session_note";
 CREATE TABLE "public"."user_session_note" (
-  "user_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(2048) COLLATE "pg_catalog"."default"
+                                              "user_session" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                              "value" varchar(2048) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -2990,12 +3210,12 @@ CREATE TABLE "public"."user_session_note" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."username_login_failure";
 CREATE TABLE "public"."username_login_failure" (
-  "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "username" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "failed_login_not_before" int4,
-  "last_failure" int8,
-  "last_ip_failure" varchar(255) COLLATE "pg_catalog"."default",
-  "num_failures" int4
+                                                   "realm_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "username" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+                                                   "failed_login_not_before" int4,
+                                                   "last_failure" int8,
+                                                   "last_ip_failure" varchar(255) COLLATE "pg_catalog"."default",
+                                                   "num_failures" int4
 )
 ;
 
@@ -3008,8 +3228,8 @@ CREATE TABLE "public"."username_login_failure" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."web_origins";
 CREATE TABLE "public"."web_origins" (
-  "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+                                        "client_id" varchar(36) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "value" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
 
@@ -3025,9 +3245,9 @@ INSERT INTO "public"."web_origins" VALUES ('ab045118-6511-45fb-93d5-e6bcd83aa04f
 -- Indexes structure for table admin_event_entity
 -- ----------------------------
 CREATE INDEX "idx_admin_event_time" ON "public"."admin_event_entity" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "admin_event_time" "pg_catalog"."int8_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "admin_event_time" "pg_catalog"."int8_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table admin_event_entity
@@ -3038,8 +3258,8 @@ ALTER TABLE "public"."admin_event_entity" ADD CONSTRAINT "constraint_admin_event
 -- Indexes structure for table associated_policy
 -- ----------------------------
 CREATE INDEX "idx_assoc_pol_assoc_pol_id" ON "public"."associated_policy" USING btree (
-  "associated_policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "associated_policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table associated_policy
@@ -3050,12 +3270,12 @@ ALTER TABLE "public"."associated_policy" ADD CONSTRAINT "constraint_farsrpap" PR
 -- Indexes structure for table authentication_execution
 -- ----------------------------
 CREATE INDEX "idx_auth_exec_flow" ON "public"."authentication_execution" USING btree (
-  "flow_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "flow_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_auth_exec_realm_flow" ON "public"."authentication_execution" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "flow_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "flow_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table authentication_execution
@@ -3066,8 +3286,8 @@ ALTER TABLE "public"."authentication_execution" ADD CONSTRAINT "constraint_auth_
 -- Indexes structure for table authentication_flow
 -- ----------------------------
 CREATE INDEX "idx_auth_flow_realm" ON "public"."authentication_flow" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table authentication_flow
@@ -3078,8 +3298,8 @@ ALTER TABLE "public"."authentication_flow" ADD CONSTRAINT "constraint_auth_flow_
 -- Indexes structure for table authenticator_config
 -- ----------------------------
 CREATE INDEX "idx_auth_config_realm" ON "public"."authenticator_config" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table authenticator_config
@@ -3100,8 +3320,8 @@ ALTER TABLE "public"."broker_link" ADD CONSTRAINT "constr_broker_link_pk" PRIMAR
 -- Indexes structure for table client
 -- ----------------------------
 CREATE INDEX "idx_client_id" ON "public"."client" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table client
@@ -3127,8 +3347,8 @@ ALTER TABLE "public"."client_auth_flow_bindings" ADD CONSTRAINT "c_cli_flow_bind
 -- Indexes structure for table client_initial_access
 -- ----------------------------
 CREATE INDEX "idx_client_init_acc_realm" ON "public"."client_initial_access" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table client_initial_access
@@ -3144,8 +3364,8 @@ ALTER TABLE "public"."client_node_registrations" ADD CONSTRAINT "constraint_84" 
 -- Indexes structure for table client_scope
 -- ----------------------------
 CREATE INDEX "idx_realm_clscope" ON "public"."client_scope" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table client_scope
@@ -3161,8 +3381,8 @@ ALTER TABLE "public"."client_scope" ADD CONSTRAINT "pk_cli_template" PRIMARY KEY
 -- Indexes structure for table client_scope_attributes
 -- ----------------------------
 CREATE INDEX "idx_clscope_attrs" ON "public"."client_scope_attributes" USING btree (
-  "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table client_scope_attributes
@@ -3173,11 +3393,11 @@ ALTER TABLE "public"."client_scope_attributes" ADD CONSTRAINT "pk_cl_tmpl_attr" 
 -- Indexes structure for table client_scope_client
 -- ----------------------------
 CREATE INDEX "idx_cl_clscope" ON "public"."client_scope_client" USING btree (
-  "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_clscope_cl" ON "public"."client_scope_client" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table client_scope_client
@@ -3188,11 +3408,11 @@ ALTER TABLE "public"."client_scope_client" ADD CONSTRAINT "c_cli_scope_bind" PRI
 -- Indexes structure for table client_scope_role_mapping
 -- ----------------------------
 CREATE INDEX "idx_clscope_role" ON "public"."client_scope_role_mapping" USING btree (
-  "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_role_clscope" ON "public"."client_scope_role_mapping" USING btree (
-  "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table client_scope_role_mapping
@@ -3203,8 +3423,8 @@ ALTER TABLE "public"."client_scope_role_mapping" ADD CONSTRAINT "pk_template_sco
 -- Indexes structure for table client_session
 -- ----------------------------
 CREATE INDEX "idx_client_session_session" ON "public"."client_session" USING btree (
-  "session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table client_session
@@ -3240,11 +3460,11 @@ ALTER TABLE "public"."client_user_session_note" ADD CONSTRAINT "constr_cl_usr_se
 -- Indexes structure for table component
 -- ----------------------------
 CREATE INDEX "idx_component_provider_type" ON "public"."component" USING btree (
-  "provider_type" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "provider_type" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_component_realm" ON "public"."component" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table component
@@ -3255,8 +3475,8 @@ ALTER TABLE "public"."component" ADD CONSTRAINT "constr_component_pk" PRIMARY KE
 -- Indexes structure for table component_config
 -- ----------------------------
 CREATE INDEX "idx_compo_config_compo" ON "public"."component_config" USING btree (
-  "component_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "component_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table component_config
@@ -3267,11 +3487,11 @@ ALTER TABLE "public"."component_config" ADD CONSTRAINT "constr_component_config_
 -- Indexes structure for table composite_role
 -- ----------------------------
 CREATE INDEX "idx_composite" ON "public"."composite_role" USING btree (
-  "composite" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "composite" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_composite_child" ON "public"."composite_role" USING btree (
-  "child_role" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "child_role" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table composite_role
@@ -3282,8 +3502,8 @@ ALTER TABLE "public"."composite_role" ADD CONSTRAINT "constraint_composite_role"
 -- Indexes structure for table credential
 -- ----------------------------
 CREATE INDEX "idx_user_credential" ON "public"."credential" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table credential
@@ -3299,11 +3519,11 @@ ALTER TABLE "public"."databasechangeloglock" ADD CONSTRAINT "databasechangeloglo
 -- Indexes structure for table default_client_scope
 -- ----------------------------
 CREATE INDEX "idx_defcls_realm" ON "public"."default_client_scope" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_defcls_scope" ON "public"."default_client_scope" USING btree (
-  "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table default_client_scope
@@ -3314,9 +3534,9 @@ ALTER TABLE "public"."default_client_scope" ADD CONSTRAINT "r_def_cli_scope_bind
 -- Indexes structure for table event_entity
 -- ----------------------------
 CREATE INDEX "idx_event_time" ON "public"."event_entity" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "event_time" "pg_catalog"."int8_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "event_time" "pg_catalog"."int8_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table event_entity
@@ -3327,10 +3547,10 @@ ALTER TABLE "public"."event_entity" ADD CONSTRAINT "constraint_4" PRIMARY KEY ("
 -- Indexes structure for table fed_user_attribute
 -- ----------------------------
 CREATE INDEX "idx_fu_attribute" ON "public"."fed_user_attribute" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_attribute
@@ -3341,18 +3561,18 @@ ALTER TABLE "public"."fed_user_attribute" ADD CONSTRAINT "constr_fed_user_attr_p
 -- Indexes structure for table fed_user_consent
 -- ----------------------------
 CREATE INDEX "idx_fu_cnsnt_ext" ON "public"."fed_user_consent" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "client_storage_provider" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "external_client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "client_storage_provider" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "external_client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_consent" ON "public"."fed_user_consent" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_consent_ru" ON "public"."fed_user_consent" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_consent
@@ -3368,13 +3588,13 @@ ALTER TABLE "public"."fed_user_consent_cl_scope" ADD CONSTRAINT "constraint_fgrn
 -- Indexes structure for table fed_user_credential
 -- ----------------------------
 CREATE INDEX "idx_fu_credential" ON "public"."fed_user_credential" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "type" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "type" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_credential_ru" ON "public"."fed_user_credential" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_credential
@@ -3385,13 +3605,13 @@ ALTER TABLE "public"."fed_user_credential" ADD CONSTRAINT "constr_fed_user_cred_
 -- Indexes structure for table fed_user_group_membership
 -- ----------------------------
 CREATE INDEX "idx_fu_group_membership" ON "public"."fed_user_group_membership" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_group_membership_ru" ON "public"."fed_user_group_membership" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_group_membership
@@ -3402,13 +3622,13 @@ ALTER TABLE "public"."fed_user_group_membership" ADD CONSTRAINT "constr_fed_user
 -- Indexes structure for table fed_user_required_action
 -- ----------------------------
 CREATE INDEX "idx_fu_required_action" ON "public"."fed_user_required_action" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "required_action" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "required_action" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_required_action_ru" ON "public"."fed_user_required_action" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_required_action
@@ -3419,13 +3639,13 @@ ALTER TABLE "public"."fed_user_required_action" ADD CONSTRAINT "constr_fed_requi
 -- Indexes structure for table fed_user_role_mapping
 -- ----------------------------
 CREATE INDEX "idx_fu_role_mapping" ON "public"."fed_user_role_mapping" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fu_role_mapping_ru" ON "public"."fed_user_role_mapping" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table fed_user_role_mapping
@@ -3436,11 +3656,11 @@ ALTER TABLE "public"."fed_user_role_mapping" ADD CONSTRAINT "constr_fed_user_rol
 -- Indexes structure for table federated_identity
 -- ----------------------------
 CREATE INDEX "idx_fedidentity_feduser" ON "public"."federated_identity" USING btree (
-  "federated_user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "federated_user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_fedidentity_user" ON "public"."federated_identity" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table federated_identity
@@ -3456,12 +3676,12 @@ ALTER TABLE "public"."federated_user" ADD CONSTRAINT "constr_federated_user" PRI
 -- Indexes structure for table group_attribute
 -- ----------------------------
 CREATE INDEX "idx_group_att_by_name_value" ON "public"."group_attribute" USING btree (
-  "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  (value::character varying(250)) COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    (value::character varying(250)) COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_group_attr_group" ON "public"."group_attribute" USING btree (
-  "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table group_attribute
@@ -3472,8 +3692,8 @@ ALTER TABLE "public"."group_attribute" ADD CONSTRAINT "constraint_group_attribut
 -- Indexes structure for table group_role_mapping
 -- ----------------------------
 CREATE INDEX "idx_group_role_mapp_group" ON "public"."group_role_mapping" USING btree (
-  "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "group_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table group_role_mapping
@@ -3484,8 +3704,8 @@ ALTER TABLE "public"."group_role_mapping" ADD CONSTRAINT "constraint_group_role"
 -- Indexes structure for table identity_provider
 -- ----------------------------
 CREATE INDEX "idx_ident_prov_realm" ON "public"."identity_provider" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table identity_provider
@@ -3506,8 +3726,8 @@ ALTER TABLE "public"."identity_provider_config" ADD CONSTRAINT "constraint_d" PR
 -- Indexes structure for table identity_provider_mapper
 -- ----------------------------
 CREATE INDEX "idx_id_prov_mapp_realm" ON "public"."identity_provider_mapper" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table identity_provider_mapper
@@ -3533,11 +3753,11 @@ ALTER TABLE "public"."keycloak_group" ADD CONSTRAINT "constraint_group" PRIMARY 
 -- Indexes structure for table keycloak_role
 -- ----------------------------
 CREATE INDEX "idx_keycloak_role_client" ON "public"."keycloak_role" USING btree (
-  "client" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_keycloak_role_realm" ON "public"."keycloak_role" USING btree (
-  "realm" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table keycloak_role
@@ -3553,8 +3773,8 @@ ALTER TABLE "public"."keycloak_role" ADD CONSTRAINT "constraint_a" PRIMARY KEY (
 -- Indexes structure for table migration_model
 -- ----------------------------
 CREATE INDEX "idx_update_time" ON "public"."migration_model" USING btree (
-  "update_time" "pg_catalog"."int8_ops" ASC NULLS LAST
-);
+    "update_time" "pg_catalog"."int8_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table migration_model
@@ -3565,12 +3785,12 @@ ALTER TABLE "public"."migration_model" ADD CONSTRAINT "constraint_migmod" PRIMAR
 -- Indexes structure for table offline_client_session
 -- ----------------------------
 CREATE INDEX "idx_offline_css_preload" ON "public"."offline_client_session" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_us_sess_id_on_cl_sess" ON "public"."offline_client_session" USING btree (
-  "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table offline_client_session
@@ -3581,23 +3801,23 @@ ALTER TABLE "public"."offline_client_session" ADD CONSTRAINT "constraint_offl_cl
 -- Indexes structure for table offline_user_session
 -- ----------------------------
 CREATE INDEX "idx_offline_uss_by_user" ON "public"."offline_user_session" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_offline_uss_by_usersess" ON "public"."offline_user_session" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_offline_uss_createdon" ON "public"."offline_user_session" USING btree (
-  "created_on" "pg_catalog"."int4_ops" ASC NULLS LAST
-);
+    "created_on" "pg_catalog"."int4_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_offline_uss_preload" ON "public"."offline_user_session" USING btree (
-  "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "created_on" "pg_catalog"."int4_ops" ASC NULLS LAST,
-  "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "offline_flag" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "created_on" "pg_catalog"."int4_ops" ASC NULLS LAST,
+    "user_session_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table offline_user_session
@@ -3613,11 +3833,11 @@ ALTER TABLE "public"."policy_config" ADD CONSTRAINT "constraint_dpc" PRIMARY KEY
 -- Indexes structure for table protocol_mapper
 -- ----------------------------
 CREATE INDEX "idx_clscope_protmap" ON "public"."protocol_mapper" USING btree (
-  "client_scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_protocol_mapper_client" ON "public"."protocol_mapper" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table protocol_mapper
@@ -3633,8 +3853,8 @@ ALTER TABLE "public"."protocol_mapper_config" ADD CONSTRAINT "constraint_pmconfi
 -- Indexes structure for table realm
 -- ----------------------------
 CREATE INDEX "idx_realm_master_adm_cli" ON "public"."realm" USING btree (
-  "master_admin_client" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "master_admin_client" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table realm
@@ -3650,8 +3870,8 @@ ALTER TABLE "public"."realm" ADD CONSTRAINT "constraint_4a" PRIMARY KEY ("id");
 -- Indexes structure for table realm_attribute
 -- ----------------------------
 CREATE INDEX "idx_realm_attr_realm" ON "public"."realm_attribute" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table realm_attribute
@@ -3662,8 +3882,8 @@ ALTER TABLE "public"."realm_attribute" ADD CONSTRAINT "constraint_9" PRIMARY KEY
 -- Indexes structure for table realm_default_groups
 -- ----------------------------
 CREATE INDEX "idx_realm_def_grp_realm" ON "public"."realm_default_groups" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table realm_default_groups
@@ -3679,8 +3899,8 @@ ALTER TABLE "public"."realm_default_groups" ADD CONSTRAINT "constr_realm_default
 -- Indexes structure for table realm_enabled_event_types
 -- ----------------------------
 CREATE INDEX "idx_realm_evt_types_realm" ON "public"."realm_enabled_event_types" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table realm_enabled_event_types
@@ -3691,8 +3911,8 @@ ALTER TABLE "public"."realm_enabled_event_types" ADD CONSTRAINT "constr_realm_en
 -- Indexes structure for table realm_events_listeners
 -- ----------------------------
 CREATE INDEX "idx_realm_evt_list_realm" ON "public"."realm_events_listeners" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table realm_events_listeners
@@ -3718,8 +3938,8 @@ ALTER TABLE "public"."realm_smtp_config" ADD CONSTRAINT "constraint_e" PRIMARY K
 -- Indexes structure for table realm_supported_locales
 -- ----------------------------
 CREATE INDEX "idx_realm_supp_local_realm" ON "public"."realm_supported_locales" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table realm_supported_locales
@@ -3730,8 +3950,8 @@ ALTER TABLE "public"."realm_supported_locales" ADD CONSTRAINT "constr_realm_supp
 -- Indexes structure for table redirect_uris
 -- ----------------------------
 CREATE INDEX "idx_redir_uri_client" ON "public"."redirect_uris" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table redirect_uris
@@ -3747,8 +3967,8 @@ ALTER TABLE "public"."required_action_config" ADD CONSTRAINT "constraint_req_act
 -- Indexes structure for table required_action_provider
 -- ----------------------------
 CREATE INDEX "idx_req_act_prov_realm" ON "public"."required_action_provider" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table required_action_provider
@@ -3764,8 +3984,8 @@ ALTER TABLE "public"."resource_attribute" ADD CONSTRAINT "res_attr_pk" PRIMARY K
 -- Indexes structure for table resource_policy
 -- ----------------------------
 CREATE INDEX "idx_res_policy_policy" ON "public"."resource_policy" USING btree (
-  "policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table resource_policy
@@ -3776,8 +3996,8 @@ ALTER TABLE "public"."resource_policy" ADD CONSTRAINT "constraint_farsrpp" PRIMA
 -- Indexes structure for table resource_scope
 -- ----------------------------
 CREATE INDEX "idx_res_scope_scope" ON "public"."resource_scope" USING btree (
-  "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "scope_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table resource_scope
@@ -3803,8 +4023,8 @@ ALTER TABLE "public"."resource_server_perm_ticket" ADD CONSTRAINT "constraint_fa
 -- Indexes structure for table resource_server_policy
 -- ----------------------------
 CREATE INDEX "idx_res_serv_pol_res_serv" ON "public"."resource_server_policy" USING btree (
-  "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table resource_server_policy
@@ -3820,8 +4040,8 @@ ALTER TABLE "public"."resource_server_policy" ADD CONSTRAINT "constraint_farsrp"
 -- Indexes structure for table resource_server_resource
 -- ----------------------------
 CREATE INDEX "idx_res_srv_res_res_srv" ON "public"."resource_server_resource" USING btree (
-  "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table resource_server_resource
@@ -3837,8 +4057,8 @@ ALTER TABLE "public"."resource_server_resource" ADD CONSTRAINT "constraint_farsr
 -- Indexes structure for table resource_server_scope
 -- ----------------------------
 CREATE INDEX "idx_res_srv_scope_res_srv" ON "public"."resource_server_scope" USING btree (
-  "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "resource_server_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table resource_server_scope
@@ -3859,8 +4079,8 @@ ALTER TABLE "public"."resource_uris" ADD CONSTRAINT "constraint_resour_uris_pk" 
 -- Indexes structure for table role_attribute
 -- ----------------------------
 CREATE INDEX "idx_role_attribute" ON "public"."role_attribute" USING btree (
-  "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table role_attribute
@@ -3871,8 +4091,8 @@ ALTER TABLE "public"."role_attribute" ADD CONSTRAINT "constraint_role_attribute_
 -- Indexes structure for table scope_mapping
 -- ----------------------------
 CREATE INDEX "idx_scope_mapping_role" ON "public"."scope_mapping" USING btree (
-  "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "role_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table scope_mapping
@@ -3883,8 +4103,8 @@ ALTER TABLE "public"."scope_mapping" ADD CONSTRAINT "constraint_81" PRIMARY KEY 
 -- Indexes structure for table scope_policy
 -- ----------------------------
 CREATE INDEX "idx_scope_policy_policy" ON "public"."scope_policy" USING btree (
-  "policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "policy_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table scope_policy
@@ -3895,12 +4115,12 @@ ALTER TABLE "public"."scope_policy" ADD CONSTRAINT "constraint_farsrsps" PRIMARY
 -- Indexes structure for table user_attribute
 -- ----------------------------
 CREATE INDEX "idx_user_attribute" ON "public"."user_attribute" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_user_attribute_name" ON "public"."user_attribute" USING btree (
-  "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "value" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "value" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_attribute
@@ -3911,8 +4131,8 @@ ALTER TABLE "public"."user_attribute" ADD CONSTRAINT "constraint_user_attribute_
 -- Indexes structure for table user_consent
 -- ----------------------------
 CREATE INDEX "idx_user_consent" ON "public"."user_consent" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table user_consent
@@ -3928,8 +4148,8 @@ ALTER TABLE "public"."user_consent" ADD CONSTRAINT "constraint_grntcsnt_pm" PRIM
 -- Indexes structure for table user_consent_client_scope
 -- ----------------------------
 CREATE INDEX "idx_usconsent_clscope" ON "public"."user_consent_client_scope" USING btree (
-  "user_consent_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_consent_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_consent_client_scope
@@ -3940,12 +4160,12 @@ ALTER TABLE "public"."user_consent_client_scope" ADD CONSTRAINT "constraint_grnt
 -- Indexes structure for table user_entity
 -- ----------------------------
 CREATE INDEX "idx_user_email" ON "public"."user_entity" USING btree (
-  "email" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "email" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_user_service_account" ON "public"."user_entity" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
-  "service_account_client_link" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+    "service_account_client_link" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Uniques structure for table user_entity
@@ -3967,11 +4187,11 @@ ALTER TABLE "public"."user_federation_config" ADD CONSTRAINT "constraint_f9" PRI
 -- Indexes structure for table user_federation_mapper
 -- ----------------------------
 CREATE INDEX "idx_usr_fed_map_fed_prv" ON "public"."user_federation_mapper" USING btree (
-  "federation_provider_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "federation_provider_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 CREATE INDEX "idx_usr_fed_map_realm" ON "public"."user_federation_mapper" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_federation_mapper
@@ -3987,8 +4207,8 @@ ALTER TABLE "public"."user_federation_mapper_config" ADD CONSTRAINT "constraint_
 -- Indexes structure for table user_federation_provider
 -- ----------------------------
 CREATE INDEX "idx_usr_fed_prv_realm" ON "public"."user_federation_provider" USING btree (
-  "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "realm_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_federation_provider
@@ -3999,8 +4219,8 @@ ALTER TABLE "public"."user_federation_provider" ADD CONSTRAINT "constraint_5c" P
 -- Indexes structure for table user_group_membership
 -- ----------------------------
 CREATE INDEX "idx_user_group_mapping" ON "public"."user_group_membership" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_group_membership
@@ -4011,8 +4231,8 @@ ALTER TABLE "public"."user_group_membership" ADD CONSTRAINT "constraint_user_gro
 -- Indexes structure for table user_required_action
 -- ----------------------------
 CREATE INDEX "idx_user_reqactions" ON "public"."user_required_action" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_required_action
@@ -4023,8 +4243,8 @@ ALTER TABLE "public"."user_required_action" ADD CONSTRAINT "constraint_required_
 -- Indexes structure for table user_role_mapping
 -- ----------------------------
 CREATE INDEX "idx_user_role_mapping" ON "public"."user_role_mapping" USING btree (
-  "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table user_role_mapping
@@ -4050,8 +4270,8 @@ ALTER TABLE "public"."username_login_failure" ADD CONSTRAINT "CONSTRAINT_17-2" P
 -- Indexes structure for table web_origins
 -- ----------------------------
 CREATE INDEX "idx_web_orig_client" ON "public"."web_origins" USING btree (
-  "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
+    "client_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+    );
 
 -- ----------------------------
 -- Primary Key structure for table web_origins
